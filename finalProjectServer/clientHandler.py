@@ -60,7 +60,7 @@ class Handler:
     #         self.logger.log("changed msg_size: " + str(self.msg_size))
     #     else:
     #         print data['topic']
-    #     return True
+    #     return Tru
 
     def main_loop(self):
         while True:
