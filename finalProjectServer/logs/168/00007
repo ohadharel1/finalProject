@@ -1,6 +1,0 @@
-1488793810.11>> init client handler
-
-1488793819.14>> got data: {"droneNum":0,"cmd":"takeoff"}
-1488793849.83>> got data: {"droneNum":0,"cmd":"rtl"}
-1488793851.9>> got data: {"droneNum":0,"cmd":"landFin"}
-1488793935.85>> got data: 
