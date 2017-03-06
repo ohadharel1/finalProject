@@ -1,0 +1,4 @@
+1488792617.27>> init client handler
+
+1488792662.43>> got data: {"droneNum":0,"cmd":"takeoff"}
+1488792670.9>> got data: {"droneNum":0,"cmd":"fin"}

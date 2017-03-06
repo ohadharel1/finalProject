@@ -1,0 +1,7 @@
+1488748059.67>> init client handler
+
+1488748061.42>> got data: {"droneNum":12,"cmd":"takeoff"}
+1488748063.48>> got data: {"droneNum":12,"cmd":"land"}
+1488748071.53>> got data: {"droneNum":12,"cmd":"landFin"}
+1488748072.46>> got data: {"droneNum":12,"cmd":"takeoff"}
+1488748074.32>> got data: {"droneNum":12,"cmd":"fin"}

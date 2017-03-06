@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DroneSimulator</string>
+    <string name="onTheGround">Drone is on the ground</string>
+    <string name="takeOffBtn">takeoff</string>
+    <string name="droneIsAirborne">Drone is now airborne</string>
+    <string name="droneIsLanding">Drone is now landing</string>
+    <string name="rtlBtn">return home</string>
+    <string name="landBtn">land</string>
+    <string name="landedBtn">finish land</string>
+    <string name="serverIPLbl">server ip</string>
+    <string name="subServerIP">submit</string>
+</resources>

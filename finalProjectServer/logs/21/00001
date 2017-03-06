@@ -1,0 +1,32 @@
+1488744644.22>> init client handler
+
+1488744650.83>> got data: [{"droneNum":21,"cmd":"takeoff"}]
+
+1488744651.37>> got data: [{"droneNum":21,"cmd":"rtl"}]
+
+1488744653.61>> got data: [{"droneNum":21,"cmd":"landFin"}]
+
+1488744679.2>> got data: [{"droneNum":21,"cmd":"takeoff"}]
+
+1488744680.67>> got data: [{"droneNum":21,"cmd":"land"}]
+
+1488744716.32>> got data: [{"droneNum":21,"cmd":"landFin"}]
+
+1488744723.59>> got data: [{"droneNum":21,"cmd":"takeoff"}]
+
+1488744727.06>> got data: [{"droneNum":21,"cmd":"rtl"}]
+
+1488744728.46>> got data: [{"droneNum":21,"cmd":"landFin"}]
+
+1488744745.3>> got data: [{"droneNum":21,"cmd":"takeoff"}]
+
+1488744773.66>> got data: [{"droneNum":21,"cmd":"land"}]
+
+1488744775.21>> got data: [{"droneNum":21,"cmd":"landFin"}]
+
+1488744998.38>> got data: [{"droneNum":21,"cmd":"takeoff"}]
+
+1488744999.59>> got data: [{"droneNum":21,"cmd":"land"}]
+
+1488745000.21>> got data: [{"droneNum":21,"cmd":"landFin"}]
+
