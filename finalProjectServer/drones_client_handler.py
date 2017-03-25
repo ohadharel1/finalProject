@@ -2,16 +2,17 @@ import logger
 import json_utils
 import socket
 import time
+import controller
 
 
-class Handler:
+class DronesClientHandler:
     def __init__(self, drone_num):
         self.connection = None
         self.msg_size = 1024
         self.drone_num = drone_num
         self.connection_closed = False
         self.logger = logger.Logger(self.drone_num)
-        self.logger.log('init client handler\n')
+        print 'init client handler'
 
     def send_msg(self, msg):
         if msg is not None:
@@ -31,6 +32,7 @@ class Handler:
                 print 'data after strip: ' + data
                 self.logger.log('got data: ' + data)
                 jsonDict = json_utils.str_to_json(data)
+                self.handle_msg(data)
                 print jsonDict
                 if jsonDict['cmd'] == 'fin':
                     self.connection.close()
@@ -61,6 +63,14 @@ class Handler:
     #     else:
     #         print data['topic']
     #     return Tru
+
+
+    def handle_msg(self, msg):
+        connections = controller.get_instance().get_webapp_server().get_active_connections()
+        if connections is None or len(connections) < 1:
+            print 'no connections!!!'
+        for conn in connections:
+            conn.send_msg(msg)
 
     def main_loop(self):
         while True:
