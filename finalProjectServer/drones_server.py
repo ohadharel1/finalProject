@@ -6,7 +6,7 @@ from _socket import SOL_SOCKET, SO_REUSEADDR
 import drones_client_handler
 import logger
 
-address = '10.0.0.4'
+address = '132.74.214.89'
 port = 10001
 num_of_connection = 5
 

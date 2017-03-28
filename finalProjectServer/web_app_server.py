@@ -4,7 +4,7 @@ import thread
 import web_app_client_handler
 import logger
 
-address = '10.0.0.4'
+address = '132.74.214.89'
 port = 10002
 num_of_connection = 5
 

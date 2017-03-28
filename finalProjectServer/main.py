@@ -1,7 +1,7 @@
 
 import controller
 import threading
-import db_handler
+#import db_handler
 import config
 
 # if __name__ == '__main__':
