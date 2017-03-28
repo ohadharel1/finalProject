@@ -7,7 +7,7 @@ import web_app_client_handler
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 app.config['SERVER_NAME'] = config.local_address + ':5000'
-# app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 socketio = SocketIO(app)
 handler = web_app_client_handler.WebAppClientHandler()
 

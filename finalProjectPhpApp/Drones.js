@@ -56,7 +56,7 @@ jQuery(function () {
 
 
 
-    var socket = io.connect('http://127.0.0.1:5000');
+    var socket = io.connect('http://10.0.0.99:5000');
     var client_id = 0
     socket.on('connect', function() {
         console.log('connected');
