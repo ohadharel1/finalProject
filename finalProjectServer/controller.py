@@ -11,13 +11,16 @@ class __Controller:
     def __init__(self):
         self.__drone_server = drones_server.DronesServer()
         self.__webapp_server = web_app_server.WebAppServer()
-        #self.__db = db_handler.get_instance()
+        self.__db = db_handler.get_instance()
 
     def get_drone_server(self):
         return self.__drone_server
 
     def get_webapp_server(self):
         return self.__webapp_server
+
+    def get_db(self):
+        return self.__db
 
     # def get_db(self):
     #     return self.__db

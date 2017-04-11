@@ -3,8 +3,9 @@ import sys
 import thread
 import web_app_client_handler
 import logger
+import config
 
-address = '132.74.214.89'
+address = config.local_address
 port = 10002
 num_of_connection = 5
 

@@ -41,4 +41,4 @@ class Logger:
         log_file.close()
 
     def get_log_path(self):
-        return self.path
+        return os.path.abspath(self.path)

@@ -2,7 +2,10 @@ import logger
 import json_utils
 import socket
 import time
+import datetime
 import controller
+import config
+import flight
 
 
 class DronesClientHandler:
@@ -11,7 +14,12 @@ class DronesClientHandler:
         self.msg_size = 1024
         self.drone_num = drone_num
         self.connection_closed = False
-        self.logger = logger.Logger(self.drone_num)
+        self.flight = flight.Flight(self.drone_num, self)
+        # self.logger = logger.Logger(self.drone_num)
+        # ts = time.time()
+        # timestamp = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
+        # args = (int(drone_num), timestamp, self.logger.get_log_path())
+        # controller.get_instance().get_db().insert_to_table(config.flight_tbl_insert, args)
         print 'init client handler'
 
     def send_msg(self, msg):
@@ -22,22 +30,17 @@ class DronesClientHandler:
         try:
             data = self.connection.recv(self.msg_size)
             if data is not None:
-                if data is None or data is '':
-                    self.connection.close()
-                    print 'connection closed!'
-                    self.connection_closed = True
+                if data == '':
+                    return
                 data = str(data)
                 data = data.strip('[')
                 data = data.strip(']')
                 print 'data after strip: ' + data
-                self.logger.log('got data: ' + data)
                 jsonDict = json_utils.str_to_json(data)
-                self.handle_msg(data)
+                res = self.flight.handle_msg(jsonDict)
                 print jsonDict
-                if jsonDict['cmd'] == 'fin':
-                    self.connection.close()
-                    print 'connection closed!'
-                    self.connection_closed = True
+                if res == 'fin':
+                    self.close_connection()
 
 
         except socket.timeout, e:
@@ -64,13 +67,13 @@ class DronesClientHandler:
     #         print data['topic']
     #     return Tru
 
-
-    def handle_msg(self, msg):
-        connections = controller.get_instance().get_webapp_server().get_active_connections()
-        if connections is None or len(connections) < 1:
-            print 'no connections!!!'
-        for conn in connections:
-            conn.send_msg(msg)
+    #
+    # def handle_msg(self, msg):
+    #     connections = controller.get_instance().get_webapp_server().get_active_connections()
+    #     if connections is None or len(connections) < 1:
+    #         print 'no connections!!!'
+    #     for conn in connections:
+    #         conn.send_msg(msg)
 
     def main_loop(self):
         while True:
@@ -78,10 +81,15 @@ class DronesClientHandler:
                 break
             self.rec_msg()
             time.sleep(0.01)
+        self.connection.close()
 
 
     def run(self, connection):
         self.connection = connection
         self.connection.settimeout(5)
         self.main_loop()
+
+    def close_connection(self):
+        self.connection_closed = True
+
 

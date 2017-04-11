@@ -36,7 +36,7 @@ def start_drones_server():
 
 
 if __name__ == '__main__':
-    web_app_thread = threading.Thread(target=start_web_app_server)
+    #web_app_thread = threading.Thread(target=start_web_app_server)
     drones_thread = threading.Thread(target=start_drones_server)
-    web_app_thread.start()
+    #web_app_thread.start()
     drones_thread.start()

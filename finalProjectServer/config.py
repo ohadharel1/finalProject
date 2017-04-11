@@ -1,4 +1,5 @@
-
+#network
+local_address = '10.0.0.13'
 #config for db:
 
 #connect args
@@ -13,7 +14,12 @@ battery_tbl_name = 'tblbattery'
 thrust_tbl_name = 'tblthrust'
 flight_tbl_name = 'tblflight'
 #for table insert:
-motor_tbl_insert = 'tblmotor (name, kv, weight, price) VALUES (%s, %s, %s, %s)'
+motor_tbl_insert = motor_tbl_name + ' (name, kv, weight, price) VALUES (%s, %s, %s, %s)'
+flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, log_file_path) VALUES (%s, %s, %s, %s)'
+
+#flight_status
+flight_status_active = ['takeoff', 'in_mission', 'rtl', 'land']
+flight_status_before_takeoff = ['ready_to_takeoff']
 
 
 

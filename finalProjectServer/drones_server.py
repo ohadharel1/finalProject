@@ -2,11 +2,12 @@ import socket
 import sys
 import thread
 from _socket import SOL_SOCKET, SO_REUSEADDR
+import config
 
 import drones_client_handler
 import logger
 
-address = '132.74.214.89'
+address = config.local_address
 port = 10001
 num_of_connection = 5
 
