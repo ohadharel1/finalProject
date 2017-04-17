@@ -3,13 +3,9 @@ import os
 
 
 def json_to_str(json_obj):
-    str = json.loads(json_obj)
+    str = json.dumps(json_obj)
     return str
 
-
-# def str_to_json(str):
-#     json_obj = json.dumps(str, sort_keys=True, indent=4)
-#     return json_obj
 
 def str_to_json(str):
     json_obj = json.loads(str)

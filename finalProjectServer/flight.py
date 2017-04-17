@@ -6,6 +6,7 @@ import thread
 import threading
 import controller
 import config
+import web_app_server
 
 flight_status = ['ready_to_takeoff', 'airborne', 'landed']
 time_check_sleep = 60*30  # 30 minutes
@@ -60,11 +61,8 @@ class Flight:
             self.timeout_thread.set()
 
         # send data to web app
-        connections = controller.get_instance().get_webapp_server().get_active_connections()
-        if connections is None or len(connections) < 1:
-            print 'no connections!!!'
-        for conn in connections:
-            conn.send_msg(msg)
+        connection = controller.get_instance().get_webapp_server()
+        connection.send_msg(msg)
 
     def finish_flight(self):
         controller.get_instance().get_db().commit_flight_end_time(self.drone_num, self.timestamp)

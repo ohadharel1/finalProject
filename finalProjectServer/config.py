@@ -7,6 +7,10 @@ db_host = "localhost"
 db_user = 'root'
 db_pass = '1234'
 db_name = "final_project_db"
+
+#web_app_server_args
+max_num_of_web_clients = 10 + 1
+
 #table names
 motor_tbl_name = 'tblmotor'
 prop_tbl_name = 'tblprop'
@@ -20,6 +24,13 @@ flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, lo
 #flight_status
 flight_status_active = ['takeoff', 'in_mission', 'rtl', 'land']
 flight_status_before_takeoff = ['ready_to_takeoff']
+
+
+#query numbers:
+QUERY_GET_ACTIVE_DRONES = 1
+QUERY_GET_FLIGHT_RECORDS = 2
+QUERY_GET_FLIGHT_TIME_FOR_DRONE = 3
+
 
 
 

@@ -2,60 +2,27 @@ import logger
 import json_utils
 import socket
 import time
+import web_app_server
+import config
+import controller
 
 
 class WebAppClientHandler:
     def __init__(self):
-        self.connection = None
-        self.msg_size = 1024
-        self.connection_closed = False
-        # self.logger = logger.Logger(self.drone_num)
-        # self.logger.log('init web app client handler\n')
+        pass
 
-    def send_msg(self, msg):
+    def handle_msg(self, msg):
         if msg is not None:
-            self.connection.sendall(msg)
+            if type(msg) is dict:
+                cmd = msg['cmd']
+                res = {}
+                if cmd == 'query':
+                    query_num = int(msg['query_num'])
+                    if query_num == config.QUERY_GET_FLIGHT_TIME_FOR_DRONE:
+                        drone_num = int(msg['arg1'])
+                        res['result'] = controller.get_instance().get_db().get_total_flight_time_for_drone(drone_num)
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_FLIGHT_TIME_FOR_DRONE
 
-    def rec_msg(self):
-        try:
-            data = self.connection.recv(self.msg_size)
-            if data is not None:
-                if data == '':
-                    return
-                data = str(data)
-                data = data.strip('[')
-                data = data.strip(']')
-                print 'data after strip: ' + data
-                # self.logger.log('got data: ' + data)
-                jsonDict = json_utils.str_to_json(data)
-                print jsonDict
-                if jsonDict['cmd'] == 'fin':
-                    self.connection.close()
-                    print 'connection closed!'
-                    self.connection_closed = True
-
-
-        except socket.timeout, e:
-            pass
-            # err = e.args[0]
-            # # this next if/else is a bit redundant, but illustrates how the
-            # # timeout exception is setup
-            # if err == 'timed out':
-            #     self.logger.log('recv timed out, retry later')
-            #     return None
-        # data = json_utils.json_to_str(data)
-        # return data
-
-    def main_loop(self):
-        while True:
-            if self.connection_closed:
-                break
-            self.rec_msg()
-            time.sleep(0.01)
-
-
-    def run(self, connection):
-        self.connection = connection
-        self.connection.settimeout(5)
-        self.main_loop()
+                    return res
 

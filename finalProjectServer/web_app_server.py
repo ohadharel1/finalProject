@@ -1,36 +1,36 @@
-import socket
-import sys
-import thread
-import web_app_client_handler
-import logger
+from flask import Flask
+from flask_socketio import SocketIO, send
+import time
 import config
+import web_app_client_handler
 
-address = config.local_address
-port = 10002
-num_of_connection = 5
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecret'
+app.config['SERVER_NAME'] = '127.0.0.1:5000'
+# app.config['DEBUG'] = True
+socketio = SocketIO(app)
+handler = web_app_client_handler.WebAppClientHandler()
 
 
-class WebAppServer:
-    def __init__(self):
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_address = (address, port)
-        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.server_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        self.server_socket.bind(self.server_address)
-        self.active_connections = []
-        self.logger = logger.Logger()
-        print 'web app server started'
+def send_msg(msg):
+    global socketio
+    print('my_msg: ' + str(msg))
+    socketio.emit('my_msg', {'msg': msg})
 
-    def start_server(self):
-        self.server_socket.listen(1)
+@socketio.on('message')
+def handleMessage(msg):
+    global handler
+    print('Message: ' + str(msg))
+    res = handler.handle_msg(msg)
+    if res is not None:
+        send(res, broadcast = False)
 
-        while True:
-            # Wait for a connection
-            self.logger.log('waiting for web app connection')
-            connection, client_address = self.server_socket.accept()
-            handler = web_app_client_handler.WebAppClientHandler()
-            self.active_connections.append(handler)
-            thread.start_new_thread(handler.run, (connection, ))
+@socketio.on('disconnect')
+def disconnect(self):
+    print 'new disconnect!!!'
 
-    def get_active_connections(self):
-        return self.active_connections
+def start_server():
+    global socketio
+    socketio.run(app)
+
+

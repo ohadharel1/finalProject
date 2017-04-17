@@ -1,6 +1,8 @@
 
 import controller
 import threading
+import web_app_server
+import tornado
 #import db_handler
 import config
 
@@ -28,6 +30,7 @@ import config
 
 def start_web_app_server():
     web_server = controller.get_instance().get_webapp_server()
+    # web_server = web_app_server
     web_server.start_server()
 
 def start_drones_server():
@@ -36,7 +39,8 @@ def start_drones_server():
 
 
 if __name__ == '__main__':
-    #web_app_thread = threading.Thread(target=start_web_app_server)
+    # web_app_thread = threading.Thread(target=start_web_app_server)
     drones_thread = threading.Thread(target=start_drones_server)
-    #web_app_thread.start()
+    # web_app_thread.start()
     drones_thread.start()
+    start_web_app_server()
