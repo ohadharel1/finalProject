@@ -30,6 +30,5 @@ class DronesServer:
             self.logger.log('waiting for a connection')
             connection, client_address = self.server_socket.accept()
             client_ip = client_address[0]
-            drone_num = client_ip.split('.')[-1]
-            handler = drones_client_handler.DronesClientHandler(drone_num)
+            handler = drones_client_handler.DronesClientHandler(client_ip)
             thread.start_new_thread(handler.run, (connection, ))

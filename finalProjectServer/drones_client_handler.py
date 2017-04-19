@@ -9,12 +9,13 @@ import flight
 
 
 class DronesClientHandler:
-    def __init__(self, drone_num):
+    def __init__(self, drone_ip):
         self.connection = None
         self.msg_size = 1024
-        self.drone_num = drone_num
+        self.drone_ip = drone_ip
+        self.drone_num = self.drone_ip.split('.')[-1]
         self.connection_closed = False
-        self.flight = flight.Flight(self.drone_num, self)
+        self.flight = flight.Flight(self.drone_ip, self)
         # self.logger = logger.Logger(self.drone_num)
         # ts = time.time()
         # timestamp = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
