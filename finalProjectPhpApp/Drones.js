@@ -8,12 +8,11 @@ jQuery(function () {
 
 
 
-         var tableD= getElementById("tbl");
+         var tableD= document.getElementById("tbl");
            $(data).each(function (index, v) {
              var flag=false;
-             for(var i =0, row; row=tableD.row[i], i++){
+             for(var i =0, row; row=tableD.rows[i]; i++){
                var cell=row.cells[0].innerHTML;
-               var cellStatus= row.cells[2].innerHTML;
                 if(v.drone_num == cell){
                     row.cells[2].innerHTML=v.cmd;
                     flag= true;
