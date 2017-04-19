@@ -119,7 +119,7 @@ public class DroneClient extends AsyncTask<Void, Void, Void>
     public void closeConnection()
     {
         ArrayMap<String,String> map = new ArrayMap<>();
-        map.put("droneNum", String.valueOf(this.mDroneNum));
+        map.put("drone_num", String.valueOf(this.mDroneNum));
         map.put("cmd", "fin");
         mMessage = Utils.mapToJsonString(map);
         this.mConnectionAlive = false;

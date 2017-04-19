@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
     public void onClick_takeOff(View view)
     {
         ArrayMap<String, String> map = new ArrayMap<>();
-        map.put("droneNum", String.valueOf(this.mDroneClient.getDroneNum()));
+        map.put("drone_num", String.valueOf(this.mDroneClient.getDroneNum()));
         map.put("cmd", "takeoff");
         this.mDroneClient.sendMsg(map);
         changeDroneStatus(eDroneStatus.AIRBORNE);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
     public void onClick_rtl(View view)
     {
         ArrayMap<String, String> map = new ArrayMap<>();
-        map.put("droneNum", String.valueOf(this.mDroneClient.getDroneNum()));
+        map.put("drone_num", String.valueOf(this.mDroneClient.getDroneNum()));
         map.put("cmd", "rtl");
         this.mDroneClient.sendMsg(map);
         changeDroneStatus(eDroneStatus.LANDING);
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     public void onClick_land(View view)
     {
         ArrayMap<String, String> map = new ArrayMap<>();
-        map.put("droneNum", String.valueOf(this.mDroneClient.getDroneNum()));
+        map.put("drone_num", String.valueOf(this.mDroneClient.getDroneNum()));
         map.put("cmd", "land");
         this.mDroneClient.sendMsg(map);
         changeDroneStatus(eDroneStatus.LANDING);
@@ -117,8 +117,8 @@ public class MainActivity extends AppCompatActivity
     public void onClick_landed(View view)
     {
         ArrayMap<String, String> map = new ArrayMap<>();
-        map.put("droneNum", String.valueOf(this.mDroneClient.getDroneNum()));
-        map.put("cmd", "landFin");
+        map.put("drone_num", String.valueOf(this.mDroneClient.getDroneNum()));
+        map.put("cmd", "landed");
         this.mDroneClient.sendMsg(map);
         changeDroneStatus(eDroneStatus.ON_GROUND);
     }

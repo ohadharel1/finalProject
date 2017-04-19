@@ -2,7 +2,7 @@
 
 	class Client
 	{
-		private $host = "10.0.0.13";
+		private $host = "132.74.211.89";
 		private $port = 10002;
 		private $socket = null;
 

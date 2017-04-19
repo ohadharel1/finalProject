@@ -1,0 +1,78 @@
+<?php
+session_start();
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<title>Drone Page</title>
+    <link rel="stylesheet" href="drone.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
+</head>
+<body class="mainBody">
+
+  <?php include "header.php"; ?>
+
+
+  <div id="buttonHeader">
+
+                <!-- <input type="text" id="search" placeholder="Start Time.." />
+                      <div id="livesearch"></div> -->
+
+                      <!-- <input type="text" id="search" placeholder="End Time.." />
+                      <div id="livesearch"></div> -->
+
+                <!-- <a href="main.php">
+                    <button class="HomeButtons" type="button">1</button>
+                </a>
+
+                <a href="profile.php">
+                   <button class="ProfileButtons" type="button">2</button>
+                   </a>
+
+                  <a>
+                    <button id="connButtons" class="connButtons" type="button">3</button>
+                  </a>
+
+                    <a href="logout.php">
+                    <button class="logOutButtons" type="button">Sign Out</button>
+                </a> -->
+
+            </div>
+
+            <aside>
+                  <h2 id="PositionTitle" >Menu </h2>
+                  <a href="logout.php">
+                  <button class="logOutButtons" type="button">תחקורים</button>
+              </a>
+              <input  class = "name1" value= 'btn1' type="submit" onclick="send_btn1()" />
+              <input type="text" id = 'input1'></input>
+
+
+              </aside>
+
+  <div id="tblDrone">
+
+    <h2>Flight Schedule</h2>
+
+<table id = "tbl">
+  <tr class='clickable-row' data-href ="http://www.ynet.co.il/home/0,7340,L-8,00.html"  >
+    <th>ID</th>
+    <!-- <th>Name</th> -->
+    <!-- <th>Ip address</th> -->
+    <th>Status</th>
+    <!-- <th>Time In Air</th> -->
+  </tr>
+</table>
+
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="Drones.js"></script>
+</html>

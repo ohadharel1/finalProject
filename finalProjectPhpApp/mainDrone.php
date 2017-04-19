@@ -13,7 +13,7 @@
     <h4>Please fill out all criteria</h4>
 
 
-    <form name="frm" method="post" action="scruplesTbl.php"  >
+    <form name="frm" method="post" action="Client.php"  >
 
       <p><input type="text" name="weight" placeholder="Weight"><span class = "required" id = "weightError"></span></p>
 
