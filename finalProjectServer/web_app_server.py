@@ -25,10 +25,6 @@ def handleMessage(msg):
     if res is not None:
         send(res, broadcast = False)
 
-@socketio.on('disconnect')
-def disconnect(self):
-    print 'new disconnect!!!'
-
 def start_server():
     global socketio
     socketio.run(app)
