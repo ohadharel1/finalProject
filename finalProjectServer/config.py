@@ -19,6 +19,7 @@ thrust_tbl_name = 'tblthrust'
 flight_tbl_name = 'tblflight'
 #for table insert:
 motor_tbl_insert = motor_tbl_name + ' (name, kv, weight, price) VALUES (%s, %s, %s, %s)'
+bat_tbl_insert = battery_tbl_name + ' (name, type, volt, discharge_rate, capacity, weight, price) VALUES (%s, %s, %s, %s, %s, %s, %s)'
 flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, log_file_path) VALUES (%s, %s, %s, %s)'
 
 #flight_status
