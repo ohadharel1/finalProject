@@ -6,9 +6,22 @@ jQuery(function () {
     // $('#tblDrone').empty();
     //    $.getJSON("json.json", function (data) {
 
-         var tableD;
+
+
+         var tableD= getElementById("tbl");
            $(data).each(function (index, v) {
+             var flag=false;
+             for(var i =0, row; row=tableD.row[i], i++){
+               var cell=row.cells[0].innerHTML;
+               var cellStatus= row.cells[2].innerHTML;
+                if(v.drone_num == cell){
+                    row.cells[2].innerHTML=v.cmd;
+                    flag= true;
+                }
+             }
+             if(flag==false){
            tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.cmd + '</td></tr>';
+         }
            });
 
         $('#tbl').append(tableD);
