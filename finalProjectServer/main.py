@@ -2,7 +2,6 @@
 import controller
 import threading
 import web_app_server
-import tornado
 #import db_handler
 import config
 
