@@ -2,6 +2,7 @@ import MySQLdb
 import config
 import time
 import datetime
+import flight
 
 
 instance = None
@@ -56,6 +57,23 @@ class _DB_handler:
             start_time = row['start_flight_time']
             total_time += (end_time - start_time).total_seconds() / 60
         return total_time
+
+    def get_active_flights(self):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        print "SELECT * FROM " + config.flight_tbl_name + " WHERE state = %s", flight.flight_status.index('airborne')
+        cursor.execute("SELECT * FROM " + config.flight_tbl_name + " WHERE state = %s", flight.flight_status.index('airborne'))
+        query_result = cursor.fetchall()
+        result = {}
+        i = 0
+        for row in query_result:
+            flight_num = 'flight' + str(i)
+            result[flight_num] = {}
+            result[flight_num]['drone_num'] = row['drone_num']
+            # result[flight_num]['drone_ip'] = row['drone_ip']
+            result[flight_num]['cmd'] = flight.flight_status[int(row['state'])]
+            result[flight_num]['start_time'] = str(row['start_flight_time'])
+            i += 1
+        return result
 
 
 def get_instance():

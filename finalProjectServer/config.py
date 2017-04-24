@@ -1,5 +1,5 @@
 #network
-local_address = '132.74.212.110'
+local_address = '132.74.214.3'
 #config for db:
 
 #connect args
@@ -31,6 +31,7 @@ flight_status_before_takeoff = ['ready_to_takeoff']
 QUERY_GET_ACTIVE_DRONES = 1
 QUERY_GET_FLIGHT_RECORDS = 2
 QUERY_GET_FLIGHT_TIME_FOR_DRONE = 3
+
 
 
 

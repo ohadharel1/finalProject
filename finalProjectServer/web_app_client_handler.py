@@ -23,6 +23,10 @@ class WebAppClientHandler:
                         res['result'] = controller.get_instance().get_db().get_total_flight_time_for_drone(drone_num)
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_FLIGHT_TIME_FOR_DRONE
+                    if query_num == config.QUERY_GET_ACTIVE_DRONES:
+                        res['result'] = controller.get_instance().get_db().get_active_flights()
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_ACTIVE_DRONES
 
                     return res
 
