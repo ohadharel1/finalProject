@@ -2,6 +2,17 @@ send_func = null;
 
 jQuery(function () {
 
+ var timerVar = setInterval(countTimer, 1000);
+ var totalSeconds = 0;
+ var time = '00:00'
+ function countTimer() {
+     ++totalSeconds;
+     var hour = Math.floor(totalSeconds /3600);
+     var minute = Math.floor((totalSeconds - hour*3600)/60);
+     var seconds = totalSeconds - (hour*3600 + minute*60);
+     time = minute + ":" + seconds
+  }
+
   function getFlights(data) {
     // $('#tblDrone').empty();
     //    $.getJSON("json.json", function (data) {
@@ -19,7 +30,8 @@ jQuery(function () {
                 }
              }
              if(flag==false){
-           tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.cmd + '</td></tr>';
+
+                 tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.drone_ip + '</td><td>' + v.cmd + '</td><td>' + time + '</td></tr>';
          }
            });
 
@@ -37,9 +49,9 @@ jQuery(function () {
 
   // setInterval(getFlights,2500);
 
-  // $(".clickable-row").click(function() {
-  //     window.location = $(this).data("href");
-  // });
+  $(".clickable-row").click(function() {
+      window.location = $(this).data("href");
+  });
 
 
 
@@ -54,7 +66,7 @@ jQuery(function () {
         console.log('disconnect');
     });
     socket.on('message', function(msg) {
-        console.log('Received message:' + msg.result);
+        console.log('Received message:' + JSON.stringify(msg));
         var input = document.getElementById("input1").value;
         input = msg.result;
 
@@ -72,7 +84,7 @@ jQuery(function () {
  });
 
  function send_btn1(msg){
-     var msg = {cmd: 'query', query_num: 3, arg1: 20};
+     var msg = {cmd: 'query', query_num: 1};
      send_func(msg)
  }
 
