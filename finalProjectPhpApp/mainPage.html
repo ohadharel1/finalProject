@@ -10,58 +10,48 @@ session_start();
 <title>Drone Page</title>
     <link rel="stylesheet" href="drone.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-
 </head>
 <body class="mainBody">
 
-  <?php include "header.php"; ?>
 
+  <ul>
+    <li><img id="mainLogo" src="https://upload.wikimedia.org/wikipedia/he/thumb/2/29/Rafael-2.svg/240px-Rafael-2.svg.png" title="Main Page"</li>
+    <li><a class="active" href="#home">Flights </a></li>
+    <li><a href="#news">תחקורים</a></li>
+    <li><a href="#contact">טופס</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
 
-  <div id="buttonHeader">
-
-                <!-- <input type="text" id="search" placeholder="Start Time.." />
-                      <div id="livesearch"></div> -->
-
-                      <!-- <input type="text" id="search" placeholder="End Time.." />
-                      <div id="livesearch"></div> -->
-
-                <!-- <a href="main.php">
-                    <button class="HomeButtons" type="button">1</button>
-                </a>
-
-                <a href="profile.php">
-                   <button class="ProfileButtons" type="button">2</button>
-                   </a>
-
-                  <a>
-                    <button id="connButtons" class="connButtons" type="button">3</button>
-                  </a>
-
-                    <a href="logout.php">
-                    <button class="logOutButtons" type="button">Sign Out</button>
-                </a> -->
-
+  <!-- <header class="header">
+      <div class="wrapper">
+          <div id="logo">
+              <a href="mainPage.php">
+                  <img id="mainLogo" src="https://upload.wikimedia.org/wikipedia/he/thumb/2/29/Rafael-2.svg/240px-Rafael-2.svg.png" title="Main Page">
+              </a>
             </div>
 
-            <aside>
-                  <h2 id="PositionTitle" >Menu </h2>
-                  <a href="logout.php">
-                  <button class="logOutButtons" type="button">תחקורים</button>
-              </a>
-              <input  class = "name1" value= 'btn1' type="submit" onclick="send_btn1()" />
-              <input type="text" id = 'input1'></input>
+              <div id="buttonHeader">
+              <a href="formDrone.html">
+              <button class="logOutButtons" type="button">תחקורים</button>
+          </a>
+          <a href="formDrone.html">
+          <button class="logOutButtons" type="button">טופס</button>
+      </a>
 
+          <!-- <input  class = "name1" value= 'btn1' type="submit" onclick="send_btn1()" />
+          <input type="text" id = 'input1'></input> -->
+          <!-- </div> -->
 
-              </aside>
+            <!-- </div> -->
+  <!-- </header> -->
 
   <div id="tblDrone">
 
-    <h2>Flight Schedule</h2>
+    <h2 id="title">Flight Schedule</h2>
 
 <table id = "tbl">
-  <tr style='cursor:hand' class='clickable-row' data-href ="http://www.ynet.co.il/home/0,7340,L-8,00.html"  >
+  <tr >
     <th>ID</th>
-    <!-- <th>Name</th> -->
     <th>Ip address</th>
     <th>Status</th>
     <th>Time In Air</th>

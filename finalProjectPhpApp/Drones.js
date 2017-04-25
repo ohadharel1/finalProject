@@ -4,7 +4,9 @@ jQuery(function () {
 
  var timerVar = setInterval(countTimer, 1000);
  var totalSeconds = 0;
- var time = '00:00'
+ var time = '00:00';
+  //time = document.getElementById('time1')
+ //var seconds = 0, minutes = 0,t;
  function countTimer() {
      ++totalSeconds;
      var hour = Math.floor(totalSeconds /3600);
@@ -12,6 +14,25 @@ jQuery(function () {
      var seconds = totalSeconds - (hour*3600 + minute*60);
      time = minute + ":" + seconds
   }
+
+//   function add() {
+//     seconds++;
+//     if (seconds >= 60) {
+//         seconds = 0;
+//         minutes++;
+//         if (minutes >= 60) {
+//             minutes = 0;
+//         }
+//     }
+//
+//     time.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+//
+//     timer();
+// }
+// function timer() {
+//     t = setTimeout(add, 1000);
+// }
+
 
   function getFlights(data) {
     // $('#tblDrone').empty();
@@ -22,41 +43,42 @@ jQuery(function () {
          var tableD= document.getElementById("tbl");
            $(data).each(function (index, v) {
              var flag=false;
+             var count = 0;
              for(var i =0, row; row=tableD.rows[i]; i++){
                var cell=row.cells[0].innerHTML;
                 if(v.drone_num == cell){
                     row.cells[2].innerHTML=v.cmd;
+
+                      var intervalID=setInterval(function() {
+                                $('.flickering').toggleClass('blink');
+                                count++;
+                                if (count === 4) clearInterval(intervalID);
+                                }, 500);
+                                  row.cells[2].innerHTML=v.cmd;
                     flag= true;
                 }
              }
              if(flag==false){
-
-                 tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.drone_ip + '</td><td>' + v.cmd + '</td><td>' + time + '</td></tr>';
+                //timer();
+                 tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.drone_ip + '</td><td class= "flickering">' + v.cmd + '</td><td>' + time + '</td></tr>';
          }
+
            });
 
         $('#tbl').append(tableD);
 
-
-
-
-    //    });
-
        }
 
 
-
-
-  // setInterval(getFlights,2500);
-
-  $(".clickable-row").click(function() {
-      window.location = $(this).data("href");
-  });
+  $("#tbl").on("click", "td", function() {
+       window.open("https://www.w3schools.com");
+     });
 
 
 
 
-    var socket = io.connect('http://10.0.0.99:5000');
+
+    var socket = io.connect('http://127.0.0.1:5000');
     var client_id = 0
     socket.on('connect', function() {
         console.log('connected');
@@ -66,7 +88,7 @@ jQuery(function () {
         console.log('disconnect');
     });
     socket.on('message', function(msg) {
-        console.log('Received message:' + JSON.stringify(msg));
+        console.log('Received message:' + msg.result);
         var input = document.getElementById("input1").value;
         input = msg.result;
 
@@ -84,7 +106,7 @@ jQuery(function () {
  });
 
  function send_btn1(msg){
-     var msg = {cmd: 'query', query_num: 1};
+     var msg = {cmd: 'query', query_num: 3, arg1: 20};
      send_func(msg)
  }
 

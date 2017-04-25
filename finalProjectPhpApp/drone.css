@@ -1,7 +1,8 @@
 
-.clickable-row {
-    cursor: pointer;
-}
+.flickering {transition: color 200ms ease;}
+
+/* The class "Blink" is set to be transparent*/
+.flickering.blink {color:transparent;}
 
 header {
   background-color: #6c8ac6;
@@ -16,21 +17,37 @@ header {
     height: 70px;
 }
 
-#logo{
+#mainLogo{
   float: left;
-    width: 20%;
-    height: 40px;
+    width: 80%;
+    height: 50px;
     padding-top: 1;
 }
 
-aside {
+#buttonHeader {
     float: right;
-    background-color: #6c8ac6;
-    text-align: center;
-    border-right: 4px solid white;
-    width: 30%;
-    height: 250px;
+    width: 80%;
+    height: 50px;
 }
+
+.logOutButtons{
+  margin-left: 1px;
+  margin-top: 10px;
+  background: #91a7d4;
+  font: italic bold 16px Georgia, serif;
+  border-color:  black;
+  padding: 8px 10px 5px 25px;
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+}
+
+#title{
+    text-align: center;
+}
+
 
 #tblDrone {
     /*margin-left: auto;
@@ -45,10 +62,16 @@ aside {
     color: red;
 }
 
-td, th {
-    border: 2px solid #dddddd;
-    text-align: left;
+th {
+    border: 3px solid #dddddd;
+    text-align: center;
     padding: 8px;
+}
+
+td {
+    border: 2px solid #dddddd;
+    padding: 8px;
+    text-align: center;
 }
 
 /*tr:nth-child(even) {
@@ -67,9 +90,26 @@ table {
     background: #E0E0E0;
 }
 
-#circle{
-  font-size: 20px;
-  text-align: center;
-  color: red;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
 }
