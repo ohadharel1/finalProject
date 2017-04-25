@@ -28,11 +28,14 @@ class WebAppClientHandler:
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_FLIGHT_TIME_FOR_DRONE
                     if query_num == config.QUERY_GET_ACTIVE_DRONES:
-                        print 'correct if'
                         res['result'] = controller.get_instance().get_db().get_active_flights()
-                        print 'res is: ' + str(res['result']) 
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_ACTIVE_DRONES
+                    if query_num == config.QUERY_GET_CURRENT_FLIGHT_DETAILS:
+                        drone_ip = msg['arg1']
+                        res['result'] = controller.get_instance().get_drone_server().get_connection(drone_ip).get_flight().get_log_file()
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_CURRENT_FLIGHT_DETAILS
                     print str(res)
                     return res
 

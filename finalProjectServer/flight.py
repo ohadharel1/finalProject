@@ -69,3 +69,6 @@ class Flight:
     def finish_flight(self):
         controller.get_instance().get_db().commit_flight_end_time(self.drone_num, self.timestamp)
         self.client_handler.close_connection()
+
+    def get_log_file(self):
+        return self.logger.get_log_path()

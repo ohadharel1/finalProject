@@ -31,6 +31,7 @@ flight_status_before_takeoff = ['ready_to_takeoff']
 QUERY_GET_ACTIVE_DRONES = 1
 QUERY_GET_FLIGHT_RECORDS = 2
 QUERY_GET_FLIGHT_TIME_FOR_DRONE = 3
+QUERY_GET_CURRENT_FLIGHT_DETAILS = 4
 
 
 

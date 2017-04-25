@@ -20,6 +20,7 @@ class DronesServer:
         self.server_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         self.server_socket.bind(self.server_address)
         self.logger = logger.Logger()
+        self.connections = {}
         print 'drone server started'
 
     def start_server(self):
@@ -31,4 +32,13 @@ class DronesServer:
             connection, client_address = self.server_socket.accept()
             client_ip = client_address[0]
             handler = drones_client_handler.DronesClientHandler(client_ip)
+            self.connections[client_ip] = handler
             thread.start_new_thread(handler.run, (connection, ))
+
+    def remove_connection(self, client_ip):
+        if self.connections.has_key(client_ip):
+            self.connections.pop(client_ip)
+
+    def get_connection(self, client_ip):
+        if self.connections.has_key(client_ip):
+            return self.connections[client_ip]
