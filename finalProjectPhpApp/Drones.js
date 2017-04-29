@@ -1,4 +1,12 @@
 send_func = null;
+quert_numEnum ={
+  // QUERY_GET_ACTIVE_DRONES,
+  // QUERY_GET_FLIGHT_RECORDS,
+  // QUERY_GET_FLIGHT_TIME_FOR_DRONE,
+  QUERY_GET_CURRENT_FLIGHT_DETAILS: 4
+
+//  QUERY_SIZE
+}
 
 jQuery(function () {
 
@@ -35,16 +43,13 @@ jQuery(function () {
 
 
   function getFlights(data) {
-    // $('#tblDrone').empty();
-    //    $.getJSON("json.json", function (data) {
-
-
 
          var tableD= document.getElementById("tbl");
            $(data).each(function (index, v) {
              var flag=false;
              var count = 0;
-             for(var i =0, row; row=tableD.rows[i]; i++){
+             var i =0;
+             for(i=0 ; row=tableD.rows[i]; i++){
                var cell=row.cells[0].innerHTML;
                 if(v.drone_num == cell){
                     row.cells[2].innerHTML=v.cmd;
@@ -61,6 +66,7 @@ jQuery(function () {
              if(flag==false){
                 //timer();
                  tableD+= '<tr><td>' + v.drone_num + '</td><td>' + v.drone_ip + '</td><td class= "flickering">' + v.cmd + '</td><td>' + time + '</td></tr>';
+
          }
 
            });
@@ -69,13 +75,12 @@ jQuery(function () {
 
        }
 
+       $('#tbl').on('click', 'tr', function() {
+          var row = $(this).find('td:nth-child(2)').text();
+          var msg = {cmd: 'query', query_num: 4, arg1: row};
+         send_func(msg)
 
-  $("#tbl").on("click", "td", function() {
-       window.open("https://www.w3schools.com");
-     });
-
-
-
+       });
 
 
     var socket = io.connect('http://127.0.0.1:5000');
@@ -89,8 +94,26 @@ jQuery(function () {
     });
     socket.on('message', function(msg) {
         console.log('Received message:' + msg.result);
-        var input = document.getElementById("input1").value;
-        input = msg.result;
+        if(msg.success == false)
+        {
+          console.log('query did not succeded');
+          return;
+        }
+        else
+        {
+
+          switch (msg.query_num)
+          {
+
+            case 4:
+              mypopup(msg.result);
+
+              break;
+            default:
+
+          }
+        }
+
 
     });
     socket.on('my_msg', function(msg) {
@@ -103,12 +126,20 @@ jQuery(function () {
     };
     send_func = send_msg;
 
+    function mypopup(file)
+    {
+        alert(file);
+    }
+    
  });
 
  function send_btn1(msg){
      var msg = {cmd: 'query', query_num: 3, arg1: 20};
      send_func(msg)
  }
+
+
+
 
 function resetAllSpans() {
 document.getElementById("weightError").innerHTML = "";

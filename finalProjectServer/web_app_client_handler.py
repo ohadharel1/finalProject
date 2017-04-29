@@ -5,6 +5,7 @@ import time
 import web_app_server
 import config
 import controller
+import os
 
 
 class WebAppClientHandler:
@@ -33,7 +34,11 @@ class WebAppClientHandler:
                         res['query_num'] = config.QUERY_GET_ACTIVE_DRONES
                     if query_num == config.QUERY_GET_CURRENT_FLIGHT_DETAILS:
                         drone_ip = msg['arg1']
-                        res['result'] = controller.get_instance().get_drone_server().get_connection(drone_ip).get_flight().get_log_file()
+                        path = controller.get_instance().get_drone_server().get_connection(drone_ip).get_flight().get_log_file()
+                        size = os.path.getsize(path)
+                        log = open(path, 'r')
+                        result = log.read(size)
+                        res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_CURRENT_FLIGHT_DETAILS
                     print str(res)

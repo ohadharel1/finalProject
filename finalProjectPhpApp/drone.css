@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "My Custom Font";
+    src: url('fonts/New Athletic M54.ttf') format("truetype");
+}
 
 .flickering {transition: color 200ms ease;}
 
@@ -30,11 +34,18 @@ header {
     height: 50px;
 }
 
-.logOutButtons{
-  margin-left: 1px;
-  margin-top: 10px;
+.flightButtons{
+  width: 250px;
+  height: 200px;
+  margin-left: 350px;
+  margin-top: 70px;
   background: #91a7d4;
-  font: italic bold 16px Georgia, serif;
+  background-image:url("image/78265-200.png");
+  background-repeat:no-repeat;
+  background-size: 320px 320px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 50px;
   border-color:  black;
   padding: 8px 10px 5px 25px;
   color: #e6e6e6;
@@ -42,6 +53,50 @@ header {
 
   cursor: pointer;
   float: left;
+}
+
+.reviewButtons{
+  width: 250px;
+  height: 200px;
+  margin-left: 120px;
+  margin-top: 70px;
+  background: #91a7d4;
+  background-image:url("image/form_icon.png");
+  background-repeat:no-repeat;
+  background-size: 180px 180px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 60px;
+  border-color:  black;
+  padding: 8px 10px 5px 25px;
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+
+}
+
+.setupButtons{
+  width: 250px;
+  height: 200px;
+  margin-left: 520px;
+  margin-top: 70px;
+  background: #91a7d4;
+  background-image:url("image/icon_50757.png");
+  background-repeat:no-repeat;
+  background-size: 230px 230px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 60px;
+  border-color:  black;
+  padding: 8px 10px 5px 25px;
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+
 }
 
 #title{
