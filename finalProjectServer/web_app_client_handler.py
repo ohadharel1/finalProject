@@ -38,6 +38,7 @@ class WebAppClientHandler:
                         size = os.path.getsize(path)
                         log = open(path, 'r')
                         result = log.read(size)
+                        log.close()
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_CURRENT_FLIGHT_DETAILS
