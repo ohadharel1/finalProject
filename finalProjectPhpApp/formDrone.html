@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <!-- <title>isNet Login Page</title> -->
-      <link rel="stylesheet" type="text/css" href="scruples.css">
+      <link rel="stylesheet" type="text/css" href="drone.css">
 </head>
 
 <body>
@@ -13,24 +13,45 @@
     <h4>Please fill out all criteria</h4>
 
 
-    <form name="frm" method="post" action="Client.php"  >
+    <form name="frm" method="post" action="progressBar.html"   >
 
 
-      <div class= "selectDiv">
-        <select id= "mySelect" onChange = "load()">
-        <option value=''>--Number of arms--</option>
+<label for="firstNameField"><span>Number of arms </span>
+
+        <select id= "mySelect">
+        <option value=''>--Please select--</option>
           <option value= "Quad"> Quad</option>
             <option value= "Hexa"> Hexa</option>
               <option value= "Octa"> Octa</option>
-        </select>
-      </div>
+        </select></label>
+        <!-- <span class = "required" id = "SizeFieldError"></span> -->
+        <br><br>
 
-      <p><input type="text" name="size" placeholder="Maximum size"></p>
-      <p><input type="text" name="payload" placeholder=" Payload weight"></p>
+        <label for="firstNameField"><span>Size </span>
+               <input type="text" class="input-field" name="SizeField" id="SizeField" value="" />
+                <span class = "required" id = "SizeFieldError"></span></label>
+                <br><br>
 
-      <p><input type="text" name="timeOfWork" placeholder="Time of work"></p>
-      <p><input type="text" name="range" placeholder="Flight range"></p>
-      <p><input type="text" name="price" placeholder="Maximum price"></p>
+        <label for="firstNameField"><span>Payload </span>    </label>
+                <input type="text" class="input-field" name="PayloadField" id="PayloadField" value="" />
+                <span class = "required" id = "PayloadFieldError"></span>
+                <br><br>
+
+        <label for="firstNameField"><span>Time of work </span>    </label>
+                <input type="text" class="input-field" name="TimeofworkField" id="TimeofworkField" value="" />
+                <span class = "required" id = "TimeofworkFieldError"></span>
+                <br><br>
+
+        <label for="firstNameField"><span>Range </span>    </label>
+                <input type="text" class="input-field" name="RangeField" id="RangeField" value="" />
+                <span class = "required" id = "RangeFieldError"></span>
+                <br><br>
+
+        <label for="firstNameField"><span>Price </span>    </label>
+                <input type="text" class="input-field" name="PriceField" id="PriceField" value="" />
+                <span class = "required" id = "PriceFieldError"></span>
+                <br><br>
+
 
       <input type="submit" class="button" value="Submit" onclick="return checkInfo();"  />
 
@@ -41,6 +62,8 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="Scruples.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="Drones.js"></script>
 
 </html>
