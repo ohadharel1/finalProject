@@ -1,12 +1,28 @@
 <resources>
     <string name="app_name">DroneSimulator</string>
-    <string name="onTheGround">Drone is on the ground</string>
+    <string name="notConnected">Drone not connected</string>
+    <string name="onTheGround">Drone is ready for takeoff</string>
     <string name="takeOffBtn">takeoff</string>
+    <string name="takeOfflbl">Drone is taking off</string>
     <string name="droneIsAirborne">Drone is now airborne</string>
+    <string name="goFWD">Going forward 10 meters</string>
+    <string name="goBack">Going back 10 meters</string>
+    <string name="goUp">Ascending 10 meters</string>
+    <string name="goDown">Descending 10 meters</string>
+    <string name="inMission">Drone in mission</string>
     <string name="droneIsLanding">Drone is now landing</string>
-    <string name="rtlBtn">return home</string>
-    <string name="landBtn">land</string>
-    <string name="landedBtn">finish land</string>
+    <string name="droneIsGoingHome">Drone is now returning home</string>
+    <string name="landFin">Drone finished landing and disconnected</string>
     <string name="serverIPLbl">server ip</string>
-    <string name="subServerIP">submit</string>
+    <string name="subServerIP">connect</string>
+    <string name="sendError">send</string>
+    <string name="droneCrash">Drone has crashed!</string>
+
+    <string-array name="errors">
+        <item>CRASH</item>
+        <item>RC_OVERRIDE</item>
+        <item>FENCE_BREACH</item>
+        <item>LOW_BATTERY</item>
+        <item>RESET_IN_AIR</item>
+    </string-array>
 </resources>

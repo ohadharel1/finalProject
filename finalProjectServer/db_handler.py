@@ -3,9 +3,13 @@ import config
 import time
 import datetime
 import flight
+import random
+import logging
 
 
 instance = None
+
+eDroneTypes = {"Heli" : 1, "Quad" : 2, "Hexa" : 3, "Octa" : 4}
 
 
 class _DB_handler:
@@ -17,19 +21,14 @@ class _DB_handler:
         cursor.execute('select * FROM ' + table_name)
         res = cursor.fetchall()
         cursor.close()
-        print 'res type is: ' + str(type(res))
-        print 'res is: ' + str(res)
         return res
 
     def insert_to_table(self, tbl_statment, args):
         cursor = self.db.cursor()
-        print 'INSERT INTO ' + tbl_statment + ' ON DUPLICATE KEY UPDATE', args
         cursor.execute('REPLACE INTO ' + tbl_statment, args)
         res = cursor.fetchall()
         self.db.commit()
         cursor.close()
-        print 'res type is: ' + str(type(res))
-        print 'res is: ' + str(res)
         return res
 
     def change_flight_status(self, drone_num, timestamp, status):
@@ -61,7 +60,6 @@ class _DB_handler:
     def get_active_flights(self):
         try:
             cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
-            print "SELECT * FROM " + config.flight_tbl_name + " WHERE state = %s", flight.flight_status.index('airborne')
             cursor.execute("SELECT * FROM " + config.flight_tbl_name + " WHERE state = %s", str(flight.flight_status.index('airborne')))
             query_result = cursor.fetchall()
             result = {}
@@ -76,8 +74,53 @@ class _DB_handler:
                 i += 1
             return result
         except Exception, e:
-            print 'db exception: ' + str(e)
             return None
+
+    def get_setup_suggestions(self, body_type, max_size, max_payload, min_time, min_range, max_price):
+        drone_type = ['Hexa', 'Octa', 'Quad', 'Heli']
+        random.shuffle(drone_type)
+        if body_type is not None:
+            drone_type.append(body_type)
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        res = {}
+        for i in range(0, 3):
+            current_option_tag = 'option_' + str(i)
+            res[current_option_tag] = {}
+            cursor.execute("SELECT name FROM " + config.motor_tbl_name)
+            query_result = cursor.fetchall()
+            row = query_result[int(random.random() * 100)]
+            res[current_option_tag]['motor'] = row['name']
+            cursor.execute("SELECT name FROM " + config.battery_tbl_name)
+            query_result = cursor.fetchall()
+            row = query_result[int(random.random() * 100)]
+            res[current_option_tag]['bat'] = row['name']
+            cursor.execute("SELECT name FROM " + config.prop_tbl_name)
+            query_result = cursor.fetchall()
+            row = query_result[int(random.random() * 90)]
+            res[current_option_tag]['prop'] = row['name']
+            selected_drone_type = drone_type.pop()
+            res[current_option_tag]['body'] = selected_drone_type
+            if eDroneTypes[selected_drone_type] == eDroneTypes[body_type]:
+                res[current_option_tag]['size'] = format(max_size - random.random(), '.2f')
+                res[current_option_tag]['max_payload'] = format(max_payload + random.random() * 2, '.2f')
+                res[current_option_tag]['time_in_air'] = min_time + int(random.random() * 10)
+                res[current_option_tag]['range'] = min_range + int(random.random() * 20)
+                res[current_option_tag]['total_price'] = max_price - int(random.random() * 100)
+            elif eDroneTypes[selected_drone_type] > eDroneTypes[body_type]:
+                res[current_option_tag]['size'] = format(max_size + random.random(), '.2f')
+                res[current_option_tag]['max_payload'] = format(max_payload + max(4, random.random() * 10), '.2f')
+                res[current_option_tag]['time_in_air'] = min_time + max(15, int(random.random() * 30))
+                res[current_option_tag]['range'] = min_range + max(25, int(random.random() * 50))
+                res[current_option_tag]['total_price'] = max_price + int(random.random() * 50)
+            else: #eDroneTypes[selected_drone_type] < eDroneTypes[body_type]
+                res[current_option_tag]['size'] = format(max_size - random.random(), '.2f')
+                res[current_option_tag]['max_payload'] = format(max_payload - random.random(), '.2f')
+                res[current_option_tag]['time_in_air'] = min_time - min(min_time - 10, int(random.random() * 10))
+                res[current_option_tag]['range'] = min_range - max(min_range - 10, int(random.random() * 50))
+                res[current_option_tag]['total_price'] = max_price - int(random.random() * 50)
+        return res
+
+
 
 def get_instance():
     global instance

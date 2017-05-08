@@ -28,7 +28,7 @@ class Flight:
 
     def change_flight_status(self, new):
         self.state = new
-        self.logger.log('drone ' + str(self.drone_num) + ' status changed- ' + str(flight_status[new]))
+        self.logger.get_drone_logger().info('drone ' + str(self.drone_num) + ' status changed- ' + str(flight_status[new]))
         controller.get_instance().get_db().change_flight_status(self.drone_num, self.timestamp, self.state)
         if self.state == flight_status.index('landed'):
             self.finish_flight()
@@ -37,17 +37,20 @@ class Flight:
         self.timeout_thread.clear()
         res = self.timeout_thread.wait(time_check_sleep)
         if not res:
-            print 'flight time is over 30 minutes. please check!'
-            self.logger.log('flight time is over 30 minutes. please check!')
+            # print 'flight time is over 30 minutes. please check!'
+            self.logger.get_drone_logger().info('flight time is over 30 minutes. please check!')
         if self.state != flight_status.index('landed'):
             self.change_flight_status(flight_status.index('landed'))
 
     def handle_msg(self, msg):
-        self.logger.log('drone number ' + self.drone_num + ' got new msg: ' + str(msg))
-        print 'drone number ' + self.drone_num + ' got new msg: ' + str(msg)
+        if bool(msg['is_error']):
+            self.logger.get_drone_logger().critical('drone number ' + self.drone_num + ' error: ' + str(msg['cmd']))
+        else:
+            self.logger.get_drone_logger().info('drone number ' + self.drone_num + ' got new msg: ' + str(msg))
         if msg['drone_num'] != int(self.drone_num):
-            print 'drone num does not match!!! something is very wrong!'
-            # return
+            # print 'drone num does not match!!! something is very wrong!'
+            #  return
+            pass
         if msg['cmd'] == 'fin':
             self.change_flight_status(flight_status.index('landed'))
             return 'fin'

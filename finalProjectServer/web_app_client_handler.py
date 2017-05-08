@@ -14,15 +14,11 @@ class WebAppClientHandler:
 
     def handle_msg(self, msg):
         if msg is not None:
-            print 'msg is not none'
             if type(msg) is dict:
-                print 'msg type is dict'
                 cmd = msg['cmd']
                 res = {}
                 if cmd == 'query':
-                    print 'cmd is query'
                     query_num = int(msg['query_num'])
-                    print 'query num is ' + str(query_num)
                     if query_num == config.QUERY_GET_FLIGHT_TIME_FOR_DRONE:
                         drone_num = int(msg['arg1'])
                         res['result'] = controller.get_instance().get_db().get_total_flight_time_for_drone(drone_num)
@@ -42,6 +38,16 @@ class WebAppClientHandler:
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_CURRENT_FLIGHT_DETAILS
-                    print str(res)
+                    if query_num == config.QUERY_GET_SETUP_SUGGESTIONS:
+                        drone_type = msg['drone_type']
+                        max_size = int(msg['max_size'])
+                        max_payload = int(msg['max_payload'])
+                        max_time = int(msg['min_time'])
+                        max_range = int(msg['min_range'])
+                        max_price = int(msg['max_price'])
+                        result = controller.get_instance().get_db().get_setup_suggestions(drone_type, max_size, max_payload, max_time, max_range, max_price)
+                        res['result'] = result
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_SETUP_SUGGESTIONS
                     return res
 

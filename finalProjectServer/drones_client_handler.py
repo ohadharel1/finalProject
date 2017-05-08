@@ -16,12 +16,6 @@ class DronesClientHandler:
         self.drone_num = self.drone_ip.split('.')[-1]
         self.connection_closed = False
         self.flight = flight.Flight(self.drone_ip, self)
-        # self.logger = logger.Logger(self.drone_num)
-        # ts = time.time()
-        # timestamp = datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S")
-        # args = (int(drone_num), timestamp, self.logger.get_log_path())
-        # controller.get_instance().get_db().insert_to_table(config.flight_tbl_insert, args)
-        print 'init client handler'
 
     def send_msg(self, msg):
         if msg is not None:
@@ -36,10 +30,8 @@ class DronesClientHandler:
                 data = str(data)
                 data = data.strip('[')
                 data = data.strip(']')
-                print 'data after strip: ' + data
                 jsonDict = json_utils.str_to_json(data)
                 res = self.flight.handle_msg(jsonDict)
-                print jsonDict
                 if res == 'fin':
                     self.close_connection()
         except socket.timeout, e:

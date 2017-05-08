@@ -70,7 +70,14 @@ public class DroneClient extends AsyncTask<Void, Void, Void>
             int port = Config.serverPort;
             socket = new Socket();
             socket.connect(new InetSocketAddress(ip, port), 1000);
-
+            MainActivity.getInstance().runOnUiThread(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    MainActivity.getInstance().changeDroneStatus(MainActivity.eDroneStatus.ON_GROUND);
+                }
+            });
             OutputStream out = socket.getOutputStream();
             while (this.mConnectionAlive)
             {
