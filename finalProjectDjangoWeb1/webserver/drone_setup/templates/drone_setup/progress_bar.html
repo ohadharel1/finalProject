@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <!-- <title>isNet Login Page</title> -->
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+</head>
+
+<body onLoad= move()>
+
+  <nav>
+      <ul>
+        <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
+        <li><a class="menuHome" href="{% url 'index:index' %}">Home </a></li>
+        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}">Flights </a></li>
+        <li><a class="menuReviews">Reviews</a></li>
+        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}">Setup</a></li>
+        <li><a class="management" href="{% url 'drone_setup:drone_setup' %}">Management</a></li>
+      </ul>
+  </nav>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div id="myProgress">
+    <div id="myBar">10%</div>
+  </div>
+
+</body>
+<script type="text/javascript" src="{% static 'index/Drone.js' %}">
+</script>
+</html>

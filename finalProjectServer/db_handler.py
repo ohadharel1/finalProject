@@ -5,6 +5,9 @@ import datetime
 import flight
 import random
 import logging
+import logger
+import collections
+import controller
 
 
 instance = None
@@ -15,6 +18,7 @@ eDroneTypes = {"Heli" : 1, "Quad" : 2, "Hexa" : 3, "Octa" : 4}
 class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
+        self.logger = logger.Logger()
 
     def get_table(self, table_name):
         cursor = self.db.cursor()
@@ -83,13 +87,13 @@ class _DB_handler:
             drone_type.append(body_type)
         cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
         res = {}
-        for i in range(0, 3):
-            current_option_tag = 'option_' + str(i)
+        for i in range(1, 4):
+            current_option_tag = 'option ' + str(i)
             res[current_option_tag] = {}
             cursor.execute("SELECT name FROM " + config.motor_tbl_name)
             query_result = cursor.fetchall()
             row = query_result[int(random.random() * 100)]
-            res[current_option_tag]['motor'] = row['name']
+            res[current_option_tag]['motor'] = row['name'].strip('"\'')
             cursor.execute("SELECT name FROM " + config.battery_tbl_name)
             query_result = cursor.fetchall()
             row = query_result[int(random.random() * 100)]
@@ -118,6 +122,7 @@ class _DB_handler:
                 res[current_option_tag]['time_in_air'] = min_time - min(min_time - 10, int(random.random() * 10))
                 res[current_option_tag]['range'] = min_range - max(min_range - 10, int(random.random() * 50))
                 res[current_option_tag]['total_price'] = max_price - int(random.random() * 50)
+        controller.get_instance().get_server_logger().info('res is: ' + str(res))
         return res
 
 

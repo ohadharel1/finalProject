@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <!-- <title>isNet Login Page</title> -->
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+</head>
+
+<body class="mainBodyForm">
+
+  <nav>
+      <ul>
+        <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
+        <li><a class="menuHome" href="{% url 'index:index' %}">Home </a></li>
+        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}">Flights </a></li>
+        <li><a class="menuReviews">Reviews</a></li>
+        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}">Setup</a></li>
+        <li><a class="management" href="{% url 'drone_setup:drone_setup' %}">Management</a></li>
+      </ul>
+  </nav>
+
+    <br><br>
+
+    <fieldset>
+
+
+
+
+  <legend>Please fill out all criteria</legend>
+
+
+
+    <form name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
+    {% csrf_token %}
+
+<label for="drone_type" class="titleForm"><span>Number of arms </span>
+
+        <select id= "drone_type", name="drone_type">
+        <option value=''>--Please select--</option>
+          <option value= "Quad"> Quad</option>
+            <option value= "Hexa"> Hexa</option>
+              <option value= "Octa"> Octa</option>
+        </select></label>
+        <br><br>
+
+        <label for="SizeField" class= "titleForm"><span>Size </span>
+               <input type="text" class="input-field" name="SizeField" id="SizeField" value="" />
+                <span class = "required" id = "SizeFieldError"></span></label>
+                <br><br>
+
+        <label for="PayloadField" class= "titleForm"><span>Payload </span>    </label>
+                <input type="text" class="input-field" name="PayloadField" id="PayloadField" value="" />
+                <span class = "required" id = "PayloadFieldError"></span>
+                <br><br>
+
+        <label for="TimeofworkField" class= "titleForm"><span>Time of work </span>    </label>
+                <input type="text" class="input-field" name="TimeofworkField" id="TimeofworkField" value="" />
+                <span class = "required" id = "TimeofworkFieldError"></span>
+                <br><br>
+
+        <label for="RangeField" class= "titleForm"><span>Range </span>    </label>
+                <input type="text" class="input-field" name="RangeField" id="RangeField" value="" />
+                <span class = "required" id = "RangeFieldError"></span>
+                <br><br>
+
+        <label for="PriceField" class= "titleForm"><span>Price </span>    </label>
+                <input type="text" class="input-field" name="PriceField" id="PriceField" value="" />
+                <span class = "required" id = "PriceFieldError"></span>
+                <br><br>
+
+
+      <input type="submit" class="submitBtn" value="Submit" onclick= "href='{% url 'drone_setup:setup_params' %}'"  />
+
+        </form>
+
+
+  </fieldset>
+
+</body>
+
+</html>

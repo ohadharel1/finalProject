@@ -3,9 +3,9 @@ import sys
 import thread
 from _socket import SOL_SOCKET, SO_REUSEADDR
 import config
-
+import collections
 import drones_client_handler
-import logger
+import controller
 
 address = config.local_address
 port = 10001
@@ -19,8 +19,8 @@ class DronesServer:
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         self.server_socket.bind(self.server_address)
-        self.logger = logger.Logger()
-        self.logger.get_server_logger().info('drone server started')
+        # controller.get_server_logger().info('drone server started')
+        print 'drone server started'
         self.connections = {}
 
     def start_server(self):
@@ -29,7 +29,7 @@ class DronesServer:
         while True:
             # Wait for a connection
             connection, client_address = self.server_socket.accept()
-            self.logger.get_server_logger().info('drone connected')
+            controller.get_instance().get_server_logger().info('drone connected')
             client_ip = client_address[0]
             handler = drones_client_handler.DronesClientHandler(client_ip)
             self.connections[client_ip] = handler

@@ -37,23 +37,15 @@ class Logger:
                 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
                 fileh.setFormatter(formatter)
                 streamh.setFormatter(formatter)
-                self.drone_logger = logging.getLogger("drone_logger")  # drone logger
+                self.drone_logger = logging.getLogger("drone_" + str(self.drone_num) + "_logger")  # drone logger
                 for hdlr in self.drone_logger.handlers[:]:  # remove all old handlers
                     self.drone_logger.removeHandler(hdlr)
                 self.drone_logger.addHandler(fileh)
                 self.drone_logger.addHandler(streamh)
-
-                self.server_logger = logging.getLogger("server_logger") #server logger
-                for hdlr in self.server_logger.handlers[:]:  # remove all old handlers
-                    self.server_logger.removeHandler(hdlr)
-                self.server_logger.addHandler(streamh)
                 break
 
     def get_drone_logger(self):
         return self.drone_logger
-
-    def get_server_logger(self):
-        return self.server_logger
 
     # def log(self, msg):
     #     log_file = open(self.path, 'a')

@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<title>Drone Page</title>
+  {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">
+</head>
+<body class="mainBody" >
+
+  <nav>
+      <ul>
+        <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
+        <li><a class="menuHome" href="{% url 'index:index' %}">Home </a></li>
+        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}">Flights </a></li>
+        <li><a class="menuReviews">Reviews</a></li>
+        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}">Setup</a></li>
+        <li><a class="management" href="{% url 'drone_setup:drone_setup' %}">Management</a></li>
+      </ul>
+  </nav>
+  <div>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View All Options</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Compare All Setups</h4>
+      </div>
+      <div class="modal-body">
+        <table id = "setup_tbl" class="table table-striped table-condensed">
+          <tr >
+            <th>Option</th>
+            <th>Type</th>
+            <th>Motor</th>
+            <th>Battery</th>
+            <th>Prop</th>
+            <th>Size</th>
+            <th>Max Payload</th>
+            <th>Max Time Of Work</th>
+            <th>Max Range</th>
+            <th>Price</th>
+          </tr>
+          {% for key, value in context.items %}
+            <tr >
+              <td>{{ key }}</td>
+              <td>{{ value.body }}</td>
+              <td>{{ value.motor }}</td>
+              <td>{{ value.bat }}</td>
+              <td>{{ value.prop }}</td>
+              <td>{{ value.size }}</td>
+              <td>{{ value.max_payload }}</td>
+              <td>{{ value.time_in_air }}</td>
+              <td>{{ value.range }}</td>
+              <td>{{ value.total_price }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+    {% for key, value in context.items%}
+      <div class="mySlides">
+        <h2 class="droneName">{{ key }}</h2>
+        {% if value.body == "Quad" %}
+          <img src="{% static 'image/Rahfan.png' %}" class ="droneImage"><br><br><br>
+        {% endif %}
+        {% if value.body == "Heli" %}
+          <img src="{% static 'image/Rahfan-3.png' %}" class ="droneImage"><br><br><br>
+        {% endif %}
+        {% if value.body == "Octa" %}
+          <img src="{% static 'image/Rahfan-1.png' %}" class ="droneImage"><br><br><br>
+        {% endif %}
+        {% if value.body == "Hexa" %}
+          <img src="{% static 'image/Rahfan-2.png' %}" class ="droneImage"><br><br><br>
+        {% endif %}
+
+        <h4 class= "titleMotor" >Motor: <span class = "droneCompo1" id = "engineTitle"> {{ value.motor }}  </span> </h4>
+        <h4 class= "titleBatt" >Battery: <span class = "droneCompo1" id = "batteryTitle"> {{ value.bat }}</span> </h4>
+        <h4 class= "titleProp" >Prop: <span class = "droneCompo1" id = "propTitle"> {{ value.prop }}</span> </h4>
+
+        <div class= "row1">
+
+          <div class="sizeDiv">
+            <h4 class= "titleCompo" >Size: <span class = "droneCompo" id = "size"> {{ value.size }}</span> </h4>
+          </div>
+
+          <div class="payloadDiv">
+            <h4 class= "titleCompo" >Payload: <span class = "droneCompo" id = "payload"> {{ value.max_payload }}</span> </h4>
+          </div>
+
+          <div class="timeDiv">
+            <h4 class= "titleCompo"  >Time of work: <span class = "droneCompo" id = "time"> {{ value.time_in_air }}</span> </h4>
+          </div>
+
+        </div>
+
+        <div class= "row2">
+          <div class="rangeDiv">
+            <h4 class= "titleCompo" >Range: <span class = "droneCompo" id = "range"> {{ value.range }}</span> </h4>
+          </div>
+
+          <div class="priceDiv">
+            <h4 class= "titleCompo" >Price: <span class = "droneCompo" id = "price"> {{ value.total_price }} </span> </h4>
+          </div>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  <button class="nextPreview " id="nextBtn" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="nextPreview " onclick="plusDivs(1)">&#10095;</button>
+</div>
+
+</body>
+
+<script type="text/javascript" src="{% static 'index/Drone.js' %}">
+</script>
+</html>

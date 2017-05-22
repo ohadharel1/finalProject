@@ -24,6 +24,7 @@ def send_msg(msg):
 @socketio.on('message')
 def handleMessage(msg):
     global handler
+    print 'got msg: ' + str(msg)
     res = handler.handle_msg(msg)
     if res is not None:
         try:

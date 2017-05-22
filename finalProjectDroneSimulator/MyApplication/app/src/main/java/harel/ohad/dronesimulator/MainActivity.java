@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity
         NOT_CONNECTED,
         ON_GROUND,
         AIRBORNE,
-        LANDING
+        LANDING,
+        ERROR
     }
 
     private final static int shortDelay = 5 * 1000; //5 seconds
@@ -170,6 +171,33 @@ public class MainActivity extends AppCompatActivity
                         map.put("drone_num", String.valueOf(mDroneClient.getDroneNum()));
                         map.put("cmd", "landed");
                         map.put("is_error", String.valueOf(false));
+                        mDroneClient.sendMsg(map);
+                    }
+                }, shortDelay);
+                break;
+            }
+            case ERROR:
+            {
+                this.mStatusLbl.setText(getResources().getString(R.string.droneIsLanding));
+                this.mTakeOffBtn.setEnabled(false);
+                this.mRTLBtn.setEnabled(false);
+                this.mLandBtn.setEnabled(false);
+                this.mGoUpBtn.setEnabled(false);
+                this.mGoDownBtn.setEnabled(false);
+                this.mGoFWDBtn.setEnabled(false);
+                this.mGoBackBtn.setEnabled(false);
+                this.mMissionBtn.setEnabled(false);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable()
+                {
+                    @Override
+                    public void run()
+                    {
+                        mStatusLbl.setText(getResources().getString(R.string.landFin));
+                        ArrayMap<String, String> map = new ArrayMap<>();
+                        map.put("drone_num", String.valueOf(mDroneClient.getDroneNum()));
+                        map.put("cmd", "landed");
+                        map.put("is_error", String.valueOf(true));
                         mDroneClient.sendMsg(map);
                     }
                 }, shortDelay);
@@ -339,7 +367,7 @@ public class MainActivity extends AppCompatActivity
         map.put("cmd", array[mErrorID]);
         map.put("is_error", String.valueOf(true));
         this.mDroneClient.sendMsg(map);
-        this.changeDroneStatus(eDroneStatus.LANDING);
+        this.changeDroneStatus(eDroneStatus.ERROR);
         if(mErrorID == 0)
         {
             this.mStatusLbl.setText(getResources().getString(R.string.droneCrash));

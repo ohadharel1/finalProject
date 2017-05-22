@@ -1,0 +1,64 @@
+import socket
+import time
+import sys
+import thread
+import json_utils
+import config
+import controller
+import collections
+
+
+address = '132.74.208.237'
+port = 10002
+
+
+class SystemServer:
+    def __init__(self):
+        print 'starting system server'
+        self.msg_size = 1024
+        self.__is_connected = False
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_address = (address, port)
+        self.__db_connected = False
+        self.server_socket.connect(self.server_address)
+        self.__is_connected = True
+        print 'drone server connected'
+
+        thread.start_new_thread(self.recv_msg_thread, ())
+
+    def is_connected(self):
+        return self.__is_connected
+
+    def is_db_connected(self):
+        return self.__db_connected
+
+    def recv_msg_thread(self):
+        while self.server_socket:
+            msg = self.server_socket.recv(self.msg_size)
+            if msg is not None:
+                self.handle_msg(json_utils.str_to_json(msg))
+            time.sleep(0.1)
+
+    def send_msg(self, msg):
+        if type(msg) is dict :
+            msg = json_utils.json_to_str(msg)
+        self.server_socket.sendall(msg)
+
+    def handle_msg(self, msg):
+        print 'msg recv: ' + str(msg)
+        if type(msg) is dict :
+            cmd = msg['cmd']
+            if cmd == 'query':
+                success = msg['success']
+                if not success:
+                    print 'query not succedded'
+                    return
+                query_num = msg['query_num']
+                if query_num == config.QUERY_DB_ACTIVE:
+                    self.__db_connected = True
+                elif query_num == config.QUERY_GET_SETUP_SUGGESTIONS:
+                    controller.get_instance().set_options(msg['result'])
+                    print 'options saved!'
+
+            elif cmd == 'flight':
+                controller.get_instance().refresh_active_flight(msg)

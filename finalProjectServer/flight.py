@@ -6,10 +6,10 @@ import thread
 import threading
 import controller
 import config
-import web_app_server
 
 flight_status = ['ready_to_takeoff', 'airborne', 'landed']
 time_check_sleep = 60*30  # 30 minutes
+wait_time_after_landed = 30  # 30 seconds
 
 
 class Flight:
@@ -43,6 +43,7 @@ class Flight:
             self.change_flight_status(flight_status.index('landed'))
 
     def handle_msg(self, msg):
+        controller.get_instance().get_server_logger().info('msg is: ' + str(msg))
         if bool(msg['is_error']):
             self.logger.get_drone_logger().critical('drone number ' + self.drone_num + ' error: ' + str(msg['cmd']))
         else:
@@ -66,12 +67,22 @@ class Flight:
 
         # send data to web app
         msg['drone_ip'] = self.drone_ip
-        connection = controller.get_instance().get_webapp_server()
-        connection.send_msg(msg)
+        msg['is_updated'] = True
+        msg['blink'] = 0
+        msg['log_path'] = self.logger.get_log_path()
+        msg['start_time'] = self.init_time
+        controller.get_instance().refresh_active_flights(msg)
 
     def finish_flight(self):
         controller.get_instance().get_db().commit_flight_end_time(self.drone_num, self.timestamp)
         self.client_handler.close_connection()
+        thread.start_new_thread(self.remove_from_active_flights, ())
+
+    def remove_from_active_flights(self):
+        time.sleep(wait_time_after_landed)
+        msg = {'drone_num': self.drone_num,
+               'cmd': 'remove'}
+        controller.get_instance().refresh_active_flights(msg)
 
     def get_log_file(self):
         return self.logger.get_log_path()
