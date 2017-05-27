@@ -26,13 +26,23 @@
     height: 50px;
 }*/
 
+.titleNav{
+margin-left: 8px;
+}
+
+.titleNavF{
+margin-left: 15px;
+}
+
+
 ul {
-  height: 55px;
+  height: 45px;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+
 }
 
 li {
@@ -42,11 +52,12 @@ li {
 li a {
     display: block;
     color: white;
-    text-align: center;
     padding: 14px 16px;
-    height: 40px;
+    height: 45px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 14px;
+    font-family: 'Roboto Slab', serif;
+
 }
 
 li a:hover {
@@ -54,7 +65,7 @@ li a:hover {
 }
 
 .menulogo{
-  padding: 13px 90px;
+  padding: 13px 85px;
   background-repeat:no-repeat;
   background-position: left;
   background-image:url("../image/logo.png");
@@ -67,79 +78,133 @@ li a:hover {
 }
 
 .menuFlights{
-  /*background-image:url("../image/droneicon.png");*/
-  /*background-repeat:no-repeat;
-  background-position: left;
-  background-image:url("../image/78265-200.png");
+  background-image:url("../image/droneIcon.png");
   background-repeat:no-repeat;
-  background-size: 35px 35px;*/
+  background-position:2% 50%;
+  background-size: 25px 25px;
 }
 
-.menulogo{
-  /*background-image:url("../image/droneicon.png");*/
+
+.menuHome{
+  background-image:url("../image/homeIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+
 }
+
+.menuSetup{
+
+  background-image:url("../image/setupIcons.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+}
+
+.menuReviews{
+
+  background-image:url("../image/reviewIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+}
+
+.menuMange{
+  background-image:url("../image/dbIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+  text-align: right;
+}
+
 
 
 
 /*-----------------------------------------------------------Menu--------------------------------------------------------------*/
 
-aside{
+  .container {
+      padding: 80px 100px;
+  }
 
-  float: right;
-  text-align: left;
-  border-right: 4px solid white;
-  width: 17%;
-  height: 550px;
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      max-height: 450px !important;
+
+
+  }
+  .carousel-caption h3 {
+      color: #fff !important;
+  }
+
+
+.titleMenu{
+  font-family: 'Days One', sans-serif;
+  font-size: 50px;
+  text-align: center;
 }
 
-.nofar{
-  position: absolute;
-  margin-top: 1px;
+
+.light{
+  margin-left: 450px;
+  margin-top: 20px;
+
+}
+
+svg {
+    display:inline-block;
+}
+
+
+
+/*.menuRow1{
+  display: -webkit-flex;
+  display: flex;
+  margin-left:100px;
+}*/
+
+/*.menuRow2{
   margin-left: 100px;
-}
-
-
-.mainBodyMenu{
-  background-image:url("../image/background.jpg");
-  background-repeat:no-repeat;
-  background-size: 1300px 600px;
-}
+  margin-top: 150px;
+}*/
 
 .flightButtons{
-  width: 250px;
-  height: 200px;
-  margin-left: 20px;
-  margin-top: 20px;
+  width: 200px;
+  height: 150px;
+  margin-left: 150px;
+  margin-top: 10px;
   background-color: rgba(0, 134, 179,0.4);
   background-image:url("../image/78265-200.png");
   background-repeat:no-repeat;
-  background-size: 320px 320px;
+  background-size: 200px 200px;
   background-position: center;
   font-family: "My Custom Font", Verdana, Tahoma;
-  font-size: 50px;
+  font-size: 30px;
   border-color:  black;
-  padding: 8px 10px 5px 25px;
+  /*padding: 8px 10px 5px 25px;*/
   color: #e6e6e6;
   border-radius: 4px;
-
   cursor: pointer;
   float: left;
 }
 
 .reviewButtons{
-  width: 250px;
-  height: 200px;
+  width: 200px;
+  height: 150px;
   margin-left: 50px;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: rgba(0, 134, 179,0.4);
   background-image:url("../image/form_icon.png");
   background-repeat:no-repeat;
-  background-size: 180px 180px;
+  background-size: 140px 140px;
   background-position: center;
   font-family: "My Custom Font", Verdana, Tahoma;
-  font-size: 60px;
+  font-size: 30px;
   border-color:  black;
-  padding: 8px 10px 5px 25px;
+  /*padding: 8px 10px 5px 25px;*/
   color: #e6e6e6;
   border-radius: 4px;
 
@@ -149,19 +214,19 @@ aside{
 }
 
 .setupButtons{
-  width: 250px;
-  height: 200px;
-  margin-left: 150px;
-  margin-top: 45px;
+  width: 200px;
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 10px;
   background-color: rgba(0, 134, 179,0.4);
   background-image:url("../image/icon_50757.png");
   background-repeat:no-repeat;
-  background-size: 230px 230px;
+  background-size: 180px 180px;
   background-position: center;
   font-family: "My Custom Font", Verdana, Tahoma;
-  font-size: 60px;
+  font-size: 30px;
   border-color:  black;
-  padding: 8px 10px 5px 25px;
+  /*padding: 8px 10px 5px 25px;*/
   color: #e6e6e6;
   border-radius: 4px;
 
@@ -170,23 +235,26 @@ aside{
 
 }
 
-.blink {
-      animation: blink 1s steps(5, start) 5;
-      -webkit-animation: blink 1s steps(5, start) 5;
+.dbButtons{
+  width: 200px;
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 10px;
+  background-color: rgba(0, 134, 179,0.4);
+  background-image:url("../image/db.png");
+  background-repeat:no-repeat;
+  background-size: 120px 120px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 30px;
+  border-color:  black;
+  /*padding: 8px 10px 5px 25px;*/
+  color: #e6e6e6;
+  border-radius: 4px;
 
-    }
-    @keyframes blink {
-      to {
-        background-color: slategray;
-      }
-    }
-    @-webkit-keyframes blink {
-      to {
-        background-color: blue;
-      }
-    }
-
-
+  cursor: pointer;
+  float: left;
+}
 
 #title{
     text-align: center;
@@ -253,7 +321,7 @@ table {
 }
 
 .mainBody {
-    background: #E0E0E0;
+    background: #e6f2ff;
 }
 
 
@@ -275,32 +343,32 @@ table {
 
 /*-----------------------------------------------------------------Setup page--------------------------------------------------------*/
 
-
 .droneName{
   text-align: center;
   font-family: 'Days One', sans-serif;
+  position: relative;
+  margin-top: 0.5px;
 }
 
 .droneImage{
+position: absolute;
   width:400px;
   height:150px;
-  margin-left: 500px;
-  margin-top:1px;
-
-  position: absolute;
+  margin-left: 450px;
+  margin-top:15px;
 
 }
 
 .droneCompo{
-
   font-family: "font3", Verdana, Tahoma;
   font-size: 80px;
+
 }
 
 .row1{
   display: -webkit-flex;
   display: flex;
-  margin-top: 80px;
+  margin-top: 50px;
   margin-left:100px;
 }
 
@@ -311,15 +379,18 @@ table {
 }
 
 .titleCompo{
-  margin-top: 1px;
+  margin-top: 0.2px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 35px;
+
 }
 
 .titleMotor{
   font-family: 'Philosopher', sans-serif;
   position:relative;
-  display: inline-block;
-  margin-top: 2px;
-  margin-left: 920px;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
 
 }
 
@@ -327,16 +398,18 @@ table {
   font-family: 'Philosopher', sans-serif;
   position:relative;
   display: inline-block;
-  margin-top: 15px;
-  margin-left: 920px;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
 }
 
 .titleProp{
   font-family: 'Philosopher', sans-serif;
   position:relative;
   display: inline-block;
-  margin-top: 15px;
-  margin-left: 920px;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
 }
 
 .sizeDiv{
@@ -416,6 +489,8 @@ table {
 
 #nextBtn{
   margin-left: 600px;
+  margin-top: 10px;
+
 }
 
 
@@ -428,23 +503,33 @@ table {
   background-size: 1400px 650px;
 }
 
+.fieldsetForm {
+   border: 2px solid #000;
+   width:500px;
+   height: 400px;
+   border-radius: 4px;
+   padding: 0 1.4em 1.4em 1.4em !important;
+   margin-left: 70px;
+   margin-top: 60px;
 
-fieldset {
-    border: 2px solid #000;
-    width: 520px;
-    height: 350px;
-    border-radius: 4px;
-    margin-left: 50px;
-    margin-top: 60px;
+
 }
 
-legend{
+
+.legendForm{
+  font-weight: bold !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 20px;
+  border-bottom:none;
   font-size: 20px;
   font-family: "font2", Verdana, Tahoma;
+
+
 }
 
 .titleForm{
-  font-size: 25px;
+  font-size: 18px;
   font-family: "font2", Verdana, Tahoma;
   font-weight: bold;
 
@@ -480,7 +565,10 @@ legend{
   height: 30px;
   border-radius: 4px;
   border: 2px solid #2e2e1f;
-  margin-left: 220px;
+  margin-left: 180px;
 
 
 }
+
+
+

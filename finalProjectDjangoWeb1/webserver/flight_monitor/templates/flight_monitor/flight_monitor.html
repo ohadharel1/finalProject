@@ -13,14 +13,14 @@
 </head>
 <body class="mainBodyFlight">
 
-  <nav>
+ <nav>
       <ul>
         <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
-        <li><a class="menuHome" href="{% url 'index:index' %}">Home </a></li>
-        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}">Flights </a></li>
-        <li><a class="menuReviews">Reviews</a></li>
-        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}">Setup</a></li>
-        <li><a class="management" href="{% url 'drone_setup:drone_setup' %}">Management</a></li>
+        <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
+        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
+        <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
+        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
+        <li><a class="menuMange" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Management</span></a></li>
       </ul>
   </nav>
 

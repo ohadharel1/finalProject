@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import controller
 
 
-def index(request):
-    template = loader.get_template('index/index.html')
-    context = controller.get_instance().get_connection_status()
+def review(request):
+    template = loader.get_template('reviews/reviews.html')
+    context = {'fd': 'fsd'}
     return HttpResponse(template.render(context, request))

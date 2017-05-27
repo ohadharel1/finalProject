@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^index/', include('index.urls', namespace="index")),
     url(r'^flight_monitor/', include('flight_monitor.urls', namespace="flight_monitor")),
     url(r'^drone_setup/', include('drone_setup.urls', namespace="drone_setup")),
+    url(r'^reviews/', include('reviews.urls', namespace="reviews")),
 ]
