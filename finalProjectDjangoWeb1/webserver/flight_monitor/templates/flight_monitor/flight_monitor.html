@@ -13,14 +13,14 @@
 </head>
 <body class="mainBodyFlight">
 
- <nav>
+<nav>
       <ul>
         <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
         <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
         <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
         <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
         <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
-        <li><a class="menuMange" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Management</span></a></li>
+        <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
       </ul>
   </nav>
 
@@ -42,11 +42,11 @@
   <tr>
     {% if value.blink > 0 %}
       {% if value.is_error %}
-        <td class="blink" bgcolor="#FF0040"><font color="#FFFFFF"> {{ value.drone_num }}</font></td>
-        <td class="blink" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.drone_ip }}</font></td>
-        <td class="blink" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.cmd }}</font></td>
-        <td class="blink" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.time_elapsed }}</font></td>
-        <td class="blink" bgcolor="#FF0040"><a style="color:#FFFFFF" class="click-to-show" href="#" data-toggle="modal" data-target="#modalPopUp" onclick="showPopUpForDrone({{ value.drone_num }})">DETAILS</a></td>
+        <td class="blinkError" bgcolor="#FF0040"><font color="#FFFFFF"> {{ value.drone_num }}</font></td>
+        <td class="blinkError" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.drone_ip }}</font></td>
+        <td class="blinkError" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.cmd }}</font></td>
+        <td class="blinkError" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.time_elapsed }}</font></td>
+        <td class="blinkError" bgcolor="#FF0040"><a style="color:#FFFFFF" class="click-to-show" href="#" data-toggle="modal" data-target="#modalPopUp" onclick="showPopUpForDrone({{ value.drone_num }})">DETAILS</a></td>
       {% else %}
           <td class="blink"><font color="#0000FF">{{ value.drone_num }}</font></td>
           <td class="blink"><font color="#0000FF">{{ value.drone_ip }}</font></td>
@@ -56,11 +56,11 @@
       {% endif %}
     {% else %}
       {% if value.is_error %}
-        <td bgcolor="#FF0040"><font color="#FFFFFF"> {{ value.drone_num }}</font></td>
-        <td bgcolor="#FF0040"><font color="#FFFFFF">{{ value.drone_ip }}</font></td>
-        <td bgcolor="#FF0040"><font color="#FFFFFF">{{ value.cmd }}</font></td>
-        <td bgcolor="#FF0040"><font color="#FFFFFF">{{ value.time_elapsed }}</font></td>
-        <td bgcolor="#FF0040"><a style="color: #FFFFFF" class="click-to-show" href="#" data-toggle="modal" data-target="#modalPopUp" onclick="showPopUpForDrone({{ value.drone_num }})">DETAILS</a></td>
+        <td class="errorTd" bgcolor="#FF0040"><font color="#FFFFFF"> {{ value.drone_num }}</font></td>
+        <td class="errorTd" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.drone_ip }}</font></td>
+        <td class="errorTd" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.cmd }}</font></td>
+        <td class="errorTd" bgcolor="#FF0040"><font color="#FFFFFF">{{ value.time_elapsed }}</font></td>
+        <td class="errorTd" bgcolor="#FF0040"><a style="color: #FFFFFF" class="click-to-show" href="#" data-toggle="modal" data-target="#modalPopUp" onclick="showPopUpForDrone({{ value.drone_num }})">DETAILS</a></td>
       {% else %}
           <td>{{ value.drone_num }}</td>
           <td>{{ value.drone_ip }}</td>

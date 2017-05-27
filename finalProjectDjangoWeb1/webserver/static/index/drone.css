@@ -171,6 +171,41 @@ svg {
   margin-top: 150px;
 }*/
 
+.blink {
+      animation: blink 1s steps(5, start) 5;
+      -webkit-animation: blink 1s steps(5, start) 5;
+
+    }
+    @keyframes blink {
+      to {
+        background-color: slategray;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        background-color: blue;
+      }
+    }
+
+.blinkError {
+      font-color: white
+      background-color: red
+      animation: blinkError 1s steps(5, start) 5;
+      -webkit-animation: blinkError 1s steps(5, start) 5;
+
+    }
+    @keyframes blinkError {
+      to {
+        background-color: red;
+      }
+    }
+    @-webkit-keyframes blinkError {
+      to {
+        background-color: blue;
+      }
+    }
+
+
 .flightButtons{
   width: 200px;
   height: 150px;
@@ -312,6 +347,13 @@ td {
     padding: 8px;
     text-align: center;
     background-color: #ffffff;
+}
+
+.errorTd {
+    border: 3px solid #4c4c34;
+    padding: 8px;
+    text-align: center;
+    background-color: red;
 }
 
 table {

@@ -62,6 +62,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'flight_monitor','templates'),
             os.path.join(BASE_DIR, 'drone_setup','templates'),
             os.path.join(BASE_DIR, 'reviews','templates'),
+            os.path.join(BASE_DIR, 'management','templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

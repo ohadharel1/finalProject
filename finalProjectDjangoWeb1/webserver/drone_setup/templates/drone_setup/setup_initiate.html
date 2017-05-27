@@ -3,18 +3,17 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <title>isNet Login Page</title> -->
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 
 <body class="mainBodyForm">
-
  <nav>
       <ul>
         <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
@@ -22,38 +21,35 @@
         <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
         <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
         <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
-        <li><a class="menuMange" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Management</span></a></li>
+        <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
       </ul>
   </nav>
 
     <br><br>
 
-    <fieldset class="setupFieldSet">
+    <fieldset class ="fieldsetForm">
+
+  <legend class ="legendForm">Please fill out all criteria</legend>
 
 
 
-
-  <legend class="setupLegend">Please fill out all criteria</legend>
-
-
-
-    <form class="setupForm" name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
+    <form name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
     {% csrf_token %}
 
-<label for="drone_type" class="titleForm"><span>Number of arms </span>
+<label for="drone_type" class="titleForm"><span>Number of arms </span></label>
 
-        <select id= "drone_type", name="drone_type" class="setupSelect">
+        <select id= "drone_type", name="drone_type" class="input-field" >
             <option value=''>--Please select--</option>
+            <option value= "Heli"> Heli</option>
             <option value= "Quad"> Quad</option>
             <option value= "Hexa"> Hexa</option>
             <option value= "Octa"> Octa</option>
-            <option value= "Heli"> Octa</option>
-        </select></label>
+        </select>
         <br><br>
 
-        <label for="SizeField" class= "titleForm"><span>Size </span>    </label>
+        <label for="SizeField" class= "titleForm"><span>Size </span> </label>
                <input type="text" class="input-field" name="SizeField" id="SizeField" value="" />
-                <span class = "required" id = "SizeFieldError"></span>
+                <span class = "required" id = "SizeFieldError"></span></label>
                 <br><br>
 
         <label for="PayloadField" class= "titleForm"><span>Payload </span>    </label>
