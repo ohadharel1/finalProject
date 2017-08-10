@@ -27,7 +27,32 @@
       </ul>
   </nav>
 
-<h1 class= "comingSoon">This will be a reviews page..</h1>
+`<h1 class= "comingSoon">This will be a reviews page..</h1>
+`<table id = "drone_review" class="table table-striped table-condensed">
+    <tr >
+      <th>start time</th>
+      <th>end time</th>
+      <th>log path</th>
+      <th>status</th>
+      <th>
+        <select id= "drone_id", name="drone_id" class="input-field" >
+            <option value=''>drone id</option>
+            {% for value in drone_ids %}
+              <option value= "{{ value }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+      </th>
+    </tr>
+    {% for key, value in result.items %}
+      <tr >
+        <td>{{ value.start_flight_time }}</td>
+        <td>{{ value.end_flight_time }}</td>
+        <td>{{ value.log_file_path }}</td>
+        <td>{{ value.state }}</td>
+        <td>{{ value.drone_num }}</td>
+      </tr>
+    {% endfor %}
+  </table>
 
 </body>
 </html>

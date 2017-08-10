@@ -1,9 +1,17 @@
 import json
 import os
+from datetime import datetime, date
+
+
+def json_serial(obj):
+    if isinstance(obj, (date, datetime)):
+        serial = obj.isoformat()
+        return serial
+    raise TypeError("Type %s is not serializable"%type(obj))
 
 
 def json_to_str(json_obj):
-    str = json.dumps(json_obj)
+    str = json.dumps(json_obj, default=json_serial)
     return str
 
 

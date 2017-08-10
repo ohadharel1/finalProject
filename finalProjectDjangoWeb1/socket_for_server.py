@@ -8,20 +8,21 @@ import controller
 import collections
 
 
-address = '10.0.0.6'
+address = '127.0.0.1'
 port = 10002
 
 
 class SystemServer:
     def __init__(self):
         print 'starting system server'
-        self.msg_size = 4056
+        self.msg_size = 405600
         self.__is_connected = False
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_address = (address, port)
         self.__db_connected = False
         self.server_socket.connect(self.server_address)
         self.__is_connected = True
+        self.__respond = None
         print 'drone server connected'
 
         thread.start_new_thread(self.recv_msg_thread, ())
@@ -39,10 +40,16 @@ class SystemServer:
                 self.handle_msg(json_utils.str_to_json(msg))
             time.sleep(0.1)
 
-    def send_msg(self, msg):
+    def send_msg(self, msg, blocking = False):
         if type(msg) is dict :
             msg = json_utils.json_to_str(msg)
         self.server_socket.sendall(msg)
+        if blocking:
+            while not self.__respond:
+                time.sleep(0.1)
+            res = self.__respond.copy()
+            self.__respond = None
+            return res
 
     def handle_msg(self, msg):
         print 'msg recv: ' + str(msg)
@@ -59,6 +66,8 @@ class SystemServer:
                 elif query_num == config.QUERY_GET_SETUP_SUGGESTIONS:
                     controller.get_instance().set_options(msg['result'])
                     print 'options saved!'
+                else:
+                    self.__respond = msg['result']
 
             elif cmd == 'flight':
                 controller.get_instance().refresh_active_flight(msg)
