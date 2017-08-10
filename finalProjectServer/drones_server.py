@@ -14,17 +14,17 @@ num_of_connection = 5
 
 class DronesServer:
     def __init__(self):
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.server_address = (address, port)
-        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.server_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        # self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        # self.server_socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         self.server_socket.bind(self.server_address)
         # controller.get_server_logger().info('drone server started')
         print 'drone server started'
         self.connections = {}
 
     def start_server(self):
-        self.server_socket.listen(1)
+        # self.server_socket.listen(1)
 
         while True:
             # Wait for a connection

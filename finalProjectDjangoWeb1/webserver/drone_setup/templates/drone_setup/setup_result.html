@@ -6,12 +6,14 @@
 <title>Setup Result Page</title>
   {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
+    <script src="{% static 'index/jquery.min.js' %}"></script>
+    <script src="{% static 'index/bootstrap.min.js' %}"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+	<!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
 </head>
 <body class="mainBody" >
 
@@ -79,7 +81,7 @@
       <div class="mySlides">
         <h2 class="droneName">{{ key }}</h2>
         {% if value.body == "Quad" %}
-          <img src="{% static 'image/Rahfan.png' %}" class ="droneImage"><br><br><br>
+          <img src="{% static 'image/quad.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
         {% if value.body == "Heli" %}
           <img src="{% static 'image/Rahfan-3.png' %}" class ="droneImage"><br><br><br>

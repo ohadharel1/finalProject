@@ -44,6 +44,7 @@ def setup_params(request):
     msg['min_time'] = request.POST['TimeofworkField']
     msg['min_range'] = request.POST['RangeField']
     msg['max_price'] = request.POST['PriceField']
+    msg['iterations'] = request.POST['Iterations']
     controller.get_instance().get_system_server().send_msg(msg)
     template = loader.get_template('drone_setup/progress_bar.html')
     context = {'arg': 'yes'}

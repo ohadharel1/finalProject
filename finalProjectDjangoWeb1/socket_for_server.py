@@ -8,14 +8,14 @@ import controller
 import collections
 
 
-address = '132.74.209.215'
+address = '10.0.0.6'
 port = 10002
 
 
 class SystemServer:
     def __init__(self):
         print 'starting system server'
-        self.msg_size = 1024
+        self.msg_size = 4056
         self.__is_connected = False
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_address = (address, port)

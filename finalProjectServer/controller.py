@@ -1,5 +1,6 @@
-import drones_server
+# import drones_server
 # import web_app_server
+import udp_drone_server
 import web_server
 import threading
 import db_handler
@@ -15,14 +16,15 @@ __mutex = threading.Lock()
 
 class __Controller:
     def __init__(self):
-        self.__drone_server = drones_server.DronesServer()
+        print 'fdwfsdw'
+        self.__server_logger = None
+        self.__init_server_logger()
+        self.__drone_server = udp_drone_server.Udp_drone_server()
         self.__webapp_server = web_server.WebServer()
         self.__db = db_handler.get_instance()
         self.__active_flight = {}
         self.__active_flight['status'] = {}
         self.__active_flight['cmd'] = 'flight'
-        self.__server_logger = None
-        self.__init_server_logger()
 
     def get_drone_server(self):
         return self.__drone_server

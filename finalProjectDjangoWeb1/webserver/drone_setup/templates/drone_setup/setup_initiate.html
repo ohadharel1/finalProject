@@ -6,10 +6,11 @@
   <!-- <title>isNet Login Page</title> -->
       {% load staticfiles %}
       <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
+    <script src="{% static 'index/jquery.min.js' %)"></script>
+    <script src="{% static 'index/bootstrap.min.js' %)"></script>
+    <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
 
 </head>
 
@@ -70,6 +71,11 @@
         <label for="PriceField" class= "titleForm"><span>Price ($)</span>    </label>
                 <input type="text" class="input-field" name="PriceField" id="PriceField" value="" />
                 <span class = "required" id = "PriceFieldError"></span>
+                <br><br>
+
+        <label for="Iterations" class= "titleForm"><span>Price ($)</span>    </label>
+                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" />
+                <span class = "required" id = "IterationsError"></span>
                 <br><br>
 
 

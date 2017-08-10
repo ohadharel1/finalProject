@@ -1,5 +1,5 @@
 #network
-local_address = '132.74.209.215'
+local_address = '10.0.0.6'
 #config for db:
 
 #connect args

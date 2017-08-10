@@ -80,29 +80,22 @@ class _DB_handler:
         except Exception, e:
             return None
 
-    def get_setup_suggestions(self, body_type, max_size, max_payload, min_time, min_range, max_price):
+    def get_setup_suggestions(self, body_type, max_size, max_payload, min_time, min_range, max_price, num_of_iteration = 3):
         drone_type = ['Hexa', 'Octa', 'Quad', 'Heli']
         random.shuffle(drone_type)
         if body_type is not None:
             drone_type.append(body_type)
-        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
         res = {}
-        for i in range(1, 4):
-            current_option_tag = 'option ' + str(i)
-            res[current_option_tag] = {}
-            cursor.execute("SELECT name FROM " + config.motor_tbl_name)
-            query_result = cursor.fetchall()
-            row = query_result[int(random.random() * 100)]
-            res[current_option_tag]['motor'] = row['name'].strip('"\'')
-            cursor.execute("SELECT name FROM " + config.battery_tbl_name)
-            query_result = cursor.fetchall()
-            row = query_result[int(random.random() * 100)]
-            res[current_option_tag]['bat'] = row['name']
-            cursor.execute("SELECT name FROM " + config.prop_tbl_name)
-            query_result = cursor.fetchall()
-            row = query_result[int(random.random() * 90)]
-            res[current_option_tag]['prop'] = row['name']
-            selected_drone_type = drone_type.pop()
+        for i in range(1, num_of_iteration + 1):
+            current_res, current_option_tag = self.get_single_suggestion(i)
+            res[current_option_tag] = current_res
+            try:
+                selected_drone_type = drone_type.pop()
+            except:
+                drone_type = ['Hexa', 'Octa', 'Quad', 'Heli']
+                random.shuffle(drone_type)
+                if body_type is not None:
+                    drone_type.append(body_type)
             res[current_option_tag]['body'] = selected_drone_type
             if eDroneTypes[selected_drone_type] == eDroneTypes[body_type]:
                 res[current_option_tag]['size'] = format(max_size - random.random(), '.2f')
@@ -125,6 +118,23 @@ class _DB_handler:
         controller.get_instance().get_server_logger().info('res is: ' + str(res))
         return res
 
+    def get_single_suggestion(self, index):
+        current_option_tag = 'option ' + str(index)
+        res = {}
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT name FROM " + config.motor_tbl_name)
+        query_result = cursor.fetchall()
+        row = query_result[int(random.random() * 100)]
+        res['motor'] = row['name'].strip('"\'')
+        cursor.execute("SELECT name FROM " + config.battery_tbl_name)
+        query_result = cursor.fetchall()
+        row = query_result[int(random.random() * 100)]
+        res['bat'] = row['name']
+        cursor.execute("SELECT name FROM " + config.prop_tbl_name)
+        query_result = cursor.fetchall()
+        row = query_result[int(random.random() * 90)]
+        res['prop'] = row['name']
+        return res, current_option_tag
 
 
 def get_instance():

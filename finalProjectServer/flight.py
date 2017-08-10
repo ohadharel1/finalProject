@@ -13,10 +13,10 @@ wait_time_after_landed = 30  # 30 seconds
 
 
 class Flight:
-    def __init__(self, drone_ip, client_handler):
+    def __init__(self, drone_ip):
         self.drone_ip = drone_ip
         self.drone_num = self.drone_ip.split('.')[-1]
-        self.client_handler = client_handler
+        # self.client_handler = client_handler
         self.init_time = time.time()
         self.timestamp = datetime.datetime.fromtimestamp(self.init_time).strftime("%Y-%m-%d %H:%M:%S")
         self.logger = logger.Logger(self.drone_num)
@@ -75,7 +75,7 @@ class Flight:
 
     def finish_flight(self):
         controller.get_instance().get_db().commit_flight_end_time(self.drone_num, self.timestamp)
-        self.client_handler.close_connection()
+        controller.get_instance().get_drone_server().remove_connection(self.drone_ip)
         thread.start_new_thread(self.remove_from_active_flights, ())
 
     def remove_from_active_flights(self):

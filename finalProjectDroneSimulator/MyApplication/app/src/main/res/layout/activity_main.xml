@@ -203,7 +203,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/serverIPLbl"/>
+            android:text="@string/sendErrorLbl"/>
 
         <Spinner
             android:layout_width="0dp"

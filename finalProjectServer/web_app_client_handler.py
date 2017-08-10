@@ -50,7 +50,11 @@ class WebAppClientHandler:
                         max_time = int(msg['min_time'])
                         max_range = int(msg['min_range'])
                         max_price = int(msg['max_price'])
-                        result = controller.get_instance().get_db().get_setup_suggestions(drone_type, max_size, max_payload, max_time, max_range, max_price)
+                        try:
+                            num_of_iterations = int(msg['iterations'])
+                        except:
+                            num_of_iterations = 3
+                        result = controller.get_instance().get_db().get_setup_suggestions(drone_type, max_size, max_payload, max_time, max_range, max_price, num_of_iterations)
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_SETUP_SUGGESTIONS

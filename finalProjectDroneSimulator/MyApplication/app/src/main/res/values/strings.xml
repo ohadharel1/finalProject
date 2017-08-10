@@ -17,6 +17,7 @@
     <string name="subServerIP">connect</string>
     <string name="sendError">send</string>
     <string name="droneCrash">Drone has crashed!</string>
+    <string name="sendErrorLbl">Send an Error</string>
 
     <string-array name="errors">
         <item>CRASH</item>

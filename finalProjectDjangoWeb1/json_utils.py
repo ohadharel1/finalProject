@@ -11,7 +11,8 @@ def str_to_json(str):
     try:
         json_obj = json.loads(str)
         return json_obj
-    except:
+    except Exception, e:
+        print e
         return None
 
 
