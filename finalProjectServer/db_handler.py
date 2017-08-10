@@ -136,6 +136,15 @@ class _DB_handler:
         res['prop'] = row['name']
         return res, current_option_tag
 
+    def get_all_finished_flights(self):
+        res = {}
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM " + config.flight_tbl_name)
+        query_result = cursor.fetchall()
+        cursor.close()
+        for i, row in enumerate(query_result):
+            res[i] = row
+        return res
 
 def get_instance():
     global instance

@@ -7,7 +7,7 @@ import flight
 import json_utils
 
 address = config.local_address
-port = 10001
+port = 50001
 
 
 class Udp_drone_server:
@@ -40,6 +40,6 @@ class Udp_drone_server:
 
     def remove_connection(self, addr):
         if addr in self.connections:
-            controller.get_instance().get_server_logger.info('removing connection: ' + addr)
+            controller.get_instance().get_server_logger().info('removing connection: ' + addr)
             del self.connections[addr]
 

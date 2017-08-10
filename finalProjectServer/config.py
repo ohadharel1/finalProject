@@ -1,5 +1,5 @@
 #network
-local_address = '10.0.0.6'
+local_address = '0.0.0.0'
 #config for db:
 
 #connect args
@@ -35,6 +35,7 @@ QUERY_GET_FLIGHT_RECORDS = 2
 QUERY_GET_FLIGHT_TIME_FOR_DRONE = 3
 QUERY_GET_CURRENT_FLIGHT_DETAILS = 4
 QUERY_GET_SETUP_SUGGESTIONS = 5
+QUERY_GET_ALL_FLIGHTS = 6
 
 
 

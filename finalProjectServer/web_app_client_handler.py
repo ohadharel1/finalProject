@@ -58,6 +58,12 @@ class WebAppClientHandler:
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_SETUP_SUGGESTIONS
+                    if query_num == config.QUERY_GET_ALL_FLIGHTS:
+                        self.logger.info('got QUERY_GET_ALL_FLIGHTS')
+                        result = controller.get_instance().get_db().get_all_finished_flights()
+                        res['result'] = result
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_ALL_FLIGHTS
                     return res
 
     def recv_msg_thread(self):
