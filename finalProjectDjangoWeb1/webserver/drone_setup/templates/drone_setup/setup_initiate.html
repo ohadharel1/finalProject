@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <!-- <title>isNet Login Page</title> -->
+      {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+    <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
+    <script src="{% static 'index/jquery.min.js' %)"></script>
+    <script src="{% static 'index/bootstrap.min.js' %)"></script>
+    <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
+
+</head>
+
+<body class="mainBodyForm">
+ <nav>
+      <ul>
+        <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
+        <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
+        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
+        <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
+        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
+        <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
+      </ul>
+  </nav>
+
+    <br><br>
+
+    <fieldset class ="fieldsetForm">
+
+  <legend class ="legendForm">Please fill out all criteria</legend>
+
+
+
+    <form name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
+    {% csrf_token %}
+
+<label for="drone_type" class="titleForm"><span>Body Type</span></label>
+
+        <select id= "drone_type", name="drone_type" class="input-field" >
+            <option value=''>--Please select--</option>
+            <option value= "Heli"> Heli</option>
+            <option value= "Quad"> Quad</option>
+            <option value= "Hexa"> Hexa</option>
+            <option value= "Octa"> Octa</option>
+        </select>
+        <br><br>
+
+        <label for="SizeField" class= "titleForm"><span>Size (m)</span> </label>
+               <input type="text" class="input-field" name="SizeField" id="SizeField" value="" />
+                <span class = "required" id = "SizeFieldError"></span></label>
+                <br><br>
+
+        <label for="PayloadField" class= "titleForm"><span>Payload (Kg)</span>    </label>
+                <input type="text" class="input-field" name="PayloadField" id="PayloadField" value="" />
+                <span class = "required" id = "PayloadFieldError"></span>
+                <br><br>
+
+        <label for="TimeofworkField" class= "titleForm"><span>Time of work (minutes)</span>    </label>
+                <input type="text" class="input-field" name="TimeofworkField" id="TimeofworkField" value="" />
+                <span class = "required" id = "TimeofworkFieldError"></span>
+                <br><br>
+
+        <label for="RangeField" class= "titleForm"><span>Range (Km)</span>    </label>
+                <input type="text" class="input-field" name="RangeField" id="RangeField" value="" />
+                <span class = "required" id = "RangeFieldError"></span>
+                <br><br>
+
+        <label for="PriceField" class= "titleForm"><span>Price ($)</span>    </label>
+                <input type="text" class="input-field" name="PriceField" id="PriceField" value="" />
+                <span class = "required" id = "PriceFieldError"></span>
+                <br><br>
+
+        <label for="Iterations" class= "titleForm"><span>Price ($)</span>    </label>
+                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" />
+                <span class = "required" id = "IterationsError"></span>
+                <br><br>
+
+
+      <input type="submit" class="submitBtn" value="Submit" onclick= "href='{% url 'drone_setup:setup_params' %}'"  />
+
+        </form>
+
+
+  </fieldset>
+
+</body>
+
+</html>

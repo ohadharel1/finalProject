@@ -1,0 +1,616 @@
+
+/*-----------------------------------------------------------------fonts--------------------------------------------------------*/
+
+
+
+@font-face {
+    font-family: 'My Custom Font';
+    src: url('../fonts/New Athletic M54.ttf') format("truetype");
+    src: local('../fonts/New Athletic M54.ttf')format("truetype")
+}
+
+@font-face {
+    font-family: 'font2';
+    src: url('../fonts/Roboto-Light.ttf') format("truetype");
+    src: local('../fonts/Roboto-Light.ttf')format("truetype")
+}
+
+@font-face {
+    font-family: 'font3';
+    src: url('../fonts/000 InsomniacOvrLrd Comic Dialogue.ttf') format("truetype");
+    src: local('../fonts/000 InsomniacOvrLrd Comic Dialogue.ttf')format("truetype")
+}
+/*-----------------------------------------------------------------menu bar--------------------------------------------------------*/
+
+/*.header {
+    height: 50px;
+}*/
+
+.titleNav{
+margin-left: 8px;
+}
+
+.titleNavF{
+margin-left: 15px;
+}
+
+
+ul {
+  height: 45px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    height: 45px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Roboto Slab', serif;
+
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.menulogo{
+  padding: 13px 85px;
+  background-repeat:no-repeat;
+  background-position: left;
+  background-image:url("../image/logo.png");
+  background-repeat:no-repeat;
+  background-size: 160px 90px;
+}
+
+.menulogo.hover{
+  background-color: none;
+}
+
+.menuFlights{
+  background-image:url("../image/droneIcon.png");
+  background-repeat:no-repeat;
+  background-position:2% 50%;
+  background-size: 25px 25px;
+}
+
+
+.menuHome{
+  background-image:url("../image/homeIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+
+}
+
+.menuSetup{
+
+  background-image:url("../image/setupIcons.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+}
+
+.menuReviews{
+
+  background-image:url("../image/reviewIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+
+}
+
+.menuMange{
+  background-image:url("../image/dbIcon.png");
+  background-repeat:no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+  text-align: right;
+}
+
+
+
+
+/*-----------------------------------------------------------Menu--------------------------------------------------------------*/
+
+  .container {
+      padding: 80px 100px;
+  }
+
+  .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      max-height: 450px !important;
+
+
+  }
+  .carousel-caption h3 {
+      color: #fff !important;
+  }
+
+
+.titleMenu{
+  font-family: 'Days One', sans-serif;
+  font-size: 50px;
+  text-align: center;
+}
+
+
+.light{
+  margin-left: 450px;
+  margin-top: 20px;
+
+}
+
+svg {
+    display:inline-block;
+}
+
+
+
+/*.menuRow1{
+  display: -webkit-flex;
+  display: flex;
+  margin-left:100px;
+}*/
+
+/*.menuRow2{
+  margin-left: 100px;
+  margin-top: 150px;
+}*/
+
+.blink {
+      animation: blink 1s steps(5, start) 5;
+      -webkit-animation: blink 1s steps(5, start) 5;
+
+    }
+    @keyframes blink {
+      to {
+        background-color: slategray;
+      }
+    }
+    @-webkit-keyframes blink {
+      to {
+        background-color: blue;
+      }
+    }
+
+.blinkError {
+      font-color: white
+      background-color: red
+      animation: blinkError 1s steps(5, start) 5;
+      -webkit-animation: blinkError 1s steps(5, start) 5;
+
+    }
+    @keyframes blinkError {
+      to {
+        background-color: red;
+      }
+    }
+    @-webkit-keyframes blinkError {
+      to {
+        background-color: blue;
+      }
+    }
+
+
+.flightButtons{
+  width: 200px;
+  height: 150px;
+  margin-left: 150px;
+  margin-top: 10px;
+  background-color: rgba(0, 134, 179,0.4);
+  background-image:url("../image/78265-200.png");
+  background-repeat:no-repeat;
+  background-size: 200px 200px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 30px;
+  border-color:  black;
+  /*padding: 8px 10px 5px 25px;*/
+  color: #e6e6e6;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+
+.reviewButtons{
+  width: 200px;
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 10px;
+  background-color: rgba(0, 134, 179,0.4);
+  background-image:url("../image/form_icon.png");
+  background-repeat:no-repeat;
+  background-size: 140px 140px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 30px;
+  border-color:  black;
+  /*padding: 8px 10px 5px 25px;*/
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+
+}
+
+.setupButtons{
+  width: 200px;
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 10px;
+  background-color: rgba(0, 134, 179,0.4);
+  background-image:url("../image/icon_50757.png");
+  background-repeat:no-repeat;
+  background-size: 180px 180px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 30px;
+  border-color:  black;
+  /*padding: 8px 10px 5px 25px;*/
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+
+}
+
+.dbButtons{
+  width: 200px;
+  height: 150px;
+  margin-left: 50px;
+  margin-top: 10px;
+  background-color: rgba(0, 134, 179,0.4);
+  background-image:url("../image/db.png");
+  background-repeat:no-repeat;
+  background-size: 120px 120px;
+  background-position: center;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  font-size: 30px;
+  border-color:  black;
+  /*padding: 8px 10px 5px 25px;*/
+  color: #e6e6e6;
+  border-radius: 4px;
+
+  cursor: pointer;
+  float: left;
+}
+
+#title{
+    text-align: center;
+}
+
+/*-----------------------------------------------------------Flight--------------------------------------------------------------*/
+
+.mainBodyFlight{
+  background-image:url("../image/background.jpg");
+  background-repeat:no-repeat;
+  background-size: 1400px 650px;
+}
+
+header {
+  background-color: #6c8ac6;
+  height: 100px;
+  padding: 5px;
+  border-bottom: 2px solid white;
+  text-align: center;
+  z-index: 999;
+}
+
+
+
+/*#buttonHeader {
+    float: right;
+    width: 80%;
+    height: 50px;
+}*/
+
+
+#tblDrone {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    width: 90%;
+    margin-left: 50px;
+
+}
+
+#title{
+  font-family: "font2", Verdana, Tahoma;
+}
+
+
+
+th {
+    border: 3px solid #4c4c34;
+    text-align: center;
+    padding: 8px;
+
+}
+
+td {
+    border: 3px solid #4c4c34;
+    padding: 8px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.errorTd {
+    border: 3px solid #4c4c34;
+    padding: 8px;
+    text-align: center;
+    background-color: red;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.mainBody {
+    background: #e6f2ff;
+}
+
+
+/*-----------------------------------------------------------------Progress Bar--------------------------------------------------------*/
+
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+/*-----------------------------------------------------------------Setup page--------------------------------------------------------*/
+
+.droneName{
+  text-align: center;
+  font-family: 'Days One', sans-serif;
+  position: relative;
+  margin-top: 0.5px;
+}
+
+.droneImage{
+position: absolute;
+  width:400px;
+  height:150px;
+  margin-left: 450px;
+  margin-top:15px;
+
+}
+
+.droneCompo{
+  font-family: "font3", Verdana, Tahoma;
+  font-size: 80px;
+
+}
+
+.row1{
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 50px;
+  margin-left:100px;
+}
+
+.row2{
+  display: -webkit-flex;
+  display: flex;
+  margin-left:270px;
+}
+
+.titleCompo{
+  margin-top: 0.2px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 35px;
+
+}
+
+.titleMotor{
+  font-family: 'Philosopher', sans-serif;
+  position:relative;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
+
+}
+
+.titleBatt{
+  font-family: 'Philosopher', sans-serif;
+  position:relative;
+  display: inline-block;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
+}
+
+.titleProp{
+  font-family: 'Philosopher', sans-serif;
+  position:relative;
+  display: inline-block;
+  margin-top: 1px;
+  margin-left: 850px;
+  font-size: 25px;
+}
+
+.sizeDiv{
+  width: 400px;
+  height: 100px;
+  border: 2px solid #e6e6e6;
+  background-color: #b3f0ff;
+  background-image:url("../image/size.png");
+  background-repeat:no-repeat;
+  background-position:95% 80%;
+  font-family: "font2", Verdana, Tahoma;
+  font-size: 35px;
+  border-radius: 9px;
+
+}
+
+.payloadDiv{
+  width: 400px;
+  height: 100px;
+  border: 2px solid #e6e6e6;
+  background-color: #80e5ff;
+  background-image:url("../image/weight.png");
+  background-repeat:no-repeat;
+  background-position:95% 80%;
+  font-family: "font2", Verdana, Tahoma;
+  font-size: 35px;
+  border-radius: 9px;
+
+}
+
+.timeDiv{
+  width: 400px;
+  height: 100px;
+  border: 2px solid #e6e6e6;
+  background-color: #33d6ff;
+  background-image:url("../image/time.png");
+  background-repeat:no-repeat;
+  background-position:95% 80%;
+  font-family: "font2", Verdana, Tahoma;
+  font-size: 35px;
+  border-radius: 9px;
+}
+
+.rangeDiv{
+  width: 400px;
+  height: 100px;
+  border: 2px solid #e6e6e6;
+  background-color: #006280;
+  background-image:url("../image/range.png");
+  background-repeat:no-repeat;
+  background-position:95% 80%;
+  font-family: "font2", Verdana, Tahoma;
+  font-size: 35px;
+  border-radius: 9px;
+}
+
+.priceDiv{
+  width: 400px;
+  height: 100px;
+  border: 2px solid #e6e6e6;
+  background-color: #0086b3;
+  background-image:url("../image/money.png");
+  background-repeat:no-repeat;
+  background-position:95% 80%;
+  font-family: "font2", Verdana, Tahoma;
+  font-size: 35px;
+  border-radius: 9px;
+}
+
+.nextPreview{
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  border: 2px solid #2e2e1f;
+
+}
+
+#nextBtn{
+  margin-left: 600px;
+  margin-top: 10px;
+
+}
+
+
+
+/*-----------------------------------------------------------------Setup form--------------------------------------------------------*/
+
+.mainBodyForm{
+  background-image:url("../image/background.jpg");
+  background-repeat:no-repeat;
+  background-size: 1400px 650px;
+}
+
+.fieldsetForm {
+   border: 2px solid #000;
+   width:500px;
+   height: 400px;
+   border-radius: 4px;
+   padding: 0 1.4em 1.4em 1.4em !important;
+   margin-left: 70px;
+   margin-top: 60px;
+
+
+}
+
+
+.legendForm{
+  font-weight: bold !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 20px;
+  border-bottom:none;
+  font-size: 20px;
+  font-family: "font2", Verdana, Tahoma;
+
+
+}
+
+.titleForm{
+  font-size: 18px;
+  font-family: "font2", Verdana, Tahoma;
+  font-weight: bold;
+
+}
+
+.input-field{
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    padding: 5px;
+    width: 200px;
+    float:right;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    moz-box-shadow: 1px 1px 4px #EBEBEB;
+    /*
+    -
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+
+    outline: none;*/
+}
+
+.input-field:focus{
+  border: 1px solid #3366FF;
+}
+
+.submitBtn{
+  width: 80px;
+  height: 30px;
+  border-radius: 4px;
+  border: 2px solid #2e2e1f;
+  margin-left: 180px;
+
+
+}
+
+
+

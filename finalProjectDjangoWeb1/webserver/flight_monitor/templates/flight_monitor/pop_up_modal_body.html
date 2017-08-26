@@ -1,0 +1,9 @@
+<div class="modal-body" id="modalBody">
+    {% for line in body.splitlines %}
+        {% if 'CRITICAL' in line %}
+            <p style="color:red;">{{ line }}</p>
+        {% else %}
+            <p>{{ line }}</p>
+        {% endif %}
+    {% endfor %}
+</div>
