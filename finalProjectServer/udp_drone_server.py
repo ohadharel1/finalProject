@@ -7,7 +7,7 @@ import flight
 import json_utils
 
 address = config.local_address
-port = 50001
+port = 10001
 
 
 class Udp_drone_server:

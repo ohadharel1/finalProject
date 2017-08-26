@@ -1,5 +1,6 @@
 package harel.ohad.dronesimulator;
 
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity
 
     private final static int shortDelay = 5 * 1000; //5 seconds
     private final static int longDelay = 20 * 1000; //20 seconds
+    private final static String LOG_FOLDER = Environment.getExternalStorageDirectory() + "/drone_logs/";
+    private final static String LOG_PROXY_NAME = "proxy.log";
+    private final static String LOG_TRACKER_NAME = "tracker.log";
 
     private static MainActivity instance;
     private TextView mStatusLbl;
@@ -100,6 +107,63 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    private void create_logs()
+    {
+        File dir = new File(LOG_FOLDER);
+        Boolean success = true;
+        if (!dir.exists())
+        {
+            success = dir.mkdir();
+        }
+        if(success)
+        {
+            File proxy_log = new File(LOG_FOLDER + LOG_PROXY_NAME);
+            File tracker_log = new File(LOG_FOLDER + LOG_TRACKER_NAME);
+            FileOutputStream proxy_stream = null;
+            FileOutputStream tracker_stream = null;
+            try
+            {
+                proxy_stream = new FileOutputStream(proxy_log);
+                tracker_stream = new FileOutputStream(tracker_log);
+                for(int i = 0; i < 1000; ++i)
+                {
+                    proxy_stream.write(String.valueOf(i).getBytes());
+                    tracker_stream.write(String.valueOf(1000 - i).getBytes());
+                }
+            }
+            catch (Exception e){
+                try
+                {
+                    proxy_stream.close();
+                    tracker_stream.close();
+                }
+                catch (Exception e1)
+                {
+                    e1.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    private void send_logs ()
+    {
+        File dir = new File(LOG_FOLDER);
+        Boolean success = true;
+        if (!dir.exists())
+        {
+            success = dir.mkdir();
+        }
+        if(success)
+        {
+            File[] files = dir.listFiles();
+            for (File file : files)
+            {
+                this.mDroneClient.sendFile(file);
+            }
+        }
+    }
+
     public void changeDroneStatus(eDroneStatus status)
     {
         this.mDroneStatus = status;
@@ -129,6 +193,7 @@ public class MainActivity extends AppCompatActivity
                 this.mGoFWDBtn.setEnabled(false);
                 this.mGoBackBtn.setEnabled(false);
                 this.mMissionBtn.setEnabled(false);
+                this.create_logs();
                 break;
             }
             case AIRBORNE:
@@ -172,6 +237,7 @@ public class MainActivity extends AppCompatActivity
                         map.put("cmd", "landed");
                         map.put("is_error", String.valueOf(false));
                         mDroneClient.sendMsg(map);
+                        send_logs();
                     }
                 }, shortDelay);
                 break;

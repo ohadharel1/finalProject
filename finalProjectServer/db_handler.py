@@ -143,7 +143,20 @@ class _DB_handler:
         query_result = cursor.fetchall()
         cursor.close()
         for i, row in enumerate(query_result):
-            res[i] = row
+            single_res_line = {}
+            start_time = row['start_flight_time']
+            end_time = row['end_flight_time']
+            if end_time is not None:
+                duration = str(end_time - start_time)
+                single_res_line['duration'] = duration
+            else:
+                single_res_line['duration'] = 'N/A'
+            single_res_line['start_flight_time'] = row['start_flight_time']
+            single_res_line['end_flight_time'] = row['end_flight_time']
+            single_res_line['state'] = flight.flight_status[int(row['state'])]
+            single_res_line['log_file_path'] = row['log_file_path']
+            single_res_line['drone_num'] = row['drone_num']
+            res[i] = single_res_line
         return res
 
 def get_instance():
