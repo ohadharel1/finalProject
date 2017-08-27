@@ -1,0 +1,28 @@
+<div class="modal fade" id="modalLogsPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="modalTitle">{{ title }}</h4>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <p>total flights: {{ query_res.total_num_off_flights }}</p>
+            <p>total errors: {{ query_res.num_of_errors }}</p>
+            <p>total time in air: {{ query_res.total_time_in_air }}</p>
+            <p>max time in air: {{ query_res.max_time_in_air }}</p>
+            {% for single_flight in query_res.all_flights %}
+                {% for key, value in single_flight.items %}
+                  <p>
+                      {{ key }} : {{ value }}
+                  </p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

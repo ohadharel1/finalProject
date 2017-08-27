@@ -144,13 +144,6 @@ class _DB_handler:
         cursor.close()
         for i, row in enumerate(query_result):
             single_res_line = {}
-            start_time = row['start_flight_time']
-            end_time = row['end_flight_time']
-            if end_time is not None:
-                duration = str(end_time - start_time)
-                single_res_line['duration'] = duration
-            else:
-                single_res_line['duration'] = 'N/A'
             single_res_line['start_flight_time'] = row['start_flight_time']
             single_res_line['end_flight_time'] = row['end_flight_time']
             single_res_line['state'] = flight.flight_status[int(row['state'])]
@@ -158,6 +151,38 @@ class _DB_handler:
             single_res_line['drone_num'] = row['drone_num']
             res[i] = single_res_line
         return res
+
+    def get_report_for_drone(self, drone_num):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM " + config.flight_tbl_name + ' WHERE drone_num=' + str(drone_num))
+        query_result = cursor.fetchall()
+        cursor.close()
+        res = {}
+        res['total_num_off_flights'] = len(query_result)
+        res['all_flights'] = []
+        total_duration = datetime.timedelta()
+        max_time_in_air = datetime.timedelta()
+        num_of_errors = 0
+        for i, row in enumerate(query_result):
+            duration = 'N/A'
+            if row['end_flight_time'] is not None:
+                duration = row['end_flight_time'] - row['start_flight_time']
+                total_duration += duration
+                if duration > max_time_in_air:
+                    max_time_in_air = duration
+            if row['state'] == flight.flight_status.index('error') or row['state'] == flight.flight_status.index('landed with error'):
+                num_of_errors += 1
+            current_flight_sum = {}
+            current_flight_sum['start_flight_time'] = row['start_flight_time']
+            current_flight_sum['end_flight_time'] = row['end_flight_time']
+            current_flight_sum['duration'] = str(duration)
+            current_flight_sum['state'] = flight.flight_status[int(row['state'])]
+            res['all_flights'].append(current_flight_sum)
+        res['total_time_in_air'] = str(total_duration)
+        res['max_time_in_air'] = str(max_time_in_air)
+        res['num_of_errors'] = num_of_errors
+        return res
+
 
 def get_instance():
     global instance

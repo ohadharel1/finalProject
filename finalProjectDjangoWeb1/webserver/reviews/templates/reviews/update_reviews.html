@@ -1,9 +1,27 @@
 
     <table id = "drone_review" class="table table-striped table-condensed">
       <tr >
-        <th>Start Time</th>
-        <th>End Time</th>
-        <th>Duration</th>
+        <th>
+          <div style="margin-right: 3px;">
+            <div style="padding-right: 3px;">
+                <input id="start_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight Start Date" onchange="sort_results('start_flight_time',this.value)" style="width:100%;">
+            </div>
+          </div>
+        </th>
+        <th>
+          <div style="margin-right: 3px;">
+            <div style="padding-right: 3px;">
+                <input id="end_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight End Date" onchange="sort_results('end_flight_time',this.value)" style="width:100%;">
+            </div>
+          </div>
+        </th>
+        <th>
+          <div style="margin-right: 3px;">
+            <div style="padding-right: 3px;">
+                <input id="duration" class="textbox-n" type="text" placeholder="Duration" onchange="sort_results('duration',this.value)" style="width:100%;">
+            </div>
+          </div>
+        </th>
         <th>Flight Log</th>
         <th>
             <select id= "drone_states" name="drone_states" class="input-field" >
