@@ -64,6 +64,13 @@ class WebAppClientHandler:
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_ALL_FLIGHTS
+                    if query_num == config.QUERY_GET_DRONE_SUM_REPORT:
+                        self.logger.info('got QUERY_GET_DRONE_SUM_REPORT')
+                        drone_num = int(msg['drone_num'])
+                        result = controller.get_instance().get_db().get_report_for_drone(drone_num)
+                        res['result'] = result
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_DRONE_SUM_REPORT
                     return res
 
     def recv_msg_thread(self):

@@ -7,7 +7,7 @@ import threading
 import controller
 import config
 
-flight_status = ['ready_to_takeoff', 'airborne', 'landed']
+flight_status = ['ready to takeoff', 'airborne', 'landed', 'error', 'landed with error']
 time_check_sleep = 60*30  # 30 minutes
 wait_time_after_landed = 30  # 30 seconds
 
@@ -27,10 +27,15 @@ class Flight:
         thread.start_new_thread(self.do_time_check, ())
 
     def change_flight_status(self, new):
+        if self.state == flight_status.index('error'):
+            if new == flight_status.index('landed'):
+                new = flight_status.index('landed with error')
+            else:
+                return
         self.state = new
         self.logger.get_drone_logger().info('drone ' + str(self.drone_num) + ' status changed- ' + str(flight_status[new]))
         controller.get_instance().get_db().change_flight_status(self.drone_num, self.timestamp, self.state)
-        if self.state == flight_status.index('landed'):
+        if self.state == flight_status.index('landed') or self.state == flight_status.index('landed with error'):
             self.finish_flight()
 
     def do_time_check(self):
@@ -45,6 +50,7 @@ class Flight:
     def handle_msg(self, msg):
         controller.get_instance().get_server_logger().info('msg is: ' + str(msg))
         if bool(msg['is_error']):
+            self.change_flight_status(flight_status.index('error'))
             self.logger.get_drone_logger().critical('drone number ' + self.drone_num + ' error: ' + str(msg['cmd']))
         else:
             self.logger.get_drone_logger().info('drone number ' + self.drone_num + ' got new msg: ' + str(msg))
