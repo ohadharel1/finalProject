@@ -366,6 +366,30 @@ table {
     background: #e6f2ff;
 }
 
+.add_comment{
+    float: right;
+    height: 20px;
+    width: 30px;
+    background: none;
+    background-image:url("../image/add_icon.png");
+    background-repeat:no-repeat;
+    background-size: 30px 20px;
+    border: none;
+
+}
+
+#btn_Add_Comment{
+float: left;
+}
+
+#text_area{
+  width: 200px;
+  height: 100px;
+}
+
+
+
+
 
 /*-----------------------------------------------------------------Progress Bar--------------------------------------------------------*/
 

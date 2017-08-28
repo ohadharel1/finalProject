@@ -5,21 +5,10 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.text.format.Formatter;
 import android.util.ArrayMap;
-import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.NetworkInterface;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
 import java.util.Map;
 
 import static android.content.Context.WIFI_SERVICE;
@@ -89,7 +78,7 @@ public class DroneClient extends AsyncTask<Void, Void, Void>
                     socket = new DatagramSocket();
                     int length = mMessage.length();
                     byte [] msg = mMessage.getBytes();
-                    InetAddress addr = InetAddress.getByName("10.0.0.6");
+                    InetAddress addr = InetAddress.getByName("10.0.0.20");
                     DatagramPacket p = new DatagramPacket(msg, length, addr, 10001);
 //                    Toast.makeText(this.mContext, "SENDING MSG", Toast.LENGTH_LONG).show();
                     System.out.println("*****SENDING MSG******");

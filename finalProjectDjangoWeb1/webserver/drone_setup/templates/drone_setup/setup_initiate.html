@@ -37,6 +37,11 @@
     <form name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
     {% csrf_token %}
 
+         <label for="Iterations" class= "titleForm"><span>Number Of Drones </span>    </label>
+                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" />
+                <span class = "required" id = "IterationsError"></span>
+                <br><br>
+
 <label for="drone_type" class="titleForm"><span>Body Type</span></label>
 
         <select id= "drone_type", name="drone_type" class="input-field" >
@@ -73,10 +78,7 @@
                 <span class = "required" id = "PriceFieldError"></span>
                 <br><br>
 
-        <label for="Iterations" class= "titleForm"><span>Price ($)</span>    </label>
-                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" />
-                <span class = "required" id = "IterationsError"></span>
-                <br><br>
+
 
 
       <input type="submit" class="submitBtn" value="Submit" onclick= "href='{% url 'drone_setup:setup_params' %}'"  />

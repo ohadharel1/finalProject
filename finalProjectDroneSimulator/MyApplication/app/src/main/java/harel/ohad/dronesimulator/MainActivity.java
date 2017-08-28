@@ -1,9 +1,9 @@
 package harel.ohad.dronesimulator;
 
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -159,7 +157,7 @@ public class MainActivity extends AppCompatActivity
             File[] files = dir.listFiles();
             for (File file : files)
             {
-                this.mDroneClient.sendFile(file);
+//                this.mDroneClient.sendFile(file);
             }
         }
     }
@@ -237,7 +235,7 @@ public class MainActivity extends AppCompatActivity
                         map.put("cmd", "landed");
                         map.put("is_error", String.valueOf(false));
                         mDroneClient.sendMsg(map);
-                        send_logs();
+//                        send_logs();
                     }
                 }, shortDelay);
                 break;

@@ -5,7 +5,6 @@ import config
 import os
 import json
 import logging.config
-import general_log_parser.parser
 
 
 def setup_logging(

@@ -6,7 +6,7 @@ package harel.ohad.dronesimulator;
 
 public class Config
 {
-    public static String serverIP = "10.0.0.6";
+    public static String serverIP = "10.0.0.20";
 
     public static int serverPort = 10001;
 }

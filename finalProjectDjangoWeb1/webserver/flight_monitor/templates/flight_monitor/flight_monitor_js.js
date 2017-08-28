@@ -82,6 +82,7 @@ function showPopUpForDrone(drone_num) {
 
    }
 
+
 function closeModal()
 {
     $.ajax({
