@@ -90,14 +90,13 @@ def review(request):
     drone_states = OrderedSet()
     drone_states.add('All')
     for key, value in flight_dict.items():
+        value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
         if value['end_flight_time']:
-            start = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
-            end = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
-            value['duration'] = end - start
+            value['end_flight_time'] = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            value['duration'] = value['end_flight_time'] - value['start_flight_time']
         else:
             value['duration'] = 'N/A'
-        value['start_flight_time'] = str(value['start_flight_time']).replace('T', '  ')
-        value['end_flight_time'] = str(value['end_flight_time']).replace('T', '  ')
+            value['end_flight_time'] = None
         drone_ids.add(value['drone_num'])
         drone_states.add(value['state'])
     context = {'result': flight_dict,

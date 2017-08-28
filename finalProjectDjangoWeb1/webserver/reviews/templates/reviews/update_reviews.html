@@ -41,15 +41,17 @@
             <!--{% csrf_token %}-->
           </select>
         </th>
+        <th>Drone Report</th>
       </tr>
       {% for key, value in result.items %}
         <tr >
           <td>{{ value.start_flight_time }}</td>
           <td>{{ value.end_flight_time }}</td>
           <td>{{ value.duration }}</td>
-          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">SHOW</a></td>
+          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
           <td>{{ value.state }}</td>
           <td>{{ value.drone_num }}</td>
+          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
         </tr>
       {% endfor %}
     </table>
