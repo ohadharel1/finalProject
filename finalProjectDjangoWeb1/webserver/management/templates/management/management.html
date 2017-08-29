@@ -37,6 +37,18 @@
         <li id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
       </ul>
 
+    <div id="updateContainer">
+        {% if alert_display %}
+          {% if alert %}
+            <div class="alert alert-success">
+              <strong>Success!</strong>
+            </div>
+          {% else %}
+            <div class="alert alert-danger">
+              <strong>Failure!</strong>
+            </div>
+          {% endif %}
+        {% endif %}
       <div id="tableContainer" class="tab-content">
 
         {% if table == "tblmotor" %}
@@ -44,14 +56,18 @@
           <table id="{{ table }}">
             <tr >
               {% for key in keys %}
-                <th>{{ key }} {{ keys.0 }}</th>
+                <th>{{ key }}</th>
               {% endfor %}
               <th>Update/Delete</th>
             </tr>
             {% for row in values %}
               <tr id ="{{ row.0.1 }}">
                 {% for key, value in row %}
-                  <td><input id="{{ key }}" class="textbox-n" type="text" value="{{ value }}" style="width:100%;"></td>
+                  {% if key == 'name' %}
+                    <td><input id="{{ key }}" class="textbox-n" type="text" value="{{ value }}" style="width:100%;"></td>
+                  {% else %}
+                    <td><input id="{{ key }}" class="textbox-n" type="number" value="{{ value }}" style="width:100%;"></td>
+                  {% endif %}
                 {% endfor %}
                 <td>
                     <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">SAVE</a>
@@ -62,7 +78,7 @@
             {% endfor %}
           </table>
         </div>
-        {% elif table == "tblmotor" %}
+        {% elif table == "tblbattery" %}
         <div id="battery" class="tab-pane fade">
           <table >
             <tr >
@@ -71,9 +87,16 @@
               {% endfor %}
               <th>Update/Delete</th>
             </tr>
+            {% for row in values %}
+              <tr>
+                {% for value in row %}
+                  <td>{{ value }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
           </table>
         </div>
-        {% elif table == "tblmotor" %}
+        {% elif table == "tblprops" %}
         <div id="prop" class="tab-pane fade">
           <table >
             <tr >
@@ -82,10 +105,18 @@
               {% endfor %}
               <th>Update/Delete</th>
             </tr>
+            {% for row in values %}
+              <tr>
+                {% for value in row %}
+                  <td>{{ value }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
           </table>
         </div>
         {% endif %}
       </div>
+    </div>
     </div>
 
 

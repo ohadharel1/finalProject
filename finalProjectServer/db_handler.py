@@ -201,9 +201,18 @@ class _DB_handler:
         return res
 
     def update_motor_table(self, id, name, kv, weight, price):
+        res = False
         cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("UPDATE %s SET name=%s, kv=%s, weight=%s, price=%s WHERE id=%s"%(config.motor_tbl_name, name, kv, weight, price, id))
-        query_result = cursor.fetchall()
+        try:
+            cursor.execute("UPDATE %s SET name = '%s', kv = %s, weight = %s, price = %s WHERE id = %s;"%(config.motor_tbl_name, name, kv, weight, price, id))
+            self.db.commit()
+            res = True
+        except Exception, e:
+            res = False
+            self.db.rollback()
+        finally:
+            cursor.close()
+            return res
 
 def get_instance():
     global instance

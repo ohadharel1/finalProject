@@ -84,65 +84,6 @@ $('#tableTabs').on('click', '#propTab', function() {
 //    once(sort_results(e, 'duration', $(this).val()));
 //});
 
-function showPopUpForReview(file_path) {
-        console.log(file_path)
-       $.ajax({
-           async: false,
-           type: "POST",
-           url: "/reviews/pop_up_modal/",
-           data: {
-               'file_path' : file_path,
-               'is_log' : true,
-               'csrfmiddlewaretoken' : getCookie('csrftoken')
-           },
-       })
-       .done(function(response) {
-            console.log(response)
-            var str = response; //it can be anything
-            var Obj = document.getElementById("modalLogsPopUp");
-            if(Obj.outerHTML) { //if outerHTML is supported
-                Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
-            }
-            else { //if outerHTML is not supported, there is a weird but crossbrowsered trick
-                var tmpObj=document.createElement("div");
-                tmpObj.innerHTML='<!--THIS DATA SHOULD BE REPLACED-->';
-                ObjParent=Obj.parentNode; //Okey, element should be parented
-                ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
-                ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
-            }
-       });
-
-   }
-
-function showReportPopUpForReview(drone_num) {
-        console.log(drone_num)
-       $.ajax({
-           async: false,
-           type: "POST",
-           url: "/reviews/pop_up_report_modal/",
-           data: {
-               'drone_num' : drone_num,
-               'csrfmiddlewaretoken' : getCookie('csrftoken')
-           },
-       })
-       .done(function(response) {
-            console.log(response)
-            var str = response; //it can be anything
-            var Obj = document.getElementById("modalLogsPopUp");
-            if(Obj.outerHTML) { //if outerHTML is supported
-                Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
-            }
-            else { //if outerHTML is not supported, there is a weird but crossbrowsered trick
-                var tmpObj=document.createElement("div");
-                tmpObj.innerHTML='<!--THIS DATA SHOULD BE REPLACED-->';
-                ObjParent=Obj.parentNode; //Okey, element should be parented
-                ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
-                ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
-            }
-       });
-
-   }
-
 function save_changes(id, old_name, old_kv, old_weight, old_price){
     console.log('id is: ' + id)
     console.log('old name is: ' + old_name)
@@ -170,5 +111,17 @@ function save_changes(id, old_name, old_kv, old_weight, old_price){
        })
        .done(function(response) {
             console.log(response)
+            var str = response; //it can be anything
+            var Obj = document.getElementById("updateContainer");
+            if(Obj.outerHTML) { //if outerHTML is supported
+                Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
+            }
+            else { //if outerHTML is not supported, there is a weird but crossbrowsered trick
+                var tmpObj=document.createElement("div");
+                tmpObj.innerHTML='<!--THIS DATA SHOULD BE REPLACED-->';
+                ObjParent=Obj.parentNode; //Okey, element should be parented
+                ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
+                ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
+            }
        });
 }

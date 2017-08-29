@@ -15,6 +15,7 @@ def manage(request):
     msg['table_name'] = table
     table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     context = {'table': table,
+               'alert_display': False,
                'keys': table_result['keys'],
                'values': table_result['values']}
     return HttpResponse(template.render(context, request))
@@ -29,6 +30,7 @@ def get_table(request):
     msg['table_name'] = table
     table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     context = {'table': table,
+               'alert_display': False,
                'keys': table_result['keys'],
                'values': table_result['values']}
     return HttpResponse(template.render(context, request))
@@ -54,6 +56,8 @@ def table_update(request):
     msg['price'] = price
     table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     context = {'table': table_name,
+               'alert': table_result['success'],
+               'alert_display': True,
                'keys': table_result['keys'],
                'values': table_result['values']}
     return HttpResponse(template.render(context, request))
