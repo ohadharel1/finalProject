@@ -1,6 +1,15 @@
 
     <table id = "drone_review" class="table table-striped table-condensed">
       <tr >
+                <th>
+          <select id= "drone_id" name="drone_id" class="input-field" >
+              <option value=''>Drone ID</option>
+              {% for value in drone_ids %}
+                <option value= "{{ value }}">{{ value }}</option>
+              {% endfor %}
+            <!--{% csrf_token %}-->
+          </select>
+        </th>
         <th>
           <div style="margin-right: 3px;">
             <div style="padding-right: 3px;">
@@ -32,25 +41,18 @@
             <!--{% csrf_token %}-->
           </select>
         </th>
-        <th>
-          <select id= "drone_id" name="drone_id" class="input-field" >
-              <option value=''>Drone ID</option>
-              {% for value in drone_ids %}
-                <option value= "{{ value }}">{{ value }}</option>
-              {% endfor %}
-            <!--{% csrf_token %}-->
-          </select>
-        </th>
+
         <th>Drone Report</th>
       </tr>
       {% for key, value in result.items %}
         <tr >
+          <td>{{ value.drone_num }}</td>
           <td>{{ value.start_flight_time }}</td>
           <td>{{ value.end_flight_time }}</td>
           <td>{{ value.duration }}</td>
           <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
           <td>{{ value.state }}</td>
-          <td>{{ value.drone_num }}</td>
+
           <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
         </tr>`
       {% endfor %}

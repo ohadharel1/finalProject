@@ -389,13 +389,11 @@ float: left;
 
 
 
-
-
 /*-----------------------------------------------------------------Progress Bar--------------------------------------------------------*/
 
 #myProgress {
   width: 100%;
-  background-color: #ddd;
+
 }
 
 #myBar {
@@ -571,14 +569,12 @@ position: absolute;
 
 .fieldsetForm {
    border: 2px solid #000;
-   width:500px;
-   height: 400px;
+   width:520px;
+   height: 450px;
    border-radius: 4px;
    padding: 0 1.4em 1.4em 1.4em !important;
    margin-left: 70px;
    margin-top: 60px;
-
-
 }
 
 
@@ -636,5 +632,9 @@ position: absolute;
 
 }
 
+/*-----------------------------------------------------------------Management--------------------------------------------------------*/
 
 
+#try{
+    color:red;
+}
