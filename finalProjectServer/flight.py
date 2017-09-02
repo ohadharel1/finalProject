@@ -20,7 +20,7 @@ class Flight:
         self.init_time = time.time()
         self.timestamp = datetime.datetime.fromtimestamp(self.init_time).strftime("%Y-%m-%d %H:%M:%S")
         self.logger = logger.Logger(self.drone_num)
-        self.state = flight_status.index('ready_to_takeoff')
+        self.state = flight_status.index('ready to takeoff')
         args = (int(self.drone_num), self.timestamp, self.state, self.logger.get_log_path())
         controller.get_instance().get_db().insert_to_table(config.flight_tbl_insert, args)
         self.timeout_thread = threading.Event()
@@ -66,7 +66,7 @@ class Flight:
                 self.change_flight_status(flight_status.index('airborne'))
         elif msg['cmd'] in config.flight_status_before_takeoff:
             if self.state not in config.flight_status_before_takeoff:
-                self.change_flight_status(flight_status.index('ready_to_takeoff'))
+                self.change_flight_status(flight_status.index('ready to takeoff'))
         elif msg['cmd'] == 'landed':
             self.change_flight_status(flight_status.index('landed'))
             self.timeout_thread.set()

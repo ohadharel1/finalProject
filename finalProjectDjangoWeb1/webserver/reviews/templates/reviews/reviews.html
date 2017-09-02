@@ -5,12 +5,19 @@
   <title>Log Review</title>
   {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <script src="{% static 'index/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'index/dataTables.bootstrap.min.css' %}">
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="{% static 'index/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>
     <script src="{% static 'index/bootstrap.min.js' %}"></script>
+
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 	<!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
 </head>
@@ -27,10 +34,21 @@
       </ul>
   </nav>
 
-`<h1 class= "comingSoon">This will be a reviews page..</h1>
+`<h1 class= "comingSoon">All Flights</h1>
   <div id="tblReviews">
-    <table id = "drone_review" class="table table-striped table-condensed">
+    <table id = "drone_review" class="table table-striped table-condensed table-bordered table-hover">
+
+      <thead>
       <tr >
+           <th>
+          <select id= "drone_id" name="drone_id" class="input-field" >
+              <option value=''>Drone ID</option>
+              {% for value in drone_ids %}
+                <option value= "{{ value }}">{{ value }}</option>
+              {% endfor %}
+            <!--{% csrf_token %}-->
+          </select>
+        </th>
         <th>
           <div style="margin-right: 3px;">
             <div style="padding-right: 3px;">
@@ -62,28 +80,23 @@
             <!--{% csrf_token %}-->
           </select>
         </th>
-        <th>
-          <select id= "drone_id" name="drone_id" class="input-field" >
-              <option value=''>Drone ID</option>
-              {% for value in drone_ids %}
-                <option value= "{{ value }}">{{ value }}</option>
-              {% endfor %}
-            <!--{% csrf_token %}-->
-          </select>
-        </th>
+
         <th>Drone Report</th>
       </tr>
+      </thead>
       {% for key, value in result.items %}
+      <tbody>
         <tr >
+          <td>{{ value.drone_num }}</td>
           <td>{{ value.start_flight_time }}</td>
           <td>{{ value.end_flight_time }}</td>
           <td>{{ value.duration }}</td>
           <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
           <td>{{ value.state }}</td>
-          <td>{{ value.drone_num }}</td>
           <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
         </tr>
       {% endfor %}
+      </tbody>
     </table>
   </div>
   <!-- logs Modal -->
@@ -106,5 +119,20 @@
     </div>
   </div>
 </body>
-<script src="{% static 'index/reviews.js' %}"></script>
+
+
+    <script type="text/javascript">
+    $('#drone_review').DataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        } );
+    console.log('data table!')
+</script>
+    <script src="{% static 'index/reviews.js' %}"></script>
+
+
+
+
+
+
+
 </html>

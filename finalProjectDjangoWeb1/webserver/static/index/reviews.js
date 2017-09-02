@@ -1,3 +1,7 @@
+
+
+
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -133,3 +137,4 @@ function showReportPopUpForReview(drone_num) {
        });
 
    }
+
