@@ -1,45 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>Management</title>
-    {% load staticfiles %}
-      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-      <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
-      <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-      <script src="{% static 'index/jquery.min.js' %}"></script>
-      <script src="{% static 'index/bootstrap.min.js' %}"></script>
-      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-      <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
-  </head>
-  <body id="body" class="mainBodyFlight">
-
-    <nav>
-        <ul>
-          <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
-          <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
-          <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
-          <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
-          <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
-          <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-
-      <ul id="tableTabs" class="nav nav-tabs">
-        <li id="motorTab"><a data-toggle="tab" href="#motor">Motor</a></li>
-        <li id="batTab"><a data-toggle="tab" href="#battery">Battery</a></li>
-        <li id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
-      </ul>
-
     <div id="updateContainer">
       <div id="result_msg">
       {% if alert_display %}
         {% if alert %}
-          <div class="alert alert-success">
+          <div class="alert alert-success" id="success_alert">
             <strong>Success!</strong>
           </div>
         {% else %}
@@ -125,9 +88,3 @@
         {% endif %}
       </div>
     </div>
-    </div>
-
-
-  </body>
-  <script src="{% static 'index/management.js' %}"></script>
-</html>

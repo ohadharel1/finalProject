@@ -25,7 +25,7 @@ flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, lo
 
 #flight_status
 flight_status_active = ['takeoff', 'in_mission', 'rtl', 'land']
-flight_status_before_takeoff = ['ready_to_takeoff']
+flight_status_before_takeoff = ['ready to takeoff']
 
 
 #query numbers:

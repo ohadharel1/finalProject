@@ -19,7 +19,7 @@ class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
         self.logger = logger.Logger()
-        self.update_motor_table(1230, 'bla', 5, 5, 5)
+        # self.update_motor_table(1230, 'bla', 5, 5, 5)
 
     def get_table(self, table_name):
         cursor = self.db.cursor()

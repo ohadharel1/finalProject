@@ -36,7 +36,7 @@ function get_and_sort_results(table, key = null, value = null) {
        })
        .done(function(response) {
             var str = response; //it can be anything
-            var Obj = document.getElementById("tableContainer");
+            var Obj = document.getElementById("updateContainer");
             if(Obj.outerHTML) { //if outerHTML is supported
                 Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
             }
@@ -66,18 +66,21 @@ function once(fn, context) {
 	};
 }
 
-
 $('#tableTabs').on('click', '#motorTab', function() {
     once(get_and_sort_results('tblmotor'));
-//    console.log('motor pressed!')
+    console.log('motor pressed!')
 });
 $('#tableTabs').on('click', '#batTab', function() {
     once(get_and_sort_results('tblbattery'));
-//    console.log('battery pressed!')
+    console.log('battery pressed!')
 });
 $('#tableTabs').on('click', '#propTab', function() {
     once(get_and_sort_results('tblprops'));
-//    console.log('battery pressed!')
+    console.log('battery pressed!')
+});
+
+$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
 });
 
 //$('#duration').on('input', function(e) {
@@ -110,7 +113,7 @@ function save_changes(id, old_name, old_kv, old_weight, old_price){
            },
        })
        .done(function(response) {
-            console.log(response)
+//            console.log(response)
             var str = response; //it can be anything
             var Obj = document.getElementById("updateContainer");
             if(Obj.outerHTML) { //if outerHTML is supported
@@ -124,4 +127,27 @@ function save_changes(id, old_name, old_kv, old_weight, old_price){
                 ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
             }
        });
+       checkForError
+}
+
+function checkForError(alert_display, alert)
+{
+    if(alert_display == 'True')
+    {
+        console.log("alert_diaplay is true")
+        if(alert == 'True')
+        {
+            console.log("alert is true")
+            window.alert("operatrion success!");
+        }
+        else
+        {
+            console.log("alert is false")
+            window.alert("operatrion failure!");
+        }
+    }
+    else
+    {
+        console.log("alert_diaplay is false")
+    }
 }

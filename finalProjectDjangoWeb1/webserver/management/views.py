@@ -15,6 +15,7 @@ def manage(request):
     msg['table_name'] = table
     table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     context = {'table': table,
+               'alert': table_result['success'],
                'alert_display': False,
                'keys': table_result['keys'],
                'values': table_result['values']}
@@ -30,6 +31,7 @@ def get_table(request):
     msg['table_name'] = table
     table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     context = {'table': table,
+               'alert': table_result['success'],
                'alert_display': False,
                'keys': table_result['keys'],
                'values': table_result['values']}

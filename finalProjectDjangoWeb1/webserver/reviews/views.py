@@ -85,18 +85,23 @@ def review(request):
     msg['cmd'] = 'query'
     msg['query_num'] = config.QUERY_GET_ALL_FLIGHTS
     flight_dict = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    success = flight_dict['success']
+    del flight_dict['success']
     drone_ids = OrderedSet()
     drone_ids.add('All')
     drone_states = OrderedSet()
     drone_states.add('All')
     for key, value in flight_dict.items():
-        value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
-        if value['end_flight_time']:
-            value['end_flight_time'] = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
-            value['duration'] = value['end_flight_time'] - value['start_flight_time']
-        else:
-            value['duration'] = 'N/A'
-            value['end_flight_time'] = None
+        try:
+            value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            if value['end_flight_time']:
+                value['end_flight_time'] = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
+                value['duration'] = value['end_flight_time'] - value['start_flight_time']
+            else:
+                value['duration'] = 'N/A'
+                value['end_flight_time'] = None
+        except Exception, e:
+            print str(e)
         drone_ids.add(value['drone_num'])
         drone_states.add(value['state'])
     context = {'result': flight_dict,
