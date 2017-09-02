@@ -19,6 +19,7 @@ class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
         self.logger = logger.Logger()
+        self.update_motor_table(1230, 'bla', 5, 5, 5)
 
     def get_table(self, table_name):
         cursor = self.db.cursor()
@@ -183,6 +184,35 @@ class _DB_handler:
         res['num_of_errors'] = num_of_errors
         return res
 
+    def get_table_for_managing(self, table_name):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM " + table_name)
+        query_result = cursor.fetchall()
+        keys_list = [i[0] for i in cursor.description]
+        cursor.close()
+        complete_values_list = []
+        for i, row in enumerate(query_result):
+            current_row_values = []
+            for key in keys_list:
+                current_row_values.append((key, row[key]))
+            complete_values_list.append(current_row_values)
+        res = {'keys': keys_list,
+               'values': complete_values_list}
+        return res
+
+    def update_motor_table(self, id, name, kv, weight, price):
+        res = False
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        try:
+            cursor.execute("UPDATE %s SET name = '%s', kv = %s, weight = %s, price = %s WHERE id = %s;"%(config.motor_tbl_name, name, kv, weight, price, id))
+            self.db.commit()
+            res = True
+        except Exception, e:
+            res = False
+            self.db.rollback()
+        finally:
+            cursor.close()
+            return res
 
 def get_instance():
     global instance

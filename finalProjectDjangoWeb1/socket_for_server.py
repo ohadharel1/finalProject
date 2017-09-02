@@ -56,10 +56,6 @@ class SystemServer:
         if type(msg) is dict :
             cmd = msg['cmd']
             if cmd == 'query':
-                success = msg['success']
-                if not success:
-                    print 'query not succedded'
-                    return
                 query_num = msg['query_num']
                 if query_num == config.QUERY_DB_ACTIVE:
                     self.__db_connected = True
@@ -67,6 +63,7 @@ class SystemServer:
                     controller.get_instance().set_options(msg['result'])
                     print 'options saved!'
                 else:
+                    msg['result']['success'] = msg['success']
                     self.__respond = msg['result']
 
             elif cmd == 'flight':

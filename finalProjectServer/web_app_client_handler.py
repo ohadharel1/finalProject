@@ -71,6 +71,21 @@ class WebAppClientHandler:
                         res['result'] = result
                         res['success'] = True
                         res['query_num'] = config.QUERY_GET_DRONE_SUM_REPORT
+                    if query_num == config.QUERY_GET_TABLE:
+                        self.logger.info('got QUERY_GET_TABLE')
+                        table_name = msg['table_name']
+                        result = controller.get_instance().get_db().get_table_for_managing(table_name)
+                        res['result'] = result
+                        res['success'] = True
+                        res['query_num'] = config.QUERY_GET_TABLE
+                    if query_num == config.QUERY_UPDATE_TABLE:
+                        self.logger.info('got QUERY_UPDATE_TABLE')
+                        table_name = msg['table_name']
+                        commit_is_good = controller.get_instance().get_db().update_motor_table(msg['id'], msg['name'], msg['kv'], msg['weight'], msg['price'])
+                        result = controller.get_instance().get_db().get_table_for_managing(table_name)
+                        res['result'] = result
+                        res['success'] = commit_is_good
+                        res['query_num'] = config.QUERY_UPDATE_TABLE
                     return res
 
     def recv_msg_thread(self):

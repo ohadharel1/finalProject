@@ -1,87 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Management</title>
-  {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-    <script src="{% static 'index/jquery.min.js' %}"></script>
-    <script src="{% static 'index/bootstrap.min.js' %}"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-	<!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
-</head>
-<body class="mainBodyFlight">
+  <head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Management</title>
+    {% load staticfiles %}
+      <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
+      <script src="{% static 'index/jquery.min.js' %}"></script>
+      <script src="{% static 'index/bootstrap.min.js' %}"></script>
+      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+      <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
+  </head>
+  <body class="mainBodyFlight">
 
-<nav>
-      <ul>
-        <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
-        <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
-        <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
-        <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
-        <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
-        <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
+    <nav>
+        <ul>
+          <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
+          <li><a class="menuHome" href="{% url 'index:index' %}"><span class= "titleNav">Home</span></a></li>
+          <li><a class="menuFlights" href="{% url 'flight_monitor:flight_monitor' %}"><span class= "titleNavF">Flights</span> </a></li>
+          <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
+          <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
+          <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+
+
+      <ul id="tableTabs" class="nav nav-tabs">
+        <li id="motorTab"><a data-toggle="tab" href="#motor">Motor</a></li>
+        <li id="batTab"><a data-toggle="tab" href="#battery">Battery</a></li>
+        <li id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
       </ul>
-  </nav>
 
+    <div id="updateContainer">
+        {% if alert_display %}
+          {% if alert %}
+            <div class="alert alert-success">
+              <strong>Success!</strong>
+            </div>
+          {% else %}
+            <div class="alert alert-danger">
+              <strong>Failure!</strong>
+            </div>
+          {% endif %}
+        {% endif %}
+      <div id="tableContainer" class="tab-content">
 
-<div class="container">
-
-
-  <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" href="#menu1">Motor</a></li>
-    <li><a data-toggle="tab" href="#menu2">Battery</a></li>
-    <li><a data-toggle="tab" href="#menu3">Prop</a></li>
-  </ul>
-
-  <div class="tab-content">
-
-    <div id="menu1" class="tab-pane fade">
-      <table >
-  <tr >
-    <th>ID</th>
-    <th>Name</th>
-    <th>KV</th>
-    <th>Weight</th>
-    <th>Price</th>
-    <th>Update/Delete</th>
-  </tr>
-</table>
+        {% if table == "tblmotor" %}
+        <div id="motor" class="tab-pane fade">
+          <table id="{{ table }}">
+            <tr >
+              {% for key in keys %}
+                <th>{{ key }}</th>
+              {% endfor %}
+              <th>Update/Delete</th>
+            </tr>
+            {% for row in values %}
+              <tr id ="{{ row.0.1 }}">
+                {% for key, value in row %}
+                  {% if key == 'name' %}
+                    <td><input id="{{ key }}" class="textbox-n" type="text" value="{{ value }}" style="width:100%;"></td>
+                  {% else %}
+                    <td><input id="{{ key }}" class="textbox-n" type="number" value="{{ value }}" style="width:100%;"></td>
+                  {% endif %}
+                {% endfor %}
+                <td>
+                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">SAVE</a>
+                    <br>
+                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">DELETE</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% elif table == "tblbattery" %}
+        <div id="battery" class="tab-pane fade">
+          <table >
+            <tr >
+              {% for key in keys %}
+                <th>{{ key }}</th>
+              {% endfor %}
+              <th>Update/Delete</th>
+            </tr>
+            {% for row in values %}
+              <tr>
+                {% for value in row %}
+                  <td>{{ value }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% elif table == "tblprops" %}
+        <div id="prop" class="tab-pane fade">
+          <table >
+            <tr >
+              {% for key in keys %}
+                <th>{{ key }}</th>
+              {% endfor %}
+              <th>Update/Delete</th>
+            </tr>
+            {% for row in values %}
+              <tr>
+                {% for value in row %}
+                  <td>{{ value }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+      </div>
     </div>
-    <div id="menu2" class="tab-pane fade">
-      <table >
-  <tr >
-    <th>ID</th>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Volt</th>
-    <th>Dischage rate</th>
-    <th>Capacity</th>
-    <th>Weight</th>
-    <th>Price</th>
-    <th>Update/Delete</th>
-  </tr>
-</table>
     </div>
-    <div id="menu3" class="tab-pane fade">
-      <table >
-  <tr >
-    <th>ID</th>
-    <th>Name</th>
-    <th>Diameter</th>
-    <th>Speed</th>
-    <th>Weight</th>
-    <th>Price</th>
-    <th>Update/Delete</th>
-  </tr>
-</table>
-    </div>
-  </div>
-</div>
 
 
-</body>
+  </body>
+<script src="{% static 'index/management.js' %}"></script>
 </html>
