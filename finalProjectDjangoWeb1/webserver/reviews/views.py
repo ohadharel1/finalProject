@@ -91,6 +91,11 @@ def review(request):
     drone_ids.add('All')
     drone_states = OrderedSet()
     drone_states.add('All')
+    try:
+        success = flight_dict['success']
+        del flight_dict['success']
+    except:
+        pass
     for key, value in flight_dict.items():
         try:
             value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
@@ -125,6 +130,8 @@ def update_review(request):
     drone_ids.add('All')
     drone_states = OrderedSet()
     drone_states.add('All')
+    success = flight_dict['success']
+    del flight_dict['success']
     for key, value in flight_dict.items():
         if value['end_flight_time']:
             value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
