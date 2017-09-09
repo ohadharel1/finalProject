@@ -5,15 +5,21 @@
   <title>Log Review</title>
   {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+    <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
+    <script src="{% static 'index/jquery.min.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-    <link rel="stylesheet" href="{% static 'index/dataTables.bootstrap.min.css' %}">
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="{% static 'index/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>
+    <!--<link rel="stylesheet" href="{% static 'index/dataTables.bootstrap.min.css' %}">-->
+    <!--<script src="{% static 'index/jquery.dataTables.min.js' %}"></script>-->
+    <!--<script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>-->
     <script src="{% static 'index/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
+
+    <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
+
 
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
@@ -84,19 +90,6 @@
         <th>Drone Report</th>
       </tr>
       </thead>
-      {% for key, value in result.items %}
-      <tbody>
-        <tr >
-          <td>{{ value.drone_num }}</td>
-          <td>{{ value.start_flight_time }}</td>
-          <td>{{ value.end_flight_time }}</td>
-          <td>{{ value.duration }}</td>
-          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
-          <td>{{ value.state }}</td>
-          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
     </table>
   </div>
   <!-- logs Modal -->
@@ -119,20 +112,49 @@
     </div>
   </div>
 </body>
-
-
-    <script type="text/javascript">
-    $('#drone_review').DataTable( {
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+<script type="text/javascript">
+        var mydata =
+        [
+            {% for key, value in result.items %}
+                {
+                    {% for key2, value2 in value.items %}
+                        '{{ key2 }}' : '{{ value2 }}' ,
+                    {% endfor %}
+                },
+            {% endfor %}
+        ]
+        var table = $('#drone_review').DataTable( {
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                data : mydata,
+                columns: [
+                            { data: 'drone_num' },
+                            { data: 'start_flight_time' },
+                            { data: 'end_flight_time' },
+                            { data: 'duration' },
+                            { "defaultContent": "<button id='log' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
+                            { data: 'state' },
+                            { "defaultContent": "<button id='report' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
+                            {
+                                data: 'log_file_path',
+                                visible: false
+                            }
+                        ]
+            } );
+        $('#drone_review tbody').on( 'click', 'button', function () {
+            jQuery.noConflict();
+            if (this.id == "report")
+            {
+                var data = table.row( $(this).parents('tr') ).data();
+                showReportPopUpForReview(data.drone_num);
+                $("#modalLogsPopUp").modal('show');
+            }
+            else
+            {
+                var data = table.row( $(this).parents('tr') ).data();
+                showPopUpForReview(data.log_file_path);
+                $("#modalLogsPopUp").modal('show');
+            }
         } );
-    console.log('data table!')
-</script>
+    </script>
     <script src="{% static 'index/reviews.js' %}"></script>
-
-
-
-
-
-
-
 </html>

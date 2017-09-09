@@ -18,13 +18,44 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
-function sort_results(key, value) {
+function sort_results(key, value)
+{
+   jQuery.noConflict();
+   if (value == 'Drone ID' || value == 'Status' || value == 'Start Time' || value == 'End Time' || value == 'Duration')
+       {
+            return
+       }
+   console.log('key: ' + key);
+   console.log('value: ' + value);
+   $.ajax({
+       async: false,
+       type: "POST",
+       url: "/reviews/update_reviews/",
+       data: {
+           'key' : key,
+           'value' : value,
+           'csrfmiddlewaretoken' : getCookie('csrftoken')
+       },
+   })
+   .done(function(response)
+   {
+        mydata = [];
+        for (var key1 in response)
+        {
+            mydata.push(response[key1]);
+        }
+//        mytable = $('#drone_review').DataTable()
+        table.clear();
+        table.rows.add(mydata);
+        table.draw();
+   });
+}
+function sort_results2(key, value) {
        if (value == 'Drone ID' || value == 'Status' || value == 'Start Time' || value == 'End Time' || value == 'Duration')
        {
             return
        }
-       console.log('key: ' + key);
+       console.log('keyyy: ' + key);
        console.log('value: ' + value);
        $.ajax({
            async: false,
@@ -37,8 +68,9 @@ function sort_results(key, value) {
            },
        })
        .done(function(response) {
+//            console.log(response)
             var str = response; //it can be anything
-            var Obj = document.getElementById("drone_review");
+            var Obj = document.getElementById("tblReviews");
             if(Obj.outerHTML) { //if outerHTML is supported
                 Obj.outerHTML=str; ///it's simple replacement of whole element with contents of str var
             }
@@ -51,7 +83,8 @@ function sort_results(key, value) {
             }
        return
 //        console.log(response);
-    });
+    })
+    do_data_table();
 
    }
 
@@ -92,7 +125,7 @@ function showPopUpForReview(file_path) {
            },
        })
        .done(function(response) {
-            console.log(response)
+//            console.log(response)
             var str = response; //it can be anything
             var Obj = document.getElementById("modalLogsPopUp");
             if(Obj.outerHTML) { //if outerHTML is supported
@@ -135,6 +168,35 @@ function showReportPopUpForReview(drone_num) {
                 ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
             }
        });
-
    }
 
+
+//function do_data_table()
+//{
+//    table = $('#drone_review').DataTable( {
+//                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+//                data : mydata,
+//                columns: [
+//                            { data: 'drone_num' },
+//                            { data: 'start_flight_time' },
+//                            { data: 'end_flight_time' },
+//                            { data: 'duration' },
+//                            { "defaultContent": "<button id='log' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
+//                            { data: 'state' },
+//                            { "defaultContent": "<button id='report' class='btn btn-success rolloverBtn' role='button'>Click!</button>" }
+//                        ]
+//            } );
+//        $('#drone_review tbody').on( 'click', 'button', function () {
+//            jQuery.noConflict();
+//            if (this.id == "report")
+//            {
+//                var data = table.row( $(this).parents('tr') ).data();
+//                showReportPopUpForReview(data.drone_num);
+//                $("#modalLogsPopUp").modal('show');
+//            }
+//            else
+//            {
+//                alert("2");
+//            }
+//        } );
+//}
