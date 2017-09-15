@@ -192,9 +192,9 @@ class _DB_handler:
         cursor.close()
         complete_values_list = []
         for i, row in enumerate(query_result):
-            current_row_values = []
+            current_row_values = {}
             for key in keys_list:
-                current_row_values.append((key, row[key]))
+                current_row_values[key] = row[key]
             complete_values_list.append(current_row_values)
         res = {'keys': keys_list,
                'values': complete_values_list}

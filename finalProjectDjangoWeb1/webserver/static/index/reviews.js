@@ -169,34 +169,3 @@ function showReportPopUpForReview(drone_num) {
             }
        });
    }
-
-
-//function do_data_table()
-//{
-//    table = $('#drone_review').DataTable( {
-//                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-//                data : mydata,
-//                columns: [
-//                            { data: 'drone_num' },
-//                            { data: 'start_flight_time' },
-//                            { data: 'end_flight_time' },
-//                            { data: 'duration' },
-//                            { "defaultContent": "<button id='log' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
-//                            { data: 'state' },
-//                            { "defaultContent": "<button id='report' class='btn btn-success rolloverBtn' role='button'>Click!</button>" }
-//                        ]
-//            } );
-//        $('#drone_review tbody').on( 'click', 'button', function () {
-//            jQuery.noConflict();
-//            if (this.id == "report")
-//            {
-//                var data = table.row( $(this).parents('tr') ).data();
-//                showReportPopUpForReview(data.drone_num);
-//                $("#modalLogsPopUp").modal('show');
-//            }
-//            else
-//            {
-//                alert("2");
-//            }
-//        } );
-//}

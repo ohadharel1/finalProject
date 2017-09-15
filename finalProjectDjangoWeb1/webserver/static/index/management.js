@@ -14,6 +14,45 @@ function getCookie(name) {
     return cookieValue;
 }
 
+$(window).ready(function() {
+    $('#loader').hide();
+});
+
+$('#loader').bind('ajaxStart', function(){
+    $(this).show();
+}).bind('ajaxStop', function(){
+    $(this).hide();
+});
+
+function update_motor_table(id, name, kv, weight, price)
+{
+    $.ajax({
+           async: false,
+           type: "POST",
+           url: "/management/motor_table_update/",
+           data: {
+               'motor_id' : id,
+               'motor_name' : name,
+               'motor_kv' : kv,
+               'motor_weight' : weight,
+               'motor_price' : price,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            motor_table.clear();
+            motor_table.rows.add(mydata);
+            motor_table.draw();
+            $("#motor_edit_modal").modal('hide');
+    });
+}
 
 function get_and_sort_results(table, key = null, value = null) {
        if (value == 'Drone ID' || value == 'Status' || value == 'Start Time' || value == 'End Time' || value == 'Duration')
@@ -151,3 +190,4 @@ function checkForError(alert_display, alert)
         console.log("alert_diaplay is false")
     }
 }
+

@@ -13,6 +13,11 @@
       <script src="{% static 'index/bootstrap.min.js' %}"></script>
       <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
       <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
+      <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
+
+      <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
+      <script src="{% static 'index/management.js' %}"></script>
+
   </head>
   <body id="body" class="mainBodyFlight">
 
@@ -27,6 +32,7 @@
         </ul>
     </nav>
 
+    <img id="loader" src="{% static 'image/loader.gif' %}" alt="This will display an animated GIF" />
     <div class="container">
 
       <ul id="tableTabs" class="nav nav-tabs">
@@ -53,28 +59,15 @@
         {% if table == "tblmotor" %}
         <div id="motor" class="tab-pane fade in active">
           <table id="{{ table }}">
+            <thead>
             <tr >
               {% for key in keys %}
                 <th>{{ key }}</th>
               {% endfor %}
-              <th>Update/Delete</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
-            {% for row in values %}
-              <tr id ="{{ row.0.1 }}">
-                {% for key, value in row %}
-                  {% if key == 'name' %}
-                    <td><input id="{{ key }}" class="textbox-n" type="text" value="{{ value }}" style="width:100%;"></td>
-                  {% else %}
-                    <td><input id="{{ key }}" class="textbox-n" type="number" value="{{ value }}" style="width:100%;"></td>
-                  {% endif %}
-                {% endfor %}
-                <td>
-                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">SAVE</a>
-                    <br>
-                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">DELETE</a>
-                </td>
-              </tr>
-            {% endfor %}
+            </thead>
           </table>
         </div>
         {% elif table == "tblbattery" %}
@@ -126,8 +119,119 @@
       </div>
     </div>
     </div>
-
-
+    <div class="modal fade" id="motor_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Edit Motor</h3>
+          </div>
+          <div class="modal-body">
+              <!--<p>Motor ID</p>-->
+              <!--<input type="text" name="motor_id" id="motor_id" value=""/>-->
+              <!--<p>Motor Name</p>-->
+              <!--<input type="text" name="motor_name" id="motor_name" value=""/>-->
+              <!--<p>KV</p>-->
+              <!--<input type="text" name="motor_kv" id="motor_kv" value=""/>-->
+              <!--<p>Weight</p>-->
+              <!--<input type="text" name="motor_weight" id="motor_weight" value=""/>-->
+              <!--<p>Price</p>-->
+              <!--<input type="text" name="motor_price" id="motor_price" value=""/>-->
+              <form class="form-horizontal" role="form" action="javascript:void(0);">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label" for="motor_id">Motor ID</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="input-field" id="motor_id" readonly="readonly" value=""/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="motor_name" >Motor Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="input-field" id="motor_name" placeholder="Motor Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="motor_kv" >KV</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="motor_kv" placeholder="KV"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="motor_weight" >Weight</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="motor_weight" placeholder="Weight"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="motor_price" >Motor Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="motor_price" placeholder="Motor Price"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="submitBtn" onclick="update_motor_table(motor_id.value, motor_name.value, motor_kv.value, motor_weight.value, motor_price.value)">Submit</button>
+                      <div class="col-sm-offset-8 col-sm-10">
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
-  <script src="{% static 'index/management.js' %}"></script>
+  <script type="text/javascript">
+    <!--console.log('{{ values }}');-->
+    var mydata =
+    [
+      {% for row in values %}
+          {
+              {% for key, value in row.items %}
+                  '{{ key }}' : '{{ value }}' ,
+              {% endfor %}
+          },
+      {% endfor %}
+    ];
+    <!--console.log(mydata);-->
+    var current_table = '{{ table }}';
+    if(current_table == 'tblmotor')
+    {
+      var motor_table = $('#tblmotor').DataTable( {
+              "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+              data : mydata,
+              columns: [
+                          { data: 'id' },
+                          { data: 'name' },
+                          { data: 'kv' },
+                          { data: 'weight' },
+                          { data: 'price' },
+                          { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
+                          { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                      ]
+          } );
+    }
+    $('#tblmotor tbody').on( 'click', 'button', function () {
+        jQuery.noConflict();
+        if (this.id == "edit")
+        {
+            var data = motor_table.row( $(this).parents('tr') ).data();
+            $(".modal-body #motor_id").val(data.id);
+            $(".modal-body #motor_name").val(data.name);
+            $(".modal-body #motor_kv").val(data.kv);
+            $(".modal-body #motor_weight").val(data.weight);
+            $(".modal-body #motor_price").val(data.price);
+            $("#motor_edit_modal").modal('show');
+        }
+        else
+        {
+            <!--var data = table.row( $(this).parents('tr') ).data();-->
+            <!--showPopUpForReview(data.log_file_path);-->
+            <!--$("#modalLogsPopUp").modal('show');-->
+            alert('delete!')
+        }
+    } );
+  </script>
 </html>
