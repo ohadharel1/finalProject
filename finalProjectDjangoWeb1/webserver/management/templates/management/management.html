@@ -5,18 +5,17 @@
     <title>Management</title>
     {% load staticfiles %}
       <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+      <script src="{% static 'index/jquery.min.js' %}"></script>
       <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
       <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-      <script src="{% static 'index/jquery.min.js' %}"></script>
       <script src="{% static 'index/bootstrap.min.js' %}"></script>
       <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
       <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
       <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
 
       <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
-      <script src="{% static 'index/management.js' %}"></script>
 
   </head>
   <body id="body" class="mainBodyFlight">
@@ -32,7 +31,16 @@
         </ul>
     </nav>
 
-    <img id="loader" src="{% static 'image/loader.gif' %}" alt="This will display an animated GIF" />
+    <div id="loader"></div>
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Add New<span class="caret"></span></button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" onclick="add_single_item('{{ table }}')">Single Item</a></li>
+        <li><a href="#" onclick="add_multiple_items('{{ table }}')">Multiple Items</a></li>
+      </ul>
+    </div>
+
     <div class="container">
 
       <ul id="tableTabs" class="nav nav-tabs">
@@ -42,64 +50,50 @@
       </ul>
 
     <div id="updateContainer">
-      <div id="result_msg">
-      {% if alert_display %}
-        {% if alert %}
-          <div class="alert alert-success">
-            <strong>Success!</strong>
-          </div>
-        {% else %}
-          <div class="alert alert-danger">
-            <strong>Failure!</strong>
-          </div>
-        {% endif %}
-      {% endif %}
-      </div>
       <div id="tableContainer" class="tab-content">
-        {% if table == "tblmotor" %}
         <div id="motor" class="tab-pane fade in active">
-          <table id="{{ table }}">
+          <button class="btn btn-primary" onclick="motor_add_single_pop_up()">
+              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Single Item
+          </button>
+
+          <button class="btn btn-primary" onclick="motor_add_multi_pop_up()">
+              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Multiple Items (CSV File)
+          </button>
+
+          <table id="tblmotor">
             <thead>
             <tr >
-              {% for key in keys %}
-                <th>{{ key }}</th>
-              {% endfor %}
+              <th>ID</th>
+              <th>Name</th>
+              <th>KV</th>
+              <th>Weight</th>
+              <th>Price</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
             </thead>
           </table>
         </div>
-        {% elif table == "tblbattery" %}
-        <div id="battery" class="tab-pane fade in active">
-          <table >
+        <div id="battery" class="tab-pane fade">
+          <table id="tblbattery">
+            <thead>
             <tr >
-              {% for key in keys %}
-                <th>{{ key }}</th>
-              {% endfor %}
-              <th>Update/Delete</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Volt</th>
+              <th>Discharge Rate</th>
+              <th>Capacity</th>
+              <th>Weight</th>
+              <th>Price</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
-            {% for row in values %}
-              <tr id ="{{ row.0.1 }}">
-                {% for key, value in row %}
-                  {% if key == 'name' or key == 'type' %}
-                    <td><input id="{{ key }}" class="textbox-n" type="text" value="{{ value }}" style="width:100%;"></td>
-                  {% else %}
-                    <td><input id="{{ key }}" class="textbox-n" type="number" value="{{ value }}" style="width:100%;"></td>
-                  {% endif %}
-                {% endfor %}
-                <td>
-                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">SAVE</a>
-                    <br>
-                    <a class="click-to-show" href="#" onclick="save_changes({{ row.0.1 }}, '{{ row.1.1 }}', {{ row.2.1 }}, {{ row.3.1 }}, {{ row.4.1 }})">DELETE</a>
-                </td>
-              </tr>
-            {% endfor %}
+            </thead>
           </table>
         </div>
-        {% elif table == "tblprops" %}
-        <div id="prop" class="tab-pane fade in active">
-          <table >
+        <div id="prop" class="tab-pane fade">
+          <table id="tblprop">
             <tr >
               {% for key in keys %}
                 <th>{{ key }}</th>
@@ -115,7 +109,6 @@
             {% endfor %}
           </table>
         </div>
-        {% endif %}
       </div>
     </div>
     </div>
@@ -127,16 +120,6 @@
             <h3>Edit Motor</h3>
           </div>
           <div class="modal-body">
-              <!--<p>Motor ID</p>-->
-              <!--<input type="text" name="motor_id" id="motor_id" value=""/>-->
-              <!--<p>Motor Name</p>-->
-              <!--<input type="text" name="motor_name" id="motor_name" value=""/>-->
-              <!--<p>KV</p>-->
-              <!--<input type="text" name="motor_kv" id="motor_kv" value=""/>-->
-              <!--<p>Weight</p>-->
-              <!--<input type="text" name="motor_weight" id="motor_weight" value=""/>-->
-              <!--<p>Price</p>-->
-              <!--<input type="text" name="motor_price" id="motor_price" value=""/>-->
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
@@ -182,37 +165,203 @@
         </div>
       </div>
     </div>
+    <!--motor add single modal-->
+    <div class="modal fade" id="motor_add_single_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Add New Motor</h3>
+          </div>
+          <div class="modal-body">
+              <form class="form-horizontal" role="form" action="javascript:void(0);">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="add_single_motor_name" >Motor Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="input-field" id="add_single_motor_name" placeholder="Motor Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="add_single_motor_kv" >KV</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_kv" placeholder="KV"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="add_single_motor_weight" >Weight</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_weight" placeholder="Weight"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="add_single_motor_price" >Motor Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_price" placeholder="Motor Price"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="submitBtn" onclick="add_single_to_motor_table(add_single_motor_name.value, add_single_motor_kv.value, add_single_motor_weight.value, add_single_motor_price.value)">Submit</button>
+                      <div class="col-sm-offset-8 col-sm-10">
+                        <button class="close" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--motor add multi-->
+    <div class="modal fade" id="motor_add_multi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Add New Motors</h3>
+          </div>
+          <div class="modal-body">
+              <form class="form-horizontal" role="form" action="javascript:void(0);" id="motor_add_multi_form">
+                {% csrf_token %}
+                  <label class="btn btn-default">
+                      Browse <input type="file" id="motor_add_multi_file" hidden>
+                  </label>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="submitBtn" onclick="add_multi_to_motor_table(motor_add_multi_file.files)">Submit</button>
+                      <div class="col-sm-offset-8 col-sm-10">
+                        <button class="close" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--bat update modal-->
+    <div class="modal fade" id="bat_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Edit Battery</h3>
+          </div>
+          <div class="modal-body">
+              <form class="form-horizontal" role="form" action="javascript:void(0);">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label  class="col-sm-2 control-label" for="bat_id">Battery ID</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="input-field" id="bat_id" readonly="readonly" value=""/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_name" >Battery Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="input-field" id="bat_name" placeholder="Battery Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_volt" >Volt</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="bat_volt" placeholder="Volt"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_type" >Type</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="input-field" id="bat_type" placeholder="Type"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_discharge_rate" >Discharge Rate</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="bat_discharge_rate" placeholder="Discharge Rate"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_capacity" >Capacity</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="bat_capacity" placeholder="Capacity"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_weight" >Weight</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="bat_weight" placeholder="Weight"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="bat_price" >Battery Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" step="0.1" class="input-field" id="bat_price" placeholder="Battery Price"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="submitBtn" onclick="update_bat_table(bat_id.value, bat_name.value, bat_volt.value, bat_type.value, bat_discharge_rate.value, bat_capacity.value, bat_weight.value, bat_price.value)">Submit</button>
+                      <div class="col-sm-offset-8 col-sm-10">
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal_pop_up_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3 id="result_header"></h3>
+          </div>
+          <div class="modal-body">
+              <pre id="result_body">
+
+              </pre>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+  <script src="{% static 'index/management.js' %}"></script>
   <script type="text/javascript">
-    <!--console.log('{{ values }}');-->
-    var mydata =
-    [
-      {% for row in values %}
-          {
-              {% for key, value in row.items %}
-                  '{{ key }}' : '{{ value }}' ,
-              {% endfor %}
-          },
-      {% endfor %}
-    ];
-    <!--console.log(mydata);-->
-    var current_table = '{{ table }}';
-    if(current_table == 'tblmotor')
-    {
-      var motor_table = $('#tblmotor').DataTable( {
-              "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-              data : mydata,
-              columns: [
-                          { data: 'id' },
-                          { data: 'name' },
-                          { data: 'kv' },
-                          { data: 'weight' },
-                          { data: 'price' },
-                          { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
-                          { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
-                      ]
-          } );
-    }
+    motor_table = $('#tblmotor').DataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            data : [],
+            columns: [
+                        { data: 'id' },
+                        { data: 'name' },
+                        { data: 'kv' },
+                        { data: 'weight' },
+                        { data: 'price' },
+                        { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
+                        { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                    ]
+        } );
+      get_motor_table();
+
+    bat_table = $('#tblbattery').DataTable( {
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            data : [],
+            columns: [
+                        { data: 'id' },
+                        { data: 'name' },
+                        { data: 'type' },
+                        { data: 'volt' },
+                        { data: 'discharge_rate' },
+                        { data: 'capacity' },
+                        { data: 'weight' },
+                        { data: 'price' },
+                        { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
+                        { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                    ]
+        } );
     $('#tblmotor tbody').on( 'click', 'button', function () {
         jQuery.noConflict();
         if (this.id == "edit")
@@ -227,11 +376,11 @@
         }
         else
         {
-            <!--var data = table.row( $(this).parents('tr') ).data();-->
-            <!--showPopUpForReview(data.log_file_path);-->
-            <!--$("#modalLogsPopUp").modal('show');-->
-            alert('delete!')
+            var data = motor_table.row( $(this).parents('tr') ).data();
+            delete_motor(data.id);
         }
     } );
   </script>
+    <script src="{% static 'index/management.js' %}"></script>
+
 </html>

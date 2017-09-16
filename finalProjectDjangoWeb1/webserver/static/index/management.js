@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    jQuery.noConflict();
+});
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -14,20 +18,13 @@ function getCookie(name) {
     return cookieValue;
 }
 
-$(window).ready(function() {
-    $('#loader').hide();
-});
-
-$('#loader').bind('ajaxStart', function(){
-    $(this).show();
-}).bind('ajaxStop', function(){
-    $(this).hide();
-});
-
 function update_motor_table(id, name, kv, weight, price)
 {
+    console.log('showing');
+    $("#motor_edit_modal").modal('hide');
+    $('#loader').show();
     $.ajax({
-           async: false,
+//           async: false,
            type: "POST",
            url: "/management/motor_table_update/",
            data: {
@@ -50,7 +47,24 @@ function update_motor_table(id, name, kv, weight, price)
             motor_table.clear();
             motor_table.rows.add(mydata);
             motor_table.draw();
-            $("#motor_edit_modal").modal('hide');
+
+            $('#loader').hide();
+            console.log($('#result_header'));
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+            console.log(response.result);
+            console.log('hiding');
     });
 }
 
@@ -106,11 +120,12 @@ function once(fn, context) {
 }
 
 $('#tableTabs').on('click', '#motorTab', function() {
-    once(get_and_sort_results('tblmotor'));
+    get_motor_table();
     console.log('motor pressed!')
 });
 $('#tableTabs').on('click', '#batTab', function() {
-    once(get_and_sort_results('tblbattery'));
+//    $(this).tab("option", "active", 1);
+    get_bat_table();
     console.log('battery pressed!')
 });
 $('#tableTabs').on('click', '#propTab', function() {
@@ -189,5 +204,272 @@ function checkForError(alert_display, alert)
     {
         console.log("alert_diaplay is false")
     }
+}
+
+function motor_add_single_pop_up()
+{
+    $('#motor_add_single_modal').modal('show');
+}
+
+function motor_add_multi_pop_up()
+{
+    $('#motor_add_multi_modal').modal('show');
+}
+
+function add_single_to_motor_table(name, kv, weight, price)
+{
+    $('#motor_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/add_single_motor_table/",
+           data: {
+                'motor_name' : name,
+                'motor_kv' : kv,
+                'motor_weight' : weight,
+                'motor_price' : price,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            motor_table.clear();
+            motor_table.rows.add(mydata);
+            motor_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+function add_multi_to_motor_table(file)
+{
+    $('#motor_add_multi_modal').modal('hide');
+    $('#loader').show();
+    var read = new FileReader();
+    var content = '';
+    read.readAsBinaryString(file[0]);
+
+    read.onloadend = function(){
+        content = read.result;
+        $.ajax({
+           type: "POST",
+           url: "/management/add_multi_motor_table/",
+           data: {
+                'content' : content,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(response.summery);
+            motor_table.clear();
+            motor_table.rows.add(mydata);
+            motor_table.draw();
+
+            $('#loader').hide();
+
+            $('#result_header').text('Summery');
+            $('#result_body').text(response.summery);
+            $('#modal_pop_up_result').modal('show');
+    });
+    }
+
+
+}
+
+function get_motor_table()
+{
+    console.log('get motor table');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/get_motor_table/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            motor_table.clear();
+            motor_table.rows.add(mydata);
+            motor_table.draw();
+
+            $('#loader').hide();
+    });
+}
+
+
+function delete_motor(id)
+{
+//    $('#motor_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/delete_motor_table/",
+           data: {
+                'motor_id' : id,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            motor_table.clear();
+            motor_table.rows.add(mydata);
+            motor_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+function get_bat_table()
+{
+    console.log('get bat table');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/get_bat_table/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            bat_table.clear();
+            bat_table.rows.add(mydata);
+            bat_table.draw();
+
+            $('#loader').hide();
+    });
+    $('#tblbattery tbody').on( 'click', 'button', function () {
+        jQuery.noConflict();
+        if (this.id == "edit")
+        {
+            var data = bat_table.row( $(this).parents('tr') ).data();
+            $(".modal-body #bat_id").val(data.id);
+            $(".modal-body #bat_name").val(data.name);
+            $(".modal-body #bat_volt").val(data.volt);
+            $(".modal-body #bat_type").val(data.type);
+            $(".modal-body #bat_discharge_rate").val(data.discharge_rate);
+            $(".modal-body #bat_capacity").val(data.capacity);
+            $(".modal-body #bat_weight").val(data.weight);
+            $(".modal-body #bat_price").val(data.price);
+            $("#bat_edit_modal").modal('show');
+        }
+        else
+        {
+            alert('delete!')
+        }
+    } );
+}
+
+
+function update_bat_table(id, name, volt, type, discharge_rate, capacity, weight, price)
+{
+    $("#bat_edit_modal").modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/bat_table_update/",
+           data: {
+               'bat_id' : id,
+               'bat_name' : name,
+               'bat_type' : type,
+               'bat_volt' : volt,
+               'bat_discharge_rate' : discharge_rate,
+               'bat_capacity' : capacity,
+               'bat_price' : price,
+               'bat_weight' : weight,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            bat_table.clear();
+            bat_table.rows.add(mydata);
+            bat_table.draw();
+
+            $('#loader').hide();
+            console.log($('#result_header'));
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
 }
 

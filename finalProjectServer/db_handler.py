@@ -29,12 +29,20 @@ class _DB_handler:
         return res
 
     def insert_to_table(self, tbl_statment, args):
+        res = False, ''
         cursor = self.db.cursor()
-        cursor.execute('REPLACE INTO ' + tbl_statment, args)
-        res = cursor.fetchall()
-        self.db.commit()
-        cursor.close()
-        return res
+        try:
+            cursor.execute('REPLACE INTO ' + tbl_statment, args)
+            if cursor.rowcount <= 0:
+                res = False, 'No Row Was Affected'
+            self.db.commit()
+            res = True, ''
+        except Exception, e:
+            self.db.rollback()
+            res = False, str(e)
+        finally:
+            cursor.close()
+            return res
 
     def change_flight_status(self, drone_num, timestamp, status):
         args = (status, int(drone_num), timestamp)
@@ -201,18 +209,86 @@ class _DB_handler:
         return res
 
     def update_motor_table(self, id, name, kv, weight, price):
-        res = False
+        res = False, ''
         cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
         try:
             cursor.execute("UPDATE %s SET name = '%s', kv = %s, weight = %s, price = %s WHERE id = %s;"%(config.motor_tbl_name, name, kv, weight, price, id))
-            self.db.commit()
-            res = True
+            if cursor.rowcount <= 0:
+                res = False, 'No Row Was Affected By The Statement!'
+            else:
+                self.db.commit()
+                res = True, ''
         except Exception, e:
-            res = False
+            res = False, str(e)
             self.db.rollback()
         finally:
             cursor.close()
             return res
+
+    def update_table(self, args):
+        res = False, ''
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        try:
+            if args['table_name'] == config.motor_tbl_name:
+                cursor.execute("UPDATE %s SET name = '%s', kv = %s, weight = %s, price = %s WHERE id = %s;"%(config.motor_tbl_name, args['name'], args['kv'], args['weight'], args['price'], args['id']))
+            elif args['table_name'] == config.battery_tbl_name:
+                cursor.execute("UPDATE %s SET `name`='%s', `type`='%s', `volt`=%s, `discharge_rate`=%s, `capacity`=%s, `weight`=%s, `price`=%s WHERE `id`=%s;"%(config.battery_tbl_name, args['name'], args['type'], args['volt'], args['discharge_rate'], args['capacity'], args['weight'], args['price'], args['id']))
+            if cursor.rowcount <= 0:
+                res = False, 'No Row Was Affected By The Statement!'
+            else:
+                self.db.commit()
+                res = True, ''
+        except Exception, e:
+            res = False, str(e)
+            self.db.rollback()
+        finally:
+            cursor.close()
+            return res
+
+    def add_single_to_table(self, data):
+        if data['table_name'] == config.motor_tbl_name:
+            args = (data['name'], data['kv'], data['weight'], data['price'])
+            return self.insert_to_table(config.motor_tbl_insert, args)
+
+    def delete_from_table(self, data):
+        res = False, ''
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        try:
+            cursor.execute("DELETE FROM %s WHERE id = %s" % (data['table_name'], data['id']))
+            if cursor.rowcount <= 0:
+                res = False, 'No Row Was Affected By The Statement!'
+            else:
+                self.db.commit()
+                res = True, ''
+        except Exception, e:
+            res = False, str(e)
+            self.db.rollback()
+        finally:
+            cursor.close()
+            return res
+
+    def add_multi_to_table(self, data):
+        statement = None
+        if data['table_name'] == config.motor_tbl_name:
+            statement = config.motor_tbl_insert
+        elif data['table_name'] == config.battery_tbl_name:
+            statement = config.bat_tbl_insert
+        elif data['table_name'] == config.prop_tbl_name:
+            statement = config.prop_tbl_insert
+        result = []
+        lines = data['content'].split('\n')
+        lines.pop()
+        for line in lines:
+            line = line.strip()
+            try:
+                args = line.split(',')
+                if args[0] == 'name':
+                    continue
+                result.append(self.insert_to_table(statement, args))
+            except Exception, e:
+                result.append((False, str(e)))
+        return result
+
 
 def get_instance():
     global instance
