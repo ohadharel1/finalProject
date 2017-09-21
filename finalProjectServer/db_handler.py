@@ -233,6 +233,8 @@ class _DB_handler:
                 cursor.execute("UPDATE %s SET name = '%s', kv = %s, weight = %s, price = %s WHERE id = %s;"%(config.motor_tbl_name, args['name'], args['kv'], args['weight'], args['price'], args['id']))
             elif args['table_name'] == config.battery_tbl_name:
                 cursor.execute("UPDATE %s SET `name`='%s', `type`='%s', `volt`=%s, `discharge_rate`=%s, `capacity`=%s, `weight`=%s, `price`=%s WHERE `id`=%s;"%(config.battery_tbl_name, args['name'], args['type'], args['volt'], args['discharge_rate'], args['capacity'], args['weight'], args['price'], args['id']))
+            elif args['table_name'] == config.prop_tbl_name:
+                cursor.execute("UPDATE %s SET `name`='%s', `diameter`=%s, `speed`=%s, `weight`=%s, `price`=%s WHERE `id`=%s;"%(config.prop_tbl_name, args['name'], args['diameter'], args['speed'], args['weight'], args['price'], args['id']))
             if cursor.rowcount <= 0:
                 res = False, 'No Row Was Affected By The Statement!'
             else:
@@ -249,12 +251,19 @@ class _DB_handler:
         if data['table_name'] == config.motor_tbl_name:
             args = (data['name'], data['kv'], data['weight'], data['price'])
             return self.insert_to_table(config.motor_tbl_insert, args)
+        elif data['table_name'] == config.battery_tbl_name:
+            args = (data['name'], data['type'], data['volt'], data['discharge_rate'], data['capacity'], data['weight'], data['price'])
+            return self.insert_to_table(config.bat_tbl_insert, args)
+        elif data['table_name'] == config.prop_tbl_name:
+            args = (data['name'], data['diameter'], data['speed'], data['weight'], data['price'])
+            return self.insert_to_table(config.prop_tbl_insert, args)
 
     def delete_from_table(self, data):
         res = False, ''
         cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
         try:
             cursor.execute("DELETE FROM %s WHERE id = %s" % (data['table_name'], data['id']))
+            cursor.fetchall()
             if cursor.rowcount <= 0:
                 res = False, 'No Row Was Affected By The Statement!'
             else:
@@ -284,7 +293,7 @@ class _DB_handler:
                 args = line.split(',')
                 if args[0] == 'name':
                     continue
-                result.append(self.insert_to_table(statement, args))
+                result.append(self.insert_to_table(statement, tuple(args)))
             except Exception, e:
                 result.append((False, str(e)))
         return result

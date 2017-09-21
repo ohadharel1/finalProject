@@ -129,7 +129,7 @@ $('#tableTabs').on('click', '#batTab', function() {
     console.log('battery pressed!')
 });
 $('#tableTabs').on('click', '#propTab', function() {
-    once(get_and_sort_results('tblprops'));
+    get_prop_table();
     console.log('battery pressed!')
 });
 
@@ -374,6 +374,105 @@ function delete_motor(id)
     });
 }
 
+
+function bat_add_single_pop_up()
+{
+    $('#bat_add_single_modal').modal('show');
+}
+
+function bat_add_multi_pop_up()
+{
+    $('#bat_add_multi_modal').modal('show');
+}
+
+function add_single_to_bat_table(name, type, volt, capacity, discharge_rate, weight, price)
+{
+    $('#bat_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/add_single_bat_table/",
+           data: {
+                'bat_name' : name,
+                'bat_type' : type,
+                'bat_volt' : volt,
+                'bat_capacity' : capacity,
+                'bat_discharge_rate' : discharge_rate,
+                'bat_weight' : weight,
+                'bat_price' : price,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            bat_table.clear();
+            bat_table.rows.add(mydata);
+            bat_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+function add_multi_to_bat_table(file)
+{
+    $('#bat_add_multi_modal').modal('hide');
+    $('#loader').show();
+    var read = new FileReader();
+    var content = '';
+    read.readAsBinaryString(file[0]);
+
+    read.onloadend = function(){
+        content = read.result;
+        $.ajax({
+           type: "POST",
+           url: "/management/add_multi_bat_table/",
+           data: {
+                'content' : content,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(response.summery);
+            bat_table.clear();
+            bat_table.rows.add(mydata);
+            bat_table.draw();
+
+            $('#loader').hide();
+
+            $('#result_header').text('Summery');
+            $('#result_body').text(response.summery);
+            $('#modal_pop_up_result').modal('show');
+    });
+    }
+}
+
+
 function get_bat_table()
 {
     console.log('get bat table');
@@ -400,8 +499,10 @@ function get_bat_table()
 
             $('#loader').hide();
     });
-    $('#tblbattery tbody').on( 'click', 'button', function () {
-        jQuery.noConflict();
+    $('#tblbattery tbody').on( 'click', 'button', function (evt) {
+//        evt.stopPropagation();
+//        evt.preventDefault();
+        evt.stopImmediatePropagation();
         if (this.id == "edit")
         {
             var data = bat_table.row( $(this).parents('tr') ).data();
@@ -417,7 +518,9 @@ function get_bat_table()
         }
         else
         {
-            alert('delete!')
+            console.log('delete bat');
+            var data = bat_table.row( $(this).parents('tr') ).data();
+            delete_bat(data.id);
         }
     } );
 }
@@ -473,3 +576,284 @@ function update_bat_table(id, name, volt, type, discharge_rate, capacity, weight
     });
 }
 
+function delete_bat(id)
+{
+    console.log(id);
+//    $('#motor_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/delete_bat_table/",
+           data: {
+                'bat_id' : id,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            bat_table.clear();
+            bat_table.rows.add(mydata);
+            bat_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+
+function prop_add_single_pop_up()
+{
+    $('#prop_add_single_modal').modal('show');
+}
+
+function prop_add_multi_pop_up()
+{
+    $('#prop_add_multi_modal').modal('show');
+}
+
+function add_single_to_prop_table(name, diameter, speed, weight, price)
+{
+    $('#prop_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/add_single_prop_table/",
+           data: {
+                'prop_name' : name,
+                'prop_diameter' : diameter,
+                'prop_speed' : speed,
+                'prop_weight' : weight,
+                'prop_price' : price,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            prop_table.clear();
+            prop_table.rows.add(mydata);
+            prop_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+function add_multi_to_prop_table(file)
+{
+    $('#prop_add_multi_modal').modal('hide');
+    $('#loader').show();
+    var read = new FileReader();
+    var content = '';
+    read.readAsBinaryString(file[0]);
+
+    read.onloadend = function(){
+        content = read.result;
+        $.ajax({
+           type: "POST",
+           url: "/management/add_multi_prop_table/",
+           data: {
+                'content' : content,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(response.summery);
+            prop_table.clear();
+            prop_table.rows.add(mydata);
+            prop_table.draw();
+
+            $('#loader').hide();
+
+            $('#result_header').text('Summery');
+            $('#result_body').text(response.summery);
+            $('#modal_pop_up_result').modal('show');
+    });
+    }
+}
+
+
+function get_prop_table()
+{
+    console.log('get prop table');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/get_prop_table/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            prop_table.clear();
+            prop_table.rows.add(mydata);
+            prop_table.draw();
+
+            $('#loader').hide();
+    });
+    $('#tblprop tbody').on( 'click', 'button', function (evt) {
+        evt.stopImmediatePropagation();
+        if (this.id == "edit")
+        {
+            var data = prop_table.row( $(this).parents('tr') ).data();
+            $(".modal-body #prop_id").val(data.id);
+            $(".modal-body #prop_name").val(data.name);
+            $(".modal-body #prop_diameter").val(data.diameter);
+            $(".modal-body #prop_speed").val(data.speed);
+            $(".modal-body #prop_weight").val(data.weight);
+            $(".modal-body #prop_price").val(data.price);
+            $("#prop_edit_modal").modal('show');
+        }
+        else
+        {
+            console.log('delete prop');
+            var data = prop_table.row( $(this).parents('tr') ).data();
+            delete_prop(data.id);
+        }
+    } );
+}
+
+
+function update_prop_table(id, name, diameter, speed, weight, price)
+{
+    $("#prop_edit_modal").modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/prop_table_update/",
+           data: {
+               'prop_id' : id,
+               'prop_name' : name,
+               'prop_diameter' : diameter,
+               'prop_speed' : speed,
+               'prop_price' : price,
+               'prop_weight' : weight,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            prop_table.clear();
+            prop_table.rows.add(mydata);
+            prop_table.draw();
+
+            $('#loader').hide();
+            console.log($('#result_header'));
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
+
+function delete_prop(id)
+{
+//    console.log(id);
+//    $('#motor_add_single_modal').modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/delete_prop_table/",
+           data: {
+                'prop_id' : id,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            prop_table.clear();
+            prop_table.rows.add(mydata);
+            prop_table.draw();
+
+            $('#loader').hide();
+
+            if(response.result == true)
+            {
+                $('#result_header').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 5000);
+            }
+            else
+            {
+                $('#result_header').text('Failure!');
+                $('#result_body').text(response.message);
+            }
+            $('#modal_pop_up_result').modal('show');
+    });
+}
