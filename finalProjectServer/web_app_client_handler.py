@@ -81,11 +81,38 @@ class WebAppClientHandler:
                     if query_num == config.QUERY_UPDATE_TABLE:
                         self.logger.info('got QUERY_UPDATE_TABLE')
                         table_name = msg['table_name']
-                        commit_is_good = controller.get_instance().get_db().update_motor_table(msg['id'], msg['name'], msg['kv'], msg['weight'], msg['price'])
+                        commit_is_good, message = controller.get_instance().get_db().update_table(msg)
                         result = controller.get_instance().get_db().get_table_for_managing(table_name)
                         res['result'] = result
                         res['success'] = commit_is_good
+                        res['message'] = message
                         res['query_num'] = config.QUERY_UPDATE_TABLE
+                    if query_num == config.QUERY_ADD_SINGLE_TO_TABLE:
+                        self.logger.info('got QUERY_ADD_SINGLE_TO_TABLE')
+                        table_name = msg['table_name']
+                        commit_is_good, message = controller.get_instance().get_db().add_single_to_table(msg)
+                        result = controller.get_instance().get_db().get_table_for_managing(table_name)
+                        res['result'] = result
+                        res['success'] = commit_is_good
+                        res['message'] = message
+                        res['query_num'] = config.QUERY_ADD_SINGLE_TO_TABLE
+                    if query_num == config.QUERY_ADD_MULTI_TO_TABLE:
+                        self.logger.info('got QUERY_ADD_MULTI_TO_TABLE')
+                        table_name = msg['table_name']
+                        summery = controller.get_instance().get_db().add_multi_to_table(msg)
+                        result = controller.get_instance().get_db().get_table_for_managing(table_name)
+                        res['result'] = result
+                        res['summery'] = summery
+                        res['query_num'] = config.QUERY_ADD_MULTI_TO_TABLE
+                    if query_num == config.QUERY_DELETE_FROM_TABLE:
+                        self.logger.info('got QUERY_ADD_MULTI_TO_TABLE')
+                        table_name = msg['table_name']
+                        commit_is_good, message = controller.get_instance().get_db().delete_from_table(msg)
+                        result = controller.get_instance().get_db().get_table_for_managing(table_name)
+                        res['result'] = result
+                        res['success'] = commit_is_good
+                        res['message'] = message
+                        res['query_num'] = config.QUERY_DELETE_FROM_TABLE
                     return res
 
     def recv_msg_thread(self):

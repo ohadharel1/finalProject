@@ -63,7 +63,12 @@ class SystemServer:
                     controller.get_instance().set_options(msg['result'])
                     print 'options saved!'
                 else:
-                    msg['result']['success'] = msg['success']
+                    if 'success' in msg:
+                        msg['result']['success'] = msg['success']
+                    if 'message' in msg:
+                        msg['result']['message'] = msg['message']
+                    if 'summery' in msg:
+                        msg['result']['summery'] = msg['summery']
                     self.__respond = msg['result']
 
             elif cmd == 'flight':

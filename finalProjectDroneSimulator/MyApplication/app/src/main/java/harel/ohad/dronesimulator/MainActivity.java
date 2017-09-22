@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity
                 this.mGoFWDBtn.setEnabled(false);
                 this.mGoBackBtn.setEnabled(false);
                 this.mMissionBtn.setEnabled(false);
-                this.create_logs();
+//                this.create_logs();
                 break;
             }
             case AIRBORNE:

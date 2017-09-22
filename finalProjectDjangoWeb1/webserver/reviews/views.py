@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 import datetime
 import collections
+import json_utils
 
 import controller
 import config
@@ -91,15 +92,22 @@ def review(request):
     drone_ids.add('All')
     drone_states = OrderedSet()
     drone_states.add('All')
+    try:
+        success = flight_dict['success']
+        del flight_dict['success']
+    except:
+        pass
     for key, value in flight_dict.items():
         try:
-            value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            start = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            value['start_flight_time'] = str(start)
             if value['end_flight_time']:
-                value['end_flight_time'] = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
-                value['duration'] = value['end_flight_time'] - value['start_flight_time']
+                end = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
+                value['duration'] = end - start
+                value['end_flight_time'] = str(end)
             else:
                 value['duration'] = 'N/A'
-                value['end_flight_time'] = None
+                value['end_flight_time'] = 'N/A'
         except Exception, e:
             print str(e)
         drone_ids.add(value['drone_num'])
@@ -125,6 +133,8 @@ def update_review(request):
     drone_ids.add('All')
     drone_states = OrderedSet()
     drone_states.add('All')
+    success = flight_dict['success']
+    del flight_dict['success']
     for key, value in flight_dict.items():
         if value['end_flight_time']:
             value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
@@ -179,15 +189,90 @@ def update_review(request):
     return HttpResponse(template.render(context, request))
 
 
+def update_review2(request):
+    global flight_dict, current_sort_dict
+    key = request.POST['key']
+    value = request.POST['value']
+    current_sort_dict[key] = value
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_GET_ALL_FLIGHTS
+    flight_dict = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    drone_ids = OrderedSet()
+    drone_ids.add('All')
+    drone_states = OrderedSet()
+    drone_states.add('All')
+    success = flight_dict['success']
+    del flight_dict['success']
+    sorted_res = flight_dict.copy()
+    for key, value in flight_dict.items():
+        if value['end_flight_time']:
+            value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            value['end_flight_time'] = datetime.datetime.strptime(value['end_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            value['duration'] = value['end_flight_time'] - value['start_flight_time']
+        else:
+            value['duration'] = 'N/A'
+            value['start_flight_time'] = datetime.datetime.strptime(value['start_flight_time'], "%Y-%m-%dT%H:%M:%S")
+            value['end_flight_time'] = 'N/A'
+            sorted_res[key]['end_flight_time'] = 'N/A'
+            sorted_res[key]['duration'] = 'N/A'
+        drone_ids.add(value['drone_num'])
+        drone_states.add(value['state'])
+        for sorted_key, sorted_value in current_sort_dict.items():
+            if sorted_value:
+                if sorted_value == 'All':
+                    current_sort_dict[sorted_key] = None
+                    break
+                if sorted_key == 'duration':
+                    try:
+                        asked_duration = str_to_timedelta(str(sorted_value))
+                    except:
+                        current_sort_dict['duration'] = None
+                        break
+                    # actual_duration = str_to_timedelta(value[sorted_key])
+                    if type(value[sorted_key]) is not datetime.timedelta or asked_duration > value[sorted_key]:
+                        del sorted_res[key]
+                        break
+                elif sorted_key == 'start_flight_time':
+                    try:
+                        asked_start_time = datetime.datetime.strptime(str(sorted_value), '%Y-%m-%d')
+                    except:
+                        current_sort_dict['start_flight_time'] = None
+                        break
+                    if asked_start_time > value[sorted_key]:
+                        del sorted_res[key]
+                        break
+                elif sorted_key == 'end_flight_time':
+                    try:
+                        asked_end_time = datetime.datetime.strptime(str(sorted_value), '%Y-%m-%d')
+                    except:
+                        current_sort_dict['end_flight_time'] = None
+                        break
+                    if not value[sorted_key] or asked_end_time < value[sorted_key]:
+                        del sorted_res[key]
+                        break
+                elif str(value[sorted_key]) != str(sorted_value):
+                    del sorted_res[key]
+                    break
+    # context = {'result': sorted_res,
+    #            'drone_ids': drone_ids,
+    #            'drone_states': drone_states}
+    # template = loader.get_template('reviews/update_reviews.html')
+    return HttpResponse(json_utils.json_to_str(sorted_res), content_type='application/json')
+
 def pop_up_modal(request):
     global flight_dict
-    key = request.POST['file_path']
+    file_path = request.POST['file_path']
     is_log = bool(request.POST['is_log'])
     log = None
-    file_path = flight_dict[key]['log_file_path']
-    with open(file_path, 'r') as log_file:
-        log = log_file.read()
-    title = 'This is the log selected'
+    # file_path = flight_dict[key]['log_file_path']
+    try:
+        with open(file_path, 'r') as log_file:
+            log = log_file.read()
+        title = 'This is the log selected'
+    except:
+        title = 'Log file not found'
+        log = 'Maybe it was deleted...'
     context = {'title' : title,
                'body' : log}
     template = loader.get_template('reviews/update_modal.html')

@@ -78,8 +78,8 @@ public class DroneClient extends AsyncTask<Void, Void, Void>
                     socket = new DatagramSocket();
                     int length = mMessage.length();
                     byte [] msg = mMessage.getBytes();
-                    InetAddress addr = InetAddress.getByName("10.0.0.20");
-                    DatagramPacket p = new DatagramPacket(msg, length, addr, 10001);
+                    InetAddress addr = InetAddress.getByName(Config.serverIP);
+                    DatagramPacket p = new DatagramPacket(msg, length, addr, Config.serverPort);
 //                    Toast.makeText(this.mContext, "SENDING MSG", Toast.LENGTH_LONG).show();
                     System.out.println("*****SENDING MSG******");
                     System.out.println(ip + port + mMessage + length);
