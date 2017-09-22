@@ -91,19 +91,6 @@
         <th id="thReview_report" >Drone Report</th>
       </tr>
       </thead>
-      {% for key, value in result.items %}
-      <tbody>
-        <tr class="trTblReview" >
-          <td class="tdTblReview" >{{ value.drone_num }}</td>
-          <td >{{ value.start_flight_time }}</td>
-          <td >{{ value.end_flight_time }}</td>
-          <td >{{ value.duration }}</td>
-          <td ><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
-          <td >{{ value.state }}</td>
-          <td ><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
     </table>
   </div>
   <!-- logs Modal -->
