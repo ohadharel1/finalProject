@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
     <link rel="stylesheet" href="{% static 'index/dataTables.bootstrap.min.css' %}">
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="{% static 'index/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>
+    <!--<script src="{% static 'index/jquery.dataTables.min.js' %}"></script>-->
+    <!--<script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>-->
     <script src="{% static 'index/bootstrap.min.js' %}"></script>
 
 
@@ -34,13 +34,13 @@
       </ul>
   </nav>
 
-`<h1 class= "comingSoon">All Flights</h1>
+`<h1 class= "titleReviews">All Flights</h1>
   <div id="tblReviews">
     <table id = "drone_review" class="table table-striped table-condensed table-bordered table-hover">
 
       <thead>
-      <tr >
-           <th>
+      <tr  >
+           <th id="thReview_id">
           <select id= "drone_id" name="drone_id" class="input-field" >
               <option value=''>Drone ID</option>
               {% for value in drone_ids %}
@@ -49,29 +49,29 @@
             <!--{% csrf_token %}-->
           </select>
         </th>
-        <th>
+        <th id="thReview_startTime" >
           <div style="margin-right: 3px;">
             <div style="padding-right: 3px;">
-                <input id="start_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight Start Date" onchange="sort_results('start_flight_time',this.value)" style="width:100%;">
+                <input id="start_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight Start Date" onchange="sort_results('start_flight_time',this.value)" style="width:100%; text-align-last:center;">
             </div>
           </div>
         </th>
-        <th>
+        <th id="thReview_endTime" >
           <div style="margin-right: 3px;">
             <div style="padding-right: 3px;">
-                <input id="end_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight End Date" onchange="sort_results('end_flight_time',this.value)" style="width:100%;">
+                <input id="end_time" class="textbox-n" type="text" onfocus="this.type = 'date'" onblur="this.type = 'text'" placeholder="Flight End Date" onchange="sort_results('end_flight_time',this.value)" style="width:100%; text-align-last:center;">
             </div>
           </div>
         </th>
-        <th>
+        <th id="thReview_duration" >
           <div style="margin-right: 3px;">
             <div style="padding-right: 3px;">
-                <input id="duration" class="textbox-n" type="text" placeholder="Duration" onchange="sort_results('duration',this.value)" style="width:100%;">
+                <input id="duration" class="textbox-n" type="text" placeholder="Duration" onchange="sort_results('duration',this.value)" style="width:100%; text-align-last:center;">
             </div>
           </div>
         </th>
-        <th>Flight Log</th>
-        <th>
+        <th id="thReview_log" >Flight Log</th>
+        <th id="thReview_status" >
             <select id= "drone_states" name="drone_states" class="input-field" >
               <option value=''>Status</option>
               {% for value in drone_states %}
@@ -81,19 +81,19 @@
           </select>
         </th>
 
-        <th>Drone Report</th>
+        <th id="thReview_report" >Drone Report</th>
       </tr>
       </thead>
       {% for key, value in result.items %}
       <tbody>
-        <tr >
-          <td>{{ value.drone_num }}</td>
-          <td>{{ value.start_flight_time }}</td>
-          <td>{{ value.end_flight_time }}</td>
-          <td>{{ value.duration }}</td>
-          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
-          <td>{{ value.state }}</td>
-          <td><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
+        <tr class="trTblReview" >
+          <td class="tdTblReview" >{{ value.drone_num }}</td>
+          <td >{{ value.start_flight_time }}</td>
+          <td >{{ value.end_flight_time }}</td>
+          <td >{{ value.duration }}</td>
+          <td ><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showPopUpForReview('{{ key }}')">Show Flight Log</a></td>
+          <td >{{ value.state }}</td>
+          <td ><a class="click-to-show" href="#" data-toggle="modal" data-target="#modalLogsPopUp" onclick="showReportPopUpForReview('{{ value.drone_num }}')">SHOW Drone Report</a></td>
         </tr>
       {% endfor %}
       </tbody>
@@ -121,12 +121,12 @@
 </body>
 
 
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
     $('#drone_review').DataTable( {
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
         } );
     console.log('data table!')
-</script>
+</script>-->
     <script src="{% static 'index/reviews.js' %}"></script>
 
 
