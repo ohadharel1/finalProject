@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="mainBodyFlight">
+<body class="mainBodyFlight1">
  <nav>
       <ul>
         <li><a class="menulogo" href="{% url 'index:index' %}"> </a></li>
@@ -38,13 +38,13 @@
     {% csrf_token %}
 
          <label for="Iterations" class= "titleForm"><span>Number Of Drones </span>    </label>
-                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" />
+                <input type="number" class="input-field" name="Iterations" id="Iterations" value="" required />
                 <span class = "required" id = "IterationsError"></span>
                 <br><br>
 
 <label for="drone_type" class="titleForm"><span>Body Type</span></label>
 
-        <select id= "drone_type", name="drone_type" class="input-field" >
+        <select id= "drone_type", name="drone_type" class="input-field" required >
             <option value=''>--Please select--</option>
             <option value= "Heli"> Heli</option>
             <option value= "Quad"> Quad</option>
@@ -54,23 +54,23 @@
         <br><br>
 
         <label for="SizeField" class= "titleForm"><span>Size (m)</span> </label>
-               <input type="text" class="input-field" name="SizeField" id="SizeField" value="" />
+               <input type="text" class="input-field" name="SizeField" id="SizeField" value="" required pattern="[0-9]+" />
                 <br><br>
 
         <label for="PayloadField" class= "titleForm"><span>Payload (Kg)</span>    </label>
-                <input type="text" class="input-field" name="PayloadField" id="PayloadField" value="" />
+                <input type="text" class="input-field" name="PayloadField" id="PayloadField" value="" required pattern="[0-9]+" />
                 <br><br>
 
         <label for="TimeofworkField" class= "titleForm"><span>Time of work (minutes)</span>    </label>
-                <input type="text" class="input-field" name="TimeofworkField" id="TimeofworkField" value="" />
+                <input type="text" class="input-field" name="TimeofworkField" id="TimeofworkField" value="" required pattern="[0-9]+" />
                 <br><br>
 
         <label for="RangeField" class= "titleForm"><span>Range (Km)</span>    </label>
-                <input type="text" class="input-field" name="RangeField" id="RangeField" value="" />
+                <input type="text" class="input-field" name="RangeField" id="RangeField" value="" required pattern="[0-9]+" />
                 <br><br>
 
         <label for="PriceField" class= "titleForm"><span>Price ($)</span>    </label>
-                <input type="text" class="input-field" name="PriceField" id="PriceField" value="" />
+                <input type="text" class="input-field" name="PriceField" id="PriceField" value="" required pattern="[0-9]+" />
                 <br><br>
 
       <input type="submit" class="submitBtn" id="demo" value="Submit" onclick= "href='{% url 'drone_setup:setup_params' %}'"  />

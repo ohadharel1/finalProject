@@ -11,8 +11,6 @@
       <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
       <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
       <script src="{% static 'index/bootstrap.min.js' %}"></script>
-      <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-      <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
       <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
 
       <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
@@ -34,7 +32,7 @@
     <div id="loader"></div>
 
     <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Add New<span class="caret"></span></button>
+
       <ul class="dropdown-menu" role="menu">
         <li><a href="#" onclick="add_single_item('{{ table }}')">Single Item</a></li>
         <li><a href="#" onclick="add_multiple_items('{{ table }}')">Multiple Items</a></li>
@@ -52,39 +50,30 @@
     <div id="updateContainer">
       <div id="tableContainer" class="tab-content">
         <div id="motor" class="tab-pane fade in active">
-          <button class="btn btn-primary" onclick="motor_add_single_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Single Item
-          </button>
+          <button class="btn btn-primary" onclick="motor_add_single_pop_up()">Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="motor_add_multi_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Multiple Items (CSV File)
-          </button>
+          <button class="btn btn-primary" onclick="motor_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
 
-          <table id="tblmotor">
+          <table id="tblmotor" class="table table-striped table-condensed table-bordered table-hover" cellspacing="0">
             <thead>
-            <tr >
+            <tr style="text-align-last:center;" >
               <th>ID</th>
               <th>Name</th>
               <th>KV</th>
               <th>Weight</th>
               <th>Price</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th>Update/Delete</th>
             </tr>
             </thead>
           </table>
         </div>
         <div id="battery" class="tab-pane fade">
-          <button class="btn btn-primary" onclick="bat_add_single_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Single Item
-          </button>
+          <button class="btn btn-primary" onclick="bat_add_single_pop_up()">Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="bat_add_multi_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Multiple Items (CSV File)
-          </button>
-          <table id="tblbattery">
+          <button class="btn btn-primary" onclick="bat_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <table id="tblbattery" class="table table-striped table-condensed table-bordered table-hover">
             <thead>
-            <tr >
+            <tr style="text-align-last:center;" >
               <th>ID</th>
               <th>Name</th>
               <th>Type</th>
@@ -93,30 +82,24 @@
               <th>Capacity</th>
               <th>Weight</th>
               <th>Price</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th>Update/Delete</th>
             </tr>
             </thead>
           </table>
         </div>
         <div id="prop" class="tab-pane fade">
-          <button class="btn btn-primary" onclick="prop_add_single_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Single Item
-          </button>
+          <button class="btn btn-primary" onclick="prop_add_single_pop_up()">Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="prop_add_multi_pop_up()">
-              <!--<img src="http://i.stack.imgur.com/e2S63.png" width="20" />--> Add Multiple Items (CSV File)
-          </button>
-          <table id="tblprop">
-            <tr >
+          <button class="btn btn-primary" onclick="prop_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <table id="tblprop" class="table table-striped table-condensed table-bordered table-hover">
+            <tr style="text-align-last:center;" >
               <th>ID</th>
               <th>Name</th>
               <th>Diamete</th>
               <th>Speed</th>
               <th>Weight</th>
               <th>Price</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th>Update/Delete</th>
             </tr>
           </table>
         </div>
@@ -126,52 +109,37 @@
     <div class="modal fade" id="motor_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
+         <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Edit Motor</h3>
-          </div>
-          <div class="modal-body">
+              <fieldset class ="fieldsetForm_editMotor">
+                <legend class ="legendForm1">Edit motor</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="motor_id">Motor ID</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="input-field" id="motor_id" readonly="readonly" value=""/>
-                    </div>
+                    <label for="motor_id" class="titleForm">Motor ID</label>
+                        <input type="number" class="input-field" id="motor_id" readonly="readonly" value="" disabled/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="motor_name" >Motor Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="motor_name" placeholder="Motor Name"/>
-                    </div>
+                    <label for="motor_name" class="titleForm" >Motor Name</label>
+                        <input type="text" class="input-field" id="motor_name" required />
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="motor_kv" >KV</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="motor_kv" placeholder="KV"/>
-                    </div>
+                    <label for="motor_kv" class="titleForm" >KV</label>
+                        <input type="number" step="0.1" class="input-field" id="motor_kv" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="motor_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="motor_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="motor_weight" class="titleForm" >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="motor_weight" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="motor_price" >Motor Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="motor_price" placeholder="Motor Price"/>
-                    </div>
+                    <label for="motor_price" class="titleForm" >Price</label>
+                        <input type="number" step="0.1" class="input-field" id="motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="update_motor_table(motor_id.value, motor_name.value, motor_kv.value, motor_weight.value, motor_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                      </div>
+                      <button type="submit" class="saveBtn" onclick="update_motor_table(motor_id.value, motor_name.value, motor_kv.value, motor_weight.value, motor_price.value)">Save</button>
                     </div>
-                  </div>
                 </form>
+                   </fieldset>
           </div>
         </div>
       </div>
@@ -180,145 +148,116 @@
     <div class="modal fade" id="motor_add_single_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
+            <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Motor</h3>
-          </div>
-          <div class="modal-body">
+              <fieldset class ="fieldsetForm1">
+                <legend class ="legendForm1">Add new motor</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_motor_name" >Motor Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="add_single_motor_name" placeholder="Motor Name"/>
-                    </div>
+                    <label for="add_single_motor_name" class="titleForm" >Motor Name</label>
+                        <input type="text" class="input-field" id="add_single_motor_name" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_motor_kv" >KV</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_kv" placeholder="KV"/>
-                    </div>
+                    <label for="add_single_motor_kv" class="titleForm" >KV</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_kv" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_motor_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="add_single_motor_weight" class="titleForm" >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_weight" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_motor_price" >Motor Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_price" placeholder="Motor Price"/>
-                    </div>
+                    <label for="add_single_motor_price" class="titleForm" >Motor Price</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_single_to_motor_table(add_single_motor_name.value, add_single_motor_kv.value, add_single_motor_weight.value, add_single_motor_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
-                      </div>
+                      <button type="submit" class="addBtn" onclick="add_single_to_motor_table(add_single_motor_name.value, add_single_motor_kv.value, add_single_motor_weight.value, add_single_motor_price.value)">Add</button>
                     </div>
-                  </div>
                 </form>
+                   </fieldset>
           </div>
         </div>
       </div>
     </div>
     <!--motor add multi-->
     <div class="modal fade" id="motor_add_multi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
-         <div class="modal-header">
+             <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Motors</h3>
-          </div>
-          <div class="modal-body">
+                 <fieldset class ="fieldsetForm_add">
+                     <legend class ="legendForm1">Add new motor</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);" id="motor_add_multi_form">
                 {% csrf_token %}
-                  <label class="btn btn-default">
-                      Browse <input type="file" id="motor_add_multi_file" hidden>
-                  </label>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_multi_to_motor_table(motor_add_multi_file.files)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
+                  <div class="load_file">
+                  <label ><input type="file" id="motor_add_multi_file" hidden></label>
                       </div>
-                    </div>
+                  <div class="form-group">
+                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_motor_table(motor_add_multi_file.files)">Add</button>
                   </div>
                 </form>
+                      </fieldset>
           </div>
         </div>
       </div>
     </div>
+
+
+
     <!--bat update modal-->
     <div class="modal fade" id="bat_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Edit Battery</h3>
-          </div>
-          <div class="modal-body">
+             <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_editBatt">
+                <legend class ="legendForm1">Edit Battery</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="bat_id">Battery ID</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="input-field" id="bat_id" readonly="readonly" value=""/>
-                    </div>
+                    <label for="bat_id"  class="titleForm">Battery ID</label>
+                        <input type="number" class="input-field" id="bat_id" readonly="readonly" value="" disabled/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_name" >Battery Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="bat_name" placeholder="Battery Name"/>
-                    </div>
+                    <label for="bat_name"  class="titleForm" >Battery Name</label>
+                        <input type="text" class="input-field" id="bat_name" required />
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_volt" >Volt</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="bat_volt" placeholder="Volt"/>
-                    </div>
+                    <label for="bat_volt"  class="titleForm" >Volt</label>
+                        <input type="number" step="0.1" class="input-field" id="bat_volt" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_type" >Type</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="bat_type" placeholder="Type"/>
-                    </div>
+                    <label for="bat_type"  class="titleForm" >Type</label>
+
+                         <select id= "bat_type", name="drone_type" class="input-field" required >
+                            <option value=''>--Please select--</option>
+                            <option value= "LiPo"> LiPo</option>
+                            <option value= "LiNP"> LiNP</option>
+                            <option value= "NiCd"> NiCd</option>
+                            <option value= "NiMH"> NiMH</option>
+                        </select>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_discharge_rate" >Discharge Rate</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="bat_discharge_rate" placeholder="Discharge Rate"/>
-                    </div>
+                    <label for="bat_discharge_rate"  class="titleForm" >Discharge Rate</label>
+                        <input type="number" step="0.1" class="input-field" id="bat_discharge_rate" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_capacity" >Capacity</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="bat_capacity" placeholder="Capacity"/>
-                    </div>
+                    <label for="bat_capacity"  class="titleForm" >Capacity</label>
+                        <input type="number" step="0.1" class="input-field" id="bat_capacity"required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="bat_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="bat_weight"  class="titleForm" >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="bat_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="bat_price" >Battery Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="bat_price" placeholder="Battery Price"/>
-                    </div>
+                    <label for="bat_price"  class="titleForm" >Price</label>
+                        <input type="number" step="0.1" class="input-field" id="bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="update_bat_table(bat_id.value, bat_name.value, bat_volt.value, bat_type.value, bat_discharge_rate.value, bat_capacity.value, bat_weight.value, bat_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                      </div>
-                    </div>
+                      <button type="submit" class="saveBtn" onclick="update_bat_table(bat_id.value, bat_name.value, bat_volt.value, bat_type.value, bat_discharge_rate.value, bat_capacity.value, bat_weight.value, bat_price.value)">Save</button>
                   </div>
                 </form>
+               </fieldset>
           </div>
         </div>
       </div>
@@ -328,152 +267,125 @@
     <div class="modal fade" id="bat_add_single_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
+            <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Battery</h3>
-          </div>
-          <div class="modal-body">
+            <fieldset class ="fieldsetForm_addBatt">
+                <legend class ="legendForm1">Add new battery</legend>
+
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_name" >Battery Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="add_single_bat_name" placeholder="Battery Name"/>
-                    </div>
+                    <label for="add_single_bat_name" class="titleForm" >Battery Name</label>
+                        <input type="text" class="input-field" id="add_single_bat_name" required/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_type" >Battery Type</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="add_single_bat_type" placeholder="Battery Type"/>
-                    </div>
+
+                       <label for="add_single_bat_type"  class="titleForm" >Battery Type</label>
+
+                         <select id= "add_single_bat_type", name="drone_type" class="input-field" required >
+                            <option value=''>--Please select--</option>
+                            <option value= "LiPo"> LiPo</option>
+                            <option value= "LiNP"> LiNP</option>
+                            <option value= "NiCd"> NiCd</option>
+                            <option value= "NiMH"> NiMH</option>
+                        </select>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_volt" >Volt</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_volt" placeholder="Volt"/>
-                    </div>
+                    <label for="add_single_bat_volt" class="titleForm" >Volt</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_bat_volt" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_discharge_rate" >Discharge Rate</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_discharge_rate" placeholder="Discharge Rate"/>
-                    </div>
+                    <label for="add_single_bat_discharge_rate" class="titleForm" >Discharge Rate</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_bat_discharge_rate" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_capacity" >Capacity</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_capacity" placeholder="Capacity"/>
-                    </div>
+                    <label for="add_single_bat_capacity" class="titleForm" >Capacity</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_bat_capacity" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="add_single_bat_weight" class="titleForm" >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_bat_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_bat_price" >Motor Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_price" placeholder="Motor Price"/>
-                    </div>
+                    <label for="add_single_bat_price" class="titleForm" >Motor Price</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_single_to_bat_table(add_single_bat_name.value, add_single_bat_type.value, add_single_bat_volt.value, add_single_bat_discharge_rate.value, add_single_bat_capacity.value, add_single_bat_weight.value, add_single_bat_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
-                      </div>
-                    </div>
+                      <button type="submit" class="addBtn" onclick="add_single_to_bat_table(add_single_bat_name.value, add_single_bat_type.value, add_single_bat_volt.value, add_single_bat_discharge_rate.value, add_single_bat_capacity.value, add_single_bat_weight.value, add_single_bat_price.value)">Add</button>
                   </div>
                 </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--bat add multi-->
-    <div class="modal fade" id="bat_add_multi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-         <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Batteries</h3>
-          </div>
-          <div class="modal-body">
-              <form class="form-horizontal" role="form" action="javascript:void(0);" id="bat_add_multi_form">
-                {% csrf_token %}
-                  <label class="btn btn-default">
-                      Browse <input type="file" id="bat_add_multi_file" hidden>
-                  </label>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_multi_to_bat_table(bat_add_multi_file.files)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                 </fieldset>
           </div>
         </div>
       </div>
     </div>
 
-        <!--bat update modal-->
+
+    <!--bat add multi-->
+    <div class="modal fade" id="bat_add_multi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+                <div class="modal-body">
+            <button class="close" data-dismiss="modal">×</button>
+                 <fieldset class ="fieldsetForm_add">
+                     <legend class ="legendForm1">Add new Batteries</legend>
+              <form class="form-horizontal" role="form" action="javascript:void(0);" id="bat_add_multi_form">
+                  {% csrf_token %}
+                 <div class="load_file">
+                  <label ><input type="file" id="bat_add_multi_file" hidden></label>
+                 </div>
+                  <div class="form-group">
+                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_bat_table(bat_add_multi_file.files)">Add</button>
+                    </div>
+                </form>
+                      </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         </div>
+
+
+        <!--prop update modal-->
     <div class="modal fade" id="prop_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
+             <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Edit Propeller</h3>
-          </div>
-          <div class="modal-body">
+                 <fieldset class ="fieldsetForm_addBatt">
+                <legend class ="legendForm1">Edit Propeller</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label  class="col-sm-2 control-label" for="prop_id">Propeller ID</label>
-                    <div class="col-sm-10">
-                        <input type="number" class="input-field" id="prop_id" readonly="readonly" value=""/>
-                    </div>
+                    <label  for="prop_id">Propeller ID</label>
+                        <input type="number" class="input-field" id="prop_id" readonly="readonly" value="" disabled/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="prop_name" >Propeller Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="prop_name" placeholder="Battery Name"/>
-                    </div>
+                    <label for="prop_name" class="titleForm" >Propeller Name</label>
+                        <input type="text" class="input-field" id="prop_name" required/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="prop_diameter" >Propeller Diameter</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="prop_diameter" placeholder="Diameter"/>
-                    </div>
+                    <label for="prop_diameter" class="titleForm" >Propeller Diameter</label>
+                        <input type="number" step="0.1" class="input-field" id="prop_diameter" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="prop_speed" >Speed</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="prop_speed" placeholder="Speed"/>
-                    </div>
+                    <label for="prop_speed" class="titleForm" >Speed</label>
+                        <input type="text" class="input-field" id="prop_speed" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="prop_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="prop_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="prop_weight" class="titleForm" >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="prop_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="prop_price" >Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="prop_price" placeholder="Price"/>
-                    </div>
+                    <label for="prop_price" class="titleForm" >Price</label>
+                        <input type="number" step="0.1" class="input-field" id="prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="update_prop_table(prop_id.value, prop_name.value, prop_diameter.value, prop_speed.value, prop_weight.value, prop_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                      </div>
-                    </div>
+                      <button type="submit" class="saveBtn" onclick="update_prop_table(prop_id.value, prop_name.value, prop_diameter.value, prop_speed.value, prop_weight.value, prop_price.value)">Save</button>
                   </div>
                 </form>
+                     </fieldset>
           </div>
         </div>
       </div>
@@ -483,79 +395,63 @@
     <div class="modal fade" id="prop_add_single_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Propeller</h3>
-          </div>
-          <div class="modal-body">
+         <div class="modal-body">
+             <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_addProp">
+                <legend class ="legendForm1">Add New Propeller</legend>
+
               <form class="form-horizontal" role="form" action="javascript:void(0);">
                 {% csrf_token %}
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_prop_name" >Propeller Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="input-field" id="add_single_prop_name" placeholder="Propeller Name"/>
+                    <label for="add_single_prop_name" class="titleForm" >Propeller Name</label>
+                        <input type="text" class="input-field" id="add_single_prop_name" required/>
                     </div>
+
+                  <div class="form-group">
+                    <label for="add_single_prop_diameter" class="titleForm" >Diameter</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_prop_diameter" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_prop_diameter" >Diameter</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_diameter" placeholder="Diameter"/>
-                    </div>
+                    <label for="add_single_prop_speed" class="titleForm" >Speed</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_prop_speed" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_prop_speed" >Speed</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_speed" placeholder="Speed"/>
-                    </div>
+                    <label for="add_single_prop_weight" class="titleForm"  >Weight</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_prop_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_prop_weight" >Weight</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_weight" placeholder="Weight"/>
-                    </div>
+                    <label for="add_single_prop_price" class="titleForm" >Prop Price</label>
+                        <input type="number" step="0.1" class="input-field" id="add_single_prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="add_single_prop_price" >Motor Price</label>
-                    <div class="col-sm-10">
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_price" placeholder="Motor Price"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_single_to_prop_table(add_single_prop_name.value, add_single_prop_diameter.value, add_single_prop_speed.value, add_single_prop_weight.value, add_single_prop_price.value)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
-                      </div>
-                    </div>
+                      <button type="submit" class="addBtn" onclick="add_single_to_prop_table(add_single_prop_name.value, add_single_prop_diameter.value, add_single_prop_speed.value, add_single_prop_weight.value, add_single_prop_price.value)">Add</button>
                   </div>
                 </form>
+                   </fieldset>
           </div>
         </div>
       </div>
     </div>
+
     <!--prop add multi-->
     <div class="modal fade" id="prop_add_multi_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
-         <div class="modal-header">
+            <div class="modal-body">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>Add New Propellers</h3>
-          </div>
-          <div class="modal-body">
+                <fieldset class ="fieldsetForm_add">
+                     <legend class ="legendForm1">Add New Propellers</legend>
               <form class="form-horizontal" role="form" action="javascript:void(0);" id="prop_add_multi_form">
                 {% csrf_token %}
-                  <label class="btn btn-default">
-                      Browse <input type="file" id="prop_add_multi_file" hidden>
-                  </label>
+                  <div class="load_file">
+                  <label ><input type="file" id="prop_add_multi_file" hidden></label>
+                 </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="submitBtn" onclick="add_multi_to_prop_table(prop_add_multi_file.files)">Submit</button>
-                      <div class="col-sm-offset-8 col-sm-10">
-                        <button class="close" data-dismiss="modal">Cancel</button>
-                      </div>
-                    </div>
+                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_prop_table(prop_add_multi_file.files)">Add</button>
+
                   </div>
                 </form>
+                     </fieldset>
           </div>
         </div>
       </div>
@@ -588,8 +484,7 @@
                         { data: 'kv' },
                         { data: 'weight' },
                         { data: 'price' },
-                        { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
-                        { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                        { "defaultContent": "<button id='edit' class='update_btn' role='button'></button> <button id='delete' class='delete_btn' role='button'></button>" }
                     ]
         } );
       get_motor_table();
@@ -606,8 +501,7 @@
                         { data: 'capacity' },
                         { data: 'weight' },
                         { data: 'price' },
-                        { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
-                        { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                        { "defaultContent": "<button id='edit' class='update_btn' role='button'></button> <button id='delete' class='delete_btn' role='button'></button>" }
                     ]
         } );
 
@@ -621,8 +515,7 @@
                         { data: 'speed' },
                         { data: 'weight' },
                         { data: 'price' },
-                        { "defaultContent": "<button id='edit' class='btn btn-success rolloverBtn' role='button'>Edit</button>" },
-                        { "defaultContent": "<button id='delete' class='btn btn-success rolloverBtn' role='button'>Delete</button>" },
+                        { "defaultContent": "<button id='edit' class='update_btn' role='button'></button> <button id='delete' class='delete_btn' role='button'></button>" }
                     ]
         } );
 
