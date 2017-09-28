@@ -862,3 +862,46 @@ border: 1px solid black;
     background-repeat: no-repeat;
   }
 
+/*-----------------------------------------------------------------Review Report--------------------------------------------------------*/
+
+
+.row1_modal{
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 10px;
+  margin-left:15px;
+}
+
+#Modal_totalFlight,
+#Modal_totalErrors,
+#Modal_totalTime,
+#Modal_maxTime
+{
+text-align:center;
+  width: 200px;
+  height: 60px;
+  border: 2px solid #333333;
+/* background-image:url("../image/background.jpg");
+  background-repeat:no-repeat;*/
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+  font-size: 18px;
+  border-radius: 3px;
+  position:relative;
+}
+
+#Modal_totalErrors,
+#Modal_totalTime,
+#Modal_maxTime
+{
+margin-left: 15px;
+}
+
+.modalTitle{
+font-weight:bold;
+}
+
+.modalTitle_tbl{
+background: #e6e6e6;
+}
