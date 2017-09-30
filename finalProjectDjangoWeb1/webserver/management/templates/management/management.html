@@ -74,7 +74,7 @@
           <button class="btn btn-primary" onclick="bat_add_single_pop_up()">Add Single Item</button>
 
           <button class="btn btn-primary" onclick="bat_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
-          <table id="tblbattery" class="table table-striped table-condensed table-bordered table-hover">
+          <table id="tblbattery" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
             <thead>
             <tr style="text-align-last:center;" >
               <th>ID</th>
@@ -94,16 +94,18 @@
           <button class="btn btn-primary" onclick="prop_add_single_pop_up()">Add Single Item</button>
 
           <button class="btn btn-primary" onclick="prop_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
-          <table id="tblprop" class="table table-striped table-condensed table-bordered table-hover">
+          <table id="tblprop" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
+          <thead>
             <tr style="text-align-last:center;" >
               <th>ID</th>
               <th>Name</th>
-              <th>Diamete</th>
+              <th>Diameter</th>
               <th>Speed</th>
               <th>Weight</th>
               <th>Price</th>
               <th>Update/Delete</th>
             </tr>
+          </thead>
           </table>
         </div>
       </div>
@@ -488,9 +490,9 @@
                 title: 'Data export',
                 customize: function ( doc ) {
                     doc.content.splice( 1, 0, {
-                        margin: [ 0, 0, 0, 12 ],
-                        alignment: 'center',
-                        image: data:image/png;"../image/logo.png"
+                        <!--margin: [ 0, 0, 0, 12 ],-->
+                        <!--alignment: 'center',-->
+                        <!--image: data:image/png;"../image/logo.png"-->
                     } );
                 }
                 }
