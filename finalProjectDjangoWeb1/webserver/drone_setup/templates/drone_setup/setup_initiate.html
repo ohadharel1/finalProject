@@ -7,8 +7,8 @@
       {% load staticfiles %}
       <link rel="stylesheet" href="{% static 'index/drone.css' %}">
     <!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
-    <script src="{% static 'index/jquery.min.js' %)"></script>
-    <script src="{% static 'index/bootstrap.min.js' %)"></script>
+    <script src="{% static 'index/jquery.min.js' %}"></script>
+    <script src="{% static 'index/bootstrap.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
 
@@ -26,6 +26,25 @@
       </ul>
   </nav>
 
+ <div id="wait_dialog" style="text-align:center;">
+     <!--<img  src="/static/image/loader.gif" />-->
+     <div style="margin-top: 10px; color:white;">
+         <b>Please wait</b>
+     </div>
+ </div>
+ <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <!--<div class="modal-header" style="opacity:0 !important;">-->
+            <!--<h3>Please Wait...</h3>-->
+          <!--</div>-->
+          <!--<div class="modal-body" style="opacity:1 !important;">-->
+              <!--<img src="/static/image/loader.gif"/>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+ <!--<div id="wait_dialog"></div>-->
     <br><br>
 
     <fieldset class ="fieldsetForm">
@@ -34,7 +53,7 @@
 
 
 
-    <form name="frm" method="post" action="{% url 'drone_setup:setup_params' %}"  enctype="multipart/form-data" >
+    <form name="frm" method="post" role="form" action="javascript:void(0);" >
     {% csrf_token %}
 
          <label for="Iterations" class= "titleForm"><span>Number Of Drones </span>    </label>
@@ -73,7 +92,7 @@
                 <input type="text" class="input-field" name="PriceField" id="PriceField" value="" required pattern="[0-9]+" />
                 <br><br>
 
-      <input type="submit" class="submitBtn" id="demo" value="Submit" onclick= "href='{% url 'drone_setup:setup_params' %}'"  />
+      <input type="submit" class="submitBtn" id="demo" value="Submit" onclick= "submit_setup_form(Iterations.value, drone_type.value, SizeField.value, PayloadField.value, TimeofworkField.value, RangeField.value, PriceField.value)"  />
 
         </form>
 
@@ -85,5 +104,4 @@
 </body>
 
 <script type="text/javascript" src="{% static 'index/Drone.js' %}"></script>
-
 </html>
