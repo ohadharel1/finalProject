@@ -1,16 +1,8 @@
 
 /*-----------------------------------------------------------------fonts--------------------------------------------------------*/
 
-
-
 @font-face {
-    font-family: 'My Custom Font';
-    src: url('../fonts/New Athletic M54.ttf') format("truetype");
-    src: local('../fonts/New Athletic M54.ttf')format("truetype")
-}
-
-@font-face {
-    font-family: 'font2';
+    font-family: 'Roboto-Slab';
     src: url('../fonts/Roboto-Light.ttf') format("truetype");
     src: local('../fonts/Roboto-Light.ttf')format("truetype")
 }
@@ -19,6 +11,12 @@
     font-family: 'font3';
     src: url('../fonts/000 InsomniacOvrLrd Comic Dialogue.ttf') format("truetype");
     src: local('../fonts/000 InsomniacOvrLrd Comic Dialogue.ttf')format("truetype")
+}
+
+@font-face {
+    font-family: 'YanoneKaffeesatz';
+    src: url('../fonts/YanoneKaffeesatz-Regular.ttf') format("truetype");
+    src: local('../fonts/YanoneKaffeesatz-Regular.ttf')format("truetype")
 }
 /*-----------------------------------------------------------------menu bar--------------------------------------------------------*/
 
@@ -52,11 +50,11 @@ li {
 li a {
     display: block;
     color: white;
-    padding: 14px 16px;
+    padding: 10px 16px;
     height: 45px;
     /*font-weight:bold;*/
-    font-size: 16px;
-    font-family: 'Francois One', sans-serif;
+    font-size: 22px;
+    font-family: 'YanoneKaffeesatz', sans-serif;
 }
 
 .menulogo{
@@ -75,7 +73,7 @@ li a {
 .menuFlights{
   background-image:url("../image/droneIcon.png");
   background-repeat:no-repeat;
-  background-position:2% 50%;
+  background-position:1% 50%;
   background-size: 25px 25px;
 }
 
@@ -83,7 +81,7 @@ li a {
 .menuHome{
   background-image:url("../image/homeIcon.png");
   background-repeat:no-repeat;
-  background-position: left;
+  background-position:1% 50%;
   background-size: 20px 20px;
 
 
@@ -93,7 +91,7 @@ li a {
 
   background-image:url("../image/setupIcons.png");
   background-repeat:no-repeat;
-  background-position: left;
+  background-position:1% 50%;
   background-size: 20px 20px;
 
 }
@@ -102,7 +100,7 @@ li a {
 
   background-image:url("../image/reviewIcon.png");
   background-repeat:no-repeat;
-  background-position: left;
+  background-position:1% 50%;
   background-size: 20px 20px;
 
 }
@@ -110,7 +108,7 @@ li a {
 .menuMange{
   background-image:url("../image/dbIcon.png");
   background-repeat:no-repeat;
-  background-position: left;
+  background-position:1% 50%;
   background-size: 20px 20px;
   text-align: right;
 }
@@ -147,9 +145,8 @@ li a {
 
 
 .light{
-  margin-left: 450px;
-  margin-top: 20px;
-
+  margin-left: 500px;
+  margin-top: 40px;
 }
 
 svg {
@@ -191,7 +188,7 @@ svg {
     }
 
 
-.flightButtons{
+/*.flightButtons{
   width: 200px;
   height: 150px;
   margin-left: 150px;
@@ -204,14 +201,14 @@ svg {
   font-family: "My Custom Font", Verdana, Tahoma;
   font-size: 30px;
   border-color:  black;
-  /*padding: 8px 10px 5px 25px;*/
+  *//*padding: 8px 10px 5px 25px;*//*
   color: #e6e6e6;
   border-radius: 4px;
   cursor: pointer;
   float: left;
-}
+}*/
 
-.reviewButtons{
+/*.reviewButtons{
   width: 200px;
   height: 150px;
   margin-left: 50px;
@@ -224,7 +221,7 @@ svg {
   font-family: "My Custom Font", Verdana, Tahoma;
   font-size: 30px;
   border-color:  black;
-  /*padding: 8px 10px 5px 25px;*/
+  *//*padding: 8px 10px 5px 25px;*//*
   color: #e6e6e6;
   border-radius: 4px;
 
@@ -246,7 +243,7 @@ svg {
   font-family: "My Custom Font", Verdana, Tahoma;
   font-size: 30px;
   border-color:  black;
-  /*padding: 8px 10px 5px 25px;*/
+  *//*padding: 8px 10px 5px 25px;*//*
   color: #e6e6e6;
   border-radius: 4px;
 
@@ -268,18 +265,23 @@ svg {
   font-family: "My Custom Font", Verdana, Tahoma;
   font-size: 30px;
   border-color:  black;
-  /*padding: 8px 10px 5px 25px;*/
+  *//*padding: 8px 10px 5px 25px;*//*
   color: #e6e6e6;
   border-radius: 4px;
 
   cursor: pointer;
   float: left;
-}
+}*/
 
 #title{
     text-align: center;
 }
 
+.light_text{
+    font-family: 'YanoneKaffeesatz', sans-serif;
+    font-size: 25px;
+    font-weight:bold;
+}
 /*-----------------------------------------------------------Flight--------------------------------------------------------------*/
 
 .mainBodyFlight{
@@ -290,6 +292,12 @@ svg {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.mainBodyFlight1{
+  background-image:url("../image/background.jpg");
+  background-repeat:no-repeat;
+  background-size: 1600px 750px;
 }
 
 header {
@@ -309,8 +317,13 @@ header {
 
 }
 
-#title{
-  font-family: "font2", Verdana, Tahoma;
+#title_page{
+  font-family: 'Roboto-Slab', sans-serif;
+  font-weight:bold;
+  margin-left: 550px;
+  margin-top: 40px;
+  font-size: 35px;
+
 }
 
 
@@ -464,7 +477,7 @@ position: absolute;
   background-image:url("../image/size.png");
   background-repeat:no-repeat;
   background-position:95% 80%;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-size: 35px;
   border-radius: 9px;
 
@@ -478,7 +491,7 @@ position: absolute;
   background-image:url("../image/weight.png");
   background-repeat:no-repeat;
   background-position:95% 80%;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-size: 35px;
   border-radius: 9px;
 
@@ -492,7 +505,7 @@ position: absolute;
   background-image:url("../image/time.png");
   background-repeat:no-repeat;
   background-position:95% 80%;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-size: 35px;
   border-radius: 9px;
 }
@@ -505,7 +518,7 @@ position: absolute;
   background-image:url("../image/range.png");
   background-repeat:no-repeat;
   background-position:95% 80%;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-size: 35px;
   border-radius: 9px;
 }
@@ -518,7 +531,7 @@ position: absolute;
   background-image:url("../image/money.png");
   background-repeat:no-repeat;
   background-position:95% 80%;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-size: 35px;
   border-radius: 9px;
 }
@@ -565,19 +578,19 @@ position: absolute;
   padding:0 20px;
   border-bottom:none;
   font-size: 20px;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
 
 
 }
 
 .titleForm{
   font-size: 18px;
-  font-family: "font2", Verdana, Tahoma;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
   font-weight: bold;
-
 }
 
 .input-field{
+    text-align-last:center;
   box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -588,14 +601,6 @@ position: absolute;
     border-radius: 3px;
     box-shadow: 1px 1px 4px #EBEBEB;
     moz-box-shadow: 1px 1px 4px #EBEBEB;
-    /*
-    -
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-
-    outline: none;*/
 }
 
 .input-field:focus{
@@ -703,4 +708,218 @@ position: absolute;
 @keyframes animatebottom {
   from{ bottom:-100px; opacity:0 }
   to{ bottom:0; opacity:1 }
+}
+
+
+  .delete_btn{
+    height: 30px;
+    width: 30px;
+    background: none;
+    background-image:url("../image/delete.png");
+    background-repeat:no-repeat;
+    border: none;
+  }
+
+  .update_btn{
+   height: 30px;
+    width: 30px;
+    margin-left: 50px;
+    background: none;
+    background-image:url("../image/update.png");
+    background-repeat:no-repeat;
+    border: none;
+  }
+
+  .fieldsetForm1 {
+   border: 1px solid #000000;
+   width: 560px;
+   height: 280px;
+   border-radius: 3px;
+   padding: 0 1.7em 1.7em 1.7em !important;
+  /* margin-left: 70px;
+   margin-top: 60px;*/
+}
+
+  .fieldsetForm_add {
+   border: 1px solid #000000;
+   width: 280px;
+   height: 130px;
+   border-radius: 3px;
+   padding: 0 1.4em 1.4em 1.4em !important;
+}
+
+.fieldsetForm_addBatt{
+   border: 1px solid #000000;
+   width: 560px;
+   height: 420px;
+   border-radius: 3px;
+   padding: 0 1.7em 1.7em 1.7em !important;
+}
+
+.fieldsetForm_editBatt{
+   border: 1px solid #000000;
+   width: 560px;
+   height: 460px;
+   border-radius: 3px;
+   padding: 0 1.7em 1.7em 1.7em !important;
+}
+
+.fieldsetForm_addProp,
+.fieldsetForm_editMotor
+{
+border: 1px solid #000000;
+   width: 560px;
+   height: 330px;
+   border-radius: 3px;
+   padding: 0 1.7em 1.7em 1.7em !important;
+}
+
+.legendForm1{
+  font-weight: bold !important;
+  text-align: left !important;
+  width:auto;
+  padding:0 20px;
+  border-bottom:none;
+  font-size: 15px;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+}
+
+
+
+.addBtn{
+  text-align: left;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+  font-size: 16px;
+  font-weight:bold;
+  width: 85px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid #2e2e1f;
+  margin-left: 180px;
+  background-image:url("../image/add.png");
+  background-repeat:no-repeat;
+  background-position:95% 50%;
+}
+
+.addBtn_multi{
+  text-align: left;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+  font-size: 16px;
+  font-weight:bold;
+  width: 80px;
+  height: 35px;
+  border-radius: 20px;
+  border: 2px solid #2e2e1f;
+  margin-left: 80px;
+  margin-top: 15px;
+  background-image:url("../image/add.png");
+  background-repeat:no-repeat;
+  background-position:95% 50%;
+}
+
+.load_file{
+margin-left: 30px;
+}
+
+.saveBtn{
+  text-align: left;
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+  font-size: 16px;
+  font-weight:bold;
+  width: 85px;
+  height: 40px;
+  border-radius: 20px;
+  border: 2px solid #2e2e1f;
+  margin-left: 180px;
+  background-image:url("../image/save.png");
+  background-repeat:no-repeat;
+  background-position:95% 50%;
+}
+
+/*-----------------------------------------------------------------Reviews--------------------------------------------------------*/
+
+#title_review_page{
+  font-family: 'Roboto-Slab', sans-serif;
+  font-weight:bold;
+  margin-left: 650px;
+  font-size: 35px;
+}
+
+.drone_review{
+border: 1px solid black;
+}
+
+.report_btn{
+    height: 30px;
+    width: 30px;
+    background: none;
+    background-image:url("../image/report_icon.png");
+    background-repeat:no-repeat;
+    background-size: 25px 25px;
+    border: none;
+}
+
+.log_btn{
+    height: 30px;
+    width: 30px;
+    background: none;
+    background-image:url("../image/log_btn.png");
+    background-repeat:no-repeat;
+    background-size: 25px 25px;
+    border: none;
+}
+
+ input:required:invalid, input:focus:invalid {
+    background-image: url("../image/close-button.png");
+    background-position:95% 50%;
+    background-repeat: no-repeat;
+  }
+  input:required:valid {
+    background-image: url("../image/checked-symbol.png");
+    background-position:95% 50%;
+    background-repeat: no-repeat;
+  }
+
+/*-----------------------------------------------------------------Review Report--------------------------------------------------------*/
+
+
+.row1_modal{
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 10px;
+  margin-left:15px;
+}
+
+#Modal_totalFlight,
+#Modal_totalErrors,
+#Modal_totalTime,
+#Modal_maxTime
+{
+text-align:center;
+  width: 200px;
+  height: 60px;
+  border: 2px solid #333333;
+/* background-image:url("../image/background.jpg");
+  background-repeat:no-repeat;*/
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+
+  font-family: "Roboto-Slab", Verdana, Tahoma;
+  font-size: 18px;
+  border-radius: 3px;
+  position:relative;
+}
+
+#Modal_totalErrors,
+#Modal_totalTime,
+#Modal_maxTime
+{
+margin-left: 15px;
+}
+
+.modalTitle{
+font-weight:bold;
+}
+
+.modalTitle_tbl{
+background: #e6e6e6;
 }

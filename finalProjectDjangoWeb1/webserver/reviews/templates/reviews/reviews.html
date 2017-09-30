@@ -4,23 +4,17 @@
   <!-- Theme Made By www.w3schools.com - No Copyright -->
   <title>Log Review</title>
   {% load staticfiles %}
-    <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
-    <script src="{% static 'index/jquery.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-    <link rel="stylesheet" href="{% static 'index/dataTables.bootstrap.min.css' %}">
-    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="{% static 'index/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'index/dataTables.bootstrap.min.js' %}"></script>
-    <script src="{% static 'index/bootstrap.min.js' %}"></script>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'index/drone.css' %}">
+      <script src="{% static 'index/jquery.min.js' %}"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
+      <script src="{% static 'index/bootstrap.min.js' %}"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
 
-    <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
-
+      <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
 
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
@@ -41,14 +35,14 @@
       </ul>
   </nav>
 
-`<h1 class= "titleReviews">All Flights</h1>
+`<h1 id= "title_review_page">All Flights</h1>
   <div id="tblReviews">
-    <table id = "drone_review" class="table table-striped table-condensed table-bordered table-hover">
+    <table id = "drone_review" class="table table-striped table-condensed table-bordered table-hover" width="95%">
 
       <thead>
       <tr  >
            <th id="thReview_id">
-          <select id= "drone_id" name="drone_id" class="input-field" >
+          <select id= "drone_id" name="drone_id" class="input-field" style="text-align-last:center;" >
               <option value=''>Drone ID</option>
               {% for value in drone_ids %}
                 <option value= "{{ value }}">{{ value }}</option>
@@ -79,7 +73,7 @@
         </th>
         <th id="thReview_log" >Flight Log</th>
         <th id="thReview_status" >
-            <select id= "drone_states" name="drone_states" class="input-field" >
+            <select id= "drone_states" name="drone_states" class="input-field" style="text-align-last:center;" >
               <option value=''>Status</option>
               {% for value in drone_states %}
                 <option value= "{{ value }}">{{ value }}</option>
@@ -132,9 +126,9 @@
                             { data: 'start_flight_time' },
                             { data: 'end_flight_time' },
                             { data: 'duration' },
-                            { "defaultContent": "<button id='log' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
+                            { "defaultContent": "<button id='log'  class='log_btn'  role='button'></button>" },
                             { data: 'state' },
-                            { "defaultContent": "<button id='report' class='btn btn-success rolloverBtn' role='button'>Click!</button>" },
+                            { "defaultContent": "<button id='report' class='report_btn' role='button'></button>" },
                             {
                                 data: 'log_file_path',
                                 visible: false

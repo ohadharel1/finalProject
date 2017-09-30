@@ -11,16 +11,17 @@
         <div class="modal-body" id="modalBody">
             <div class="row1_modal">
                 <div id="Modal_totalFlight">
-                     <p class="modalTitle">Total flights: {{ query_res.total_num_off_flights }}</p>
+                     <p class="modalTitle">Total flights: <p> {{ query_res.total_num_off_flights }}</p></p>
+
                 </div>
                 <div id="Modal_totalErrors">
-                    <p class="modalTitle" >Total errors: {{ query_res.num_of_errors }}</p>
+                    <p class="modalTitle" >Total errors:  <p> {{ query_res.num_of_errors }}</p></p>
                 </div>
                 <div id="Modal_totalTime">
-                     <p class="modalTitle" >Total time in air: {{ query_res.total_time_in_air }}</p>
+                     <p class="modalTitle" >Total time in air:  <p> {{ query_res.total_time_in_air }}</p></p>
                 </div>
                  <div id="Modal_maxTime">
-                      <p class="modalTitle" >Max time in air: {{ query_res.max_time_in_air }}</p>
+                      <p class="modalTitle" >Max time in air:  <p> {{ query_res.max_time_in_air }}</p></p>
                  </div>
 
             </div>
@@ -31,19 +32,19 @@
 
       <thead>
       <tr >
-          <th class="modalTitle_tbl">Duration</th>
-          <th class="modalTitle_tbl">Start Time</th>
-          <th class="modalTitle_tbl">Status</th>
-        <th class="modalTitle_tbl">End Time</th>
+          <th class="modalTitle_tbl" style="text-align-last:center;" onclick="myFunction()">Duration</th>
+          <th class="modalTitle_tbl" style="text-align-last:center;">Start Time</th>
+          <th class="modalTitle_tbl" style="text-align-last:center;">Status</th>
+        <th class="modalTitle_tbl" style="text-align-last:center;">End Time</th>
       </tr>
       </thead>
          <tbody>
       {% for single_flight in query_res.all_flights %}
-      <tr>
+      <tr >
         {% for key, value in single_flight.items %}
-          <td>{{ value }}</td>
+          <td id="myDIV" >{{ value }}</td>
         {% endfor %}
-      </tr>
+      </tr >
          {% endfor %}
       </tbody>
     </table>
