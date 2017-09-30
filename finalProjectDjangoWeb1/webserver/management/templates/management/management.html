@@ -16,7 +16,10 @@
       <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
 
       <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
-
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+      <script type="text/javascript" src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
   </head>
   <body id="body" class="mainBodyFlight">
 
@@ -582,6 +585,20 @@
     motor_table = $('#tblmotor').DataTable( {
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             data : [],
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                extend: 'pdfHtml5',
+                title: 'Data export',
+                customize: function ( doc ) {
+                    doc.content.splice( 1, 0, {
+                        margin: [ 0, 0, 0, 12 ],
+                        alignment: 'center',
+                        image: data:image/png;"../image/logo.png"
+                    } );
+                }
+                }
+            ],
             columns: [
                         { data: 'id' },
                         { data: 'name' },

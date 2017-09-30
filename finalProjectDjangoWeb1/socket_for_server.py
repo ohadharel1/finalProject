@@ -62,6 +62,7 @@ class SystemServer:
                 elif query_num == config.QUERY_GET_SETUP_SUGGESTIONS:
                     controller.get_instance().set_options(msg['result'])
                     print 'options saved!'
+                    self.__respond = msg['result']
                 else:
                     if 'success' in msg:
                         msg['result']['success'] = msg['success']
