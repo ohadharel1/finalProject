@@ -2,149 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2b73dc3-0fda-4559-b598-12047864a1d3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/image/loader.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/swf/flashExport.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/images/sort_asc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/images/sort_asc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/images/sort_both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/images/sort_desc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/images/sort_desc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.semanticui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/css/autoFill.semanticui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.semanticui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/autoFill.semanticui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/dataTables.autoFill.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/AutoFill-2.2.0/js/dataTables.autoFill.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.semanticui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/buttons.semanticui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/common.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/css/mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.colVis.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.colVis.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.flash.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.flash.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.html5.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.html5.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.print.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.print.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.semanticui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/buttons.semanticui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/dataTables.buttons.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Buttons-1.4.0/js/dataTables.buttons.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/css/colReorder.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/js/dataTables.colReorder.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/ColReorder-1.3.3/js/dataTables.colReorder.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.semanticui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/dataTables.semanticui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/jquery.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/jquery.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/css/jquery.dataTables_themeroller.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.semanticui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/dataTables.semanticui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/jquery.dataTables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/DataTables-1.10.15/js/jquery.dataTables.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.semanticui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/css/keyTable.semanticui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/js/dataTables.keyTable.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/KeyTable-2.3.0/js/dataTables.keyTable.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/css/responsive.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/dataTables.responsive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/dataTables.responsive.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/Responsive-2.1.1/js/responsive.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/datatables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/datatables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/datatables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/datatables.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/jQuery-1.12.4/jquery-1.12.4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/config.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/json_utils.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/json_utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/socket_for_server.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/socket_for_server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/templates/management/management.html" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/templates/management/management.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/urls.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/views.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/management/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/templates/reviews/reviews.html" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/templates/reviews/reviews.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/templates/reviews/update_reviews.html" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/templates/reviews/update_reviews.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/urls.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/views.py" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/reviews/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/drone.css" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/drone.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/management.js" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/management.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/reviews.js" afterPath="$PROJECT_DIR$/../finalProjectDjangoWeb1/webserver/static/index/reviews.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/.idea/misc.xml" afterPath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/Config.java" afterPath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/Config.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/DroneClient.java" afterPath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/DroneClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/MainActivity.java" afterPath="$PROJECT_DIR$/../finalProjectDroneSimulator/MyApplication/app/src/main/java/harel/ohad/dronesimulator/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_handler.py" afterPath="$PROJECT_DIR$/db_handler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_app_client_handler.py" afterPath="$PROJECT_DIR$/web_app_client_handler.py" />
     </list>
     <ignored path="finalProjectServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -180,7 +39,7 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="102">
               <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               <folding>
                 <element signature="e#1#18#0" expanded="true" />
@@ -202,17 +61,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="361">
               <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flight.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="flight.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/flight.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
@@ -316,8 +175,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -516,19 +375,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2917981" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3136" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32649842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -778,7 +637,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="102">
           <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
           <folding>
             <element signature="e#1#18#0" expanded="true" />
@@ -809,18 +668,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flight.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
           <caret line="76" column="24" lean-forward="false" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="27" column="42" lean-forward="false" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
           <folding />
         </state>
       </provider>
