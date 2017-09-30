@@ -2,6 +2,9 @@ $(document).ready(function(){
     jQuery.noConflict();
 });
 
+var table_to_delete = null;
+var id_to_delete = null;
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -16,6 +19,13 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function delete_btn_pushed(table, id)
+{
+    table_to_delete = table;
+    id_to_delete = id;
+    $('#modal_delete_verifier').modal('show');
 }
 
 function update_motor_table(id, name, kv, weight, price)
@@ -333,7 +343,6 @@ function get_motor_table()
 
 function delete_motor(id)
 {
-//    $('#motor_add_single_modal').modal('hide');
     $('#loader').show();
     $.ajax({
 //           async: false,
@@ -520,7 +529,7 @@ function get_bat_table()
         {
             console.log('delete bat');
             var data = bat_table.row( $(this).parents('tr') ).data();
-            delete_bat(data.id);
+            delete_btn_pushed('tblbattery', data.id);
         }
     } );
 }
@@ -578,8 +587,6 @@ function update_bat_table(id, name, volt, type, discharge_rate, capacity, weight
 
 function delete_bat(id)
 {
-    console.log(id);
-//    $('#motor_add_single_modal').modal('hide');
     $('#loader').show();
     $.ajax({
 //           async: false,
@@ -760,7 +767,7 @@ function get_prop_table()
         {
             console.log('delete prop');
             var data = prop_table.row( $(this).parents('tr') ).data();
-            delete_prop(data.id);
+            delete_btn_pushed('tblprop', data.id);
         }
     } );
 }
@@ -857,3 +864,161 @@ function delete_prop(id)
             $('#modal_pop_up_result').modal('show');
     });
 }
+
+function delete_record(table, id)
+{
+    if(table == 'tblprop')
+    {
+        $('#loader').show();
+        $.ajax({
+    //           async: false,
+               type: "POST",
+               url: "/management/delete_prop_table/",
+               data: {
+                    'prop_id' : id,
+                   'csrfmiddlewaretoken' : getCookie('csrftoken')
+               },
+           })
+           .done(function(response) {
+    //            console.log(response);
+                mydata = [];
+                for (var key in response.values)
+                {
+                    mydata.push(response.values[key]);
+                }
+    //            console.log(mydata);
+                prop_table.clear();
+                prop_table.rows.add(mydata);
+                prop_table.draw();
+
+                $('#loader').hide();
+
+                if(response.result == true)
+                {
+                    $('#result_header').text('Success');
+                    setTimeout(function(){
+                        $("#modal_pop_up_result").modal('hide');
+                    }, 5000);
+                }
+                else
+                {
+                    $('#result_header').text('Failure!');
+                    $('#result_body').text(response.message);
+                }
+                $('#modal_pop_up_result').modal('show');
+        });
+    }
+    else if(table == 'tblbattery')
+    {
+        $('#loader').show();
+        $.ajax({
+    //           async: false,
+               type: "POST",
+               url: "/management/delete_bat_table/",
+               data: {
+                    'bat_id' : id,
+                   'csrfmiddlewaretoken' : getCookie('csrftoken')
+               },
+           })
+           .done(function(response) {
+    //            console.log(response);
+                mydata = [];
+                for (var key in response.values)
+                {
+                    mydata.push(response.values[key]);
+                }
+    //            console.log(mydata);
+                bat_table.clear();
+                bat_table.rows.add(mydata);
+                bat_table.draw();
+
+                $('#loader').hide();
+
+                if(response.result == true)
+                {
+                    $('#result_header').text('Success');
+                    setTimeout(function(){
+                        $("#modal_pop_up_result").modal('hide');
+                    }, 5000);
+                }
+                else
+                {
+                    $('#result_header').text('Failure!');
+                    $('#result_body').text(response.message);
+                }
+                $('#modal_pop_up_result').modal('show');
+        });
+    }
+    else if(table == 'tblmotor')
+    {
+        $('#loader').show();
+        $.ajax({
+    //           async: false,
+               type: "POST",
+               url: "/management/delete_motor_table/",
+               data: {
+                    'motor_id' : id,
+                   'csrfmiddlewaretoken' : getCookie('csrftoken')
+               },
+           })
+           .done(function(response) {
+    //            console.log(response);
+                mydata = [];
+                for (var key in response.values)
+                {
+                    mydata.push(response.values[key]);
+                }
+    //            console.log(mydata);
+                motor_table.clear();
+                motor_table.rows.add(mydata);
+                motor_table.draw();
+
+                $('#loader').hide();
+
+                if(response.result == true)
+                {
+                    $('#result_header').text('Success');
+                    setTimeout(function(){
+                        $("#modal_pop_up_result").modal('hide');
+                    }, 5000);
+                }
+                else
+                {
+                    $('#result_header').text('Failure!');
+                    $('#result_body').text(response.message);
+                }
+                $('#modal_pop_up_result').modal('show');
+        });
+    }
+}
+
+function do_delete()
+{
+    $('#modal_delete_verifier').modal('hide');
+    delete_record(table_to_delete, id_to_delete);
+    table_to_delete = null;
+    id_to_delete = null;
+}
+
+function cancel_delete()
+{
+    $('#modal_delete_verifier').modal('hide');
+    table_to_delete = null;
+    id_to_delete = null;
+}
+
+function get_timestamp()
+{
+  var now = window.performance && window.performance.now && window.performance.timing && window.performance.timing.navigationStart ? window.performance.now() + window.performance.timing.navigationStart : Date.now();
+  var a = new Date(now);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  return time;
+}
+
