@@ -28,7 +28,7 @@
       </ul>
   </nav>
   <div>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View All Options</button>
+
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -43,16 +43,16 @@
       <div class="modal-body">
         <table id = "setup_tbl" class="table table-striped table-condensed">
           <tr >
-            <th>Option</th>
-            <th>Type</th>
-            <th>Motor</th>
-            <th>Battery</th>
-            <th>Prop</th>
-            <th>Size</th>
-            <th>Max Payload</th>
-            <th>Max Time Of Work</th>
-            <th>Max Range</th>
-            <th>Price</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Option</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Type</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Motor</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Battery</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Prop</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Size</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Max Payload</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Max Time Of Work</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Max Range</th>
+            <th class="modalTitle_tbl" style="text-align-last:center;">Price</th>
           </tr>
           {% for key, value in context.items %}
             <tr >
@@ -79,7 +79,10 @@
 </div>
     {% for key, value in context.items%}
       <div class="mySlides">
+        <div class="title_header">
         <h2 class="droneName">{{ key }}</h2>
+         <div class="btn_option"> <button type="button" class="allOption_btn" data-toggle="modal" data-target="#myModal">View All Options</button></div>
+         </div>
         {% if value.body == "Quad" %}
           <img src="{% static 'image/quad.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
@@ -100,26 +103,26 @@
         <div class= "row1">
 
           <div class="sizeDiv">
-            <h4 class= "titleCompo" >Size: <span class = "droneCompo" id = "size"> {{ value.size }}</span> </h4>
+            <h4 class= "titleCompo" >Size:  &nbsp <span class = "droneCompo" id = "size"> {{ value.size }}</span> </h4>
           </div>
 
           <div class="payloadDiv">
-            <h4 class= "titleCompo" >Payload: <span class = "droneCompo" id = "payload"> {{ value.max_payload }}</span> </h4>
+            <h4 class= "titleCompo" >Payload:  &nbsp <span class = "droneCompo" id = "payload"> {{ value.max_payload }}</span> </h4>
           </div>
 
           <div class="timeDiv">
-            <h4 class= "titleCompo"  >Time of work: <span class = "droneCompo" id = "time"> {{ value.time_in_air }}</span> </h4>
+            <h4 class= "titleCompo"  >Time of work:  &nbsp <span class = "droneCompo" id = "time"> {{ value.time_in_air }}</span> </h4>
           </div>
 
         </div>
 
         <div class= "row2">
           <div class="rangeDiv">
-            <h4 class= "titleCompo" >Range: <span class = "droneCompo" id = "range"> {{ value.range }}</span> </h4>
+            <h4 class= "titleCompo" >Range:  &nbsp <span class = "droneCompo" id = "range"> {{ value.range }}</span> </h4>
           </div>
 
           <div class="priceDiv">
-            <h4 class= "titleCompo" >Price: <span class = "droneCompo" id = "price"> {{ value.total_price }} </span> </h4>
+            <h4 class= "titleCompo" >Price:  &nbsp <span class = "droneCompo" id = "price"> {{ value.total_price }} </span> </h4>
           </div>
         </div>
  </div>
