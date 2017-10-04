@@ -53,9 +53,9 @@
     <div id="updateContainer">
       <div id="tableContainer" class="tab-content">
         <div id="motor" class="tab-pane fade in active">
-          <button class="btn btn-primary" onclick="motor_add_single_pop_up()">Add Single Item</button>
+          <button class="addItemSingle_btn"  onclick="motor_add_single_pop_up()"> Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="motor_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn"  onclick="motor_add_multi_pop_up()"> Add Multiple Items (CSV File)</button>
 
           <table id="tblmotor" class="table table-striped table-condensed table-bordered table-hover" cellspacing="0">
             <thead>
@@ -71,9 +71,9 @@
           </table>
         </div>
         <div id="battery" class="tab-pane fade">
-          <button class="btn btn-primary" onclick="bat_add_single_pop_up()">Add Single Item</button>
+          <button class="addItemSingle_btn" onclick="bat_add_single_pop_up()">Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="bat_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn" onclick="bat_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
           <table id="tblbattery" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
             <thead>
             <tr style="text-align-last:center;" >
@@ -91,9 +91,9 @@
           </table>
         </div>
         <div id="prop" class="tab-pane fade">
-          <button class="btn btn-primary" onclick="prop_add_single_pop_up()">Add Single Item</button>
+          <button class="addItemSingle_btn" onclick="prop_add_single_pop_up()">Add Single Item</button>
 
-          <button class="btn btn-primary" onclick="prop_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn" onclick="prop_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
           <table id="tblprop" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
           <thead>
             <tr style="text-align-last:center;" >
@@ -479,16 +479,18 @@
     </div>
 
     <div class="modal fade" id="modal_delete_verifier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog ">
         <div class="modal-content">
-         <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
-            <h3>Are You Sure You Want To Delete These Records</h3>
-          </div>
-          <div class="modal-body">
-              <button type="button" class="btn btn-danger" onclick="do_delete()">Delete</button>
-              <button type="button" class="btn btn-success" onclick="cancel_delete()" style="float: right;">Cancel</button>
-          </div>
+            <div class="modal-body">
+                  <button class="close" data-dismiss="modal">×</button>
+                 <fieldset class ="fieldsetForm_delete_record">
+                     <legend class ="legendForm1">Delete Record</legend>
+            <h4>Are You Sure You Want To Delete These Records?</h4>
+              <button type="button" class="delete_record_btn" onclick="do_delete()">Delete</button>
+              <button type="button" class="cancel_btn" onclick="cancel_delete()" style="float: right;">Cancel</button>
+          </fieldset>
+            </div>
+
         </div>
       </div>
     </div>
