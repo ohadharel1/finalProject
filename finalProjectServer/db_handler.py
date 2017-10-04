@@ -108,23 +108,23 @@ class _DB_handler:
                     drone_type.append(body_type)
             res[current_option_tag]['body'] = selected_drone_type
             if eDroneTypes[selected_drone_type] == eDroneTypes[body_type]:
-                res[current_option_tag]['size'] = format(max_size - random.random(), '.2f')
-                res[current_option_tag]['max_payload'] = format(max_payload + random.random() * 2, '.2f')
-                res[current_option_tag]['time_in_air'] = min_time + int(random.random() * 10)
-                res[current_option_tag]['range'] = min_range + int(random.random() * 20)
-                res[current_option_tag]['total_price'] = max_price - int(random.random() * 100)
+                res[current_option_tag]['size'] = format(abs(max_size - random.random()), '.2f')
+                res[current_option_tag]['max_payload'] = format(abs(max_payload + random.random() * 2), '.2f')
+                res[current_option_tag]['time_in_air'] = abs(min_time + int(random.random() * 10))
+                res[current_option_tag]['range'] = abs(min_range + int(random.random() * 20))
+                res[current_option_tag]['total_price'] = abs(max_price - int(random.random() * 100))
             elif eDroneTypes[selected_drone_type] > eDroneTypes[body_type]:
-                res[current_option_tag]['size'] = format(max_size + random.random(), '.2f')
-                res[current_option_tag]['max_payload'] = format(max_payload + max(4, random.random() * 10), '.2f')
-                res[current_option_tag]['time_in_air'] = min_time + max(15, int(random.random() * 30))
-                res[current_option_tag]['range'] = min_range + max(25, int(random.random() * 50))
-                res[current_option_tag]['total_price'] = max_price + int(random.random() * 50)
+                res[current_option_tag]['size'] = format(abs(max_size + random.random()), '.2f')
+                res[current_option_tag]['max_payload'] = format(abs(max_payload + max(4, random.random() * 10)), '.2f')
+                res[current_option_tag]['time_in_air'] = abs(min_time + max(15, int(random.random() * 30)))
+                res[current_option_tag]['range'] = abs(min_range + max(25, int(random.random() * 50)))
+                res[current_option_tag]['total_price'] = abs(max_price + int(random.random() * 50))
             else: #eDroneTypes[selected_drone_type] < eDroneTypes[body_type]
-                res[current_option_tag]['size'] = format(max_size - random.random(), '.2f')
-                res[current_option_tag]['max_payload'] = format(max_payload - random.random(), '.2f')
-                res[current_option_tag]['time_in_air'] = min_time - min(min_time - 10, int(random.random() * 10))
-                res[current_option_tag]['range'] = min_range - max(min_range - 10, int(random.random() * 50))
-                res[current_option_tag]['total_price'] = max_price - int(random.random() * 50)
+                res[current_option_tag]['size'] = format(abs(max_size - random.random()), '.2f')
+                res[current_option_tag]['max_payload'] = format(abs(max_payload - random.random()), '.2f')
+                res[current_option_tag]['time_in_air'] = abs(min_time - min(min_time - 10, int(random.random() * 10)))
+                res[current_option_tag]['range'] = abs(min_range - max(min_range - 10, int(random.random() * 50)))
+                res[current_option_tag]['total_price'] = abs(max_price - int(random.random() * 50))
         controller.get_instance().get_server_logger().info('res is: ' + str(res))
         return res
 

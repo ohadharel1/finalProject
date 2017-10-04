@@ -35,11 +35,11 @@ def get_table(request):
 def table_update(request):
     template = loader.get_template('management/management_update.html')
     table_name = request.POST['table_name']
-    id = int(request.POST['id'])
+    id = request.POST['id']
     name = request.POST['name']
-    kv = float(request.POST['kv'])
-    weight = float(request.POST['weight'])
-    price = float(request.POST['price'])
+    kv = request.POST['kv']
+    weight = request.POST['weight']
+    price = request.POST['price']
 
     msg = {}
     msg['cmd'] = 'query'
@@ -76,11 +76,11 @@ def get_motor_table(request):
 def motor_table_update(request):
     # template = loader.get_template('management/management_update.html')
     # table_name = request.POST['table_name']
-    id = int(request.POST['motor_id'])
+    id = request.POST['motor_id']
     name = request.POST['motor_name']
-    kv = float(request.POST['motor_kv'])
-    weight = float(request.POST['motor_weight'])
-    price = float(request.POST['motor_price'])
+    kv = request.POST['motor_kv']
+    weight = request.POST['motor_weight']
+    price = request.POST['motor_price']
 
     msg = {}
     msg['cmd'] = 'query'
@@ -175,14 +175,14 @@ def get_bat_table(request):
 
 
 def bat_table_update(request):
-    id = int(request.POST['bat_id'])
+    id = request.POST['bat_id']
     name = request.POST['bat_name']
     type = request.POST['bat_type']
-    volt = float(request.POST['bat_volt'])
-    discharge_rate = float(request.POST['bat_discharge_rate'])
-    capacity = float(request.POST['bat_capacity'])
-    weight = float(request.POST['bat_weight'])
-    price = float(request.POST['bat_price'])
+    volt = request.POST['bat_volt']
+    discharge_rate = request.POST['bat_discharge_rate']
+    capacity = request.POST['bat_capacity']
+    weight = request.POST['bat_weight']
+    price = request.POST['bat_price']
 
     msg = {}
     msg['cmd'] = 'query'
@@ -287,7 +287,7 @@ def get_prop_table(request):
 
 
 def prop_table_update(request):
-    id = int(request.POST['prop_id'])
+    id = request.POST['prop_id']
     name = request.POST['prop_name']
     diameter = request.POST['prop_diameter']
     speed = request.POST['prop_speed']
