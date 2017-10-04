@@ -170,7 +170,45 @@ function showReportPopUpForReview(drone_num) {
        });
    }
 
-
+function get_flights_per_drone()
+{
+    $.ajax({
+           async: false,
+           type: "POST",
+           url: "/reviews/get_flights_per_drone/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            console.log(response)
+            var ids = response.ids;
+            var counters = response.counters;
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: response.ids,
+                    datasets: [{
+                        label: '# of flights per drone',
+                        data: response.counters,
+                        backgroundColor: response.background_colors,
+                        borderColor: response.border_colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+       });
+}
 /*   function myFunction(){
   var x = document.getElementById('myDIV');
     if (x.style.display === 'none') {

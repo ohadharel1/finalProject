@@ -22,6 +22,8 @@
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
       <script type="text/javascript" src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
@@ -40,6 +42,9 @@
         <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
       </ul>
   </nav>
+
+ <button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>
+ <canvas id="myChart" width="400" height="400"></canvas>
 
 `<h1 id= "title_review_page">All Flights</h1>
   <div id="tblReviews">

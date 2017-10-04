@@ -19,7 +19,6 @@ class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
         self.logger = logger.Logger()
-        # self.update_motor_table(1230, 'bla', 5, 5, 5)
 
     def get_table(self, table_name):
         cursor = self.db.cursor()
@@ -316,6 +315,45 @@ class _DB_handler:
         for i, row in enumerate(query_result):
             res = row['comment']
         return res
+
+    def get_flights_per_drone(self):
+        try:
+            default_background_colors = ['rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)']
+            default_border_colors = ['rgba(255, 99, 132, 1)',
+                                         'rgba(54, 162, 235, 1)',
+                                         'rgba(255, 206, 86, 1)',
+                                         'rgba(75, 192, 192, 1)',
+                                         'rgba(153, 102, 255, 1)',
+                                         'rgba(255, 159, 64, 1)']
+            ids = []
+            counters = []
+            background_colors = []
+            border_colors = []
+            cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT drone_num FROM " + config.flight_tbl_name, )
+            query_result = cursor.fetchall()
+            cursor.close()
+            for i, row in enumerate(query_result):
+                current_id = row['drone_num']
+                if current_id not in ids:
+                    ids.append(current_id)
+                    counters.append(1)
+                    background_colors.append(default_background_colors[len(ids) % len(default_background_colors)])
+                    border_colors.append(default_border_colors[len(ids) % len(default_border_colors)])
+                else:
+                    counters[ids.index(current_id)] += 1
+            res = {'ids': ids,
+                    'counters': counters,
+                    'background_colors': background_colors,
+                    'border_colors': border_colors}
+            return res
+        except Exception, e:
+            print e
 
 
 def get_instance():

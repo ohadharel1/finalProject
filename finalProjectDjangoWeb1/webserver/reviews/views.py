@@ -293,6 +293,14 @@ def pop_up_report_modal(request):
     return HttpResponse(template.render(context, request))
 
 
+def get_flights_per_drone(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_FLIGHTS_PER_DRONE
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
 def str_to_timedelta(time_str):
     try:
         t = datetime.datetime.strptime(time_str, "%M")

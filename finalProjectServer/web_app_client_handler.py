@@ -123,6 +123,11 @@ class WebAppClientHandler:
                         res['success'] = True
                         res['result'] = True
                         res['query_num'] = config.QUERY_SAVE_FLIGHT_COMMENT
+                    if query_num == config.QUERY_GET_FLIGHTS_PER_DRONE:
+                        self.logger.info('got QUERY_GET_FLIGHTS_PER_DRONE')
+                        result = controller.get_instance().get_db().get_flights_per_drone()
+                        res['result'] = result
+                        res['query_num'] = config.QUERY_GET_FLIGHTS_PER_DRONE
                     return res
 
     def recv_msg_thread(self):
