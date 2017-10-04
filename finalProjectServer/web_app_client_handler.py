@@ -6,6 +6,7 @@ import config
 import controller
 import os
 import collections
+import datetime
 
 
 class WebAppClientHandler:
@@ -113,6 +114,15 @@ class WebAppClientHandler:
                         res['success'] = commit_is_good
                         res['message'] = message
                         res['query_num'] = config.QUERY_DELETE_FROM_TABLE
+                    if query_num == config.QUERY_SAVE_FLIGHT_COMMENT:
+                        self.logger.info('got QUERY_SAVE_FLIGHT_COMMENT')
+                        drone_id = msg['drone_id']
+                        comment = msg['comment']
+                        start_time = datetime.datetime.fromtimestamp(msg['start_time']).strftime("%Y-%m-%d %H:%M:%S")
+                        controller.get_instance().get_db().save_flight_comment(comment, drone_id, start_time)
+                        res['success'] = True
+                        res['result'] = True
+                        res['query_num'] = config.QUERY_SAVE_FLIGHT_COMMENT
                     return res
 
     def recv_msg_thread(self):

@@ -10,6 +10,8 @@ import config
 import timer
 import collections
 
+import json_utils
+
 # Create your views here.
 
 active_flights = {}
@@ -131,3 +133,27 @@ def refresh_active_flights(flight_status):
         print 'got new flights'
 
 
+def save_comment(request):
+    global active_flights
+    try:
+        drone_id = int(request.POST['drone_id'])
+        comment = request.POST['comment']
+        start_time = None
+        for key, value in active_flights['status'].items():
+            if value['drone_num'] == drone_id:
+                start_time = value['start_time']
+                break
+        response = {'success': False}
+        if not start_time or not comment:
+            return HttpResponse(json_utils.json_to_str(response), content_type='application/json')
+        else:
+            msg = {}
+            msg['cmd'] = 'query'
+            msg['query_num'] = config.QUERY_SAVE_FLIGHT_COMMENT
+            msg['drone_id'] = drone_id
+            msg['comment'] = comment
+            msg['start_time'] = start_time
+            result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+            return HttpResponse(json_utils.json_to_str(result), content_type='application/json')
+    except Exception, e:
+        print e

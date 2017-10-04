@@ -1,3 +1,21 @@
+var drone_id_for_comment = null;
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 
 setInterval(function() {
     $.ajax({
@@ -17,7 +35,7 @@ else { //if outerHTML is not supported, there is a weird but crossbrowsered tric
     ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
     ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
 }
-        console.log(response);
+//        console.log(response);
     });
 }, 1000)
 
@@ -39,7 +57,7 @@ else { //if outerHTML is not supported, there is a weird but crossbrowsered tric
     ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
     ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
 }
-        console.log(response);
+//        console.log(response);
     });
 }, 1000)
 
@@ -62,7 +80,7 @@ else { //if outerHTML is not supported, there is a weird but crossbrowsered tric
     ObjParent.replaceChild(tmpObj,Obj); //here we placing our temporary data instead of our target, so we can find it then and replace it into whatever we want to replace to
     ObjParent.innerHTML=ObjParent.innerHTML.replace('<div><!--THIS DATA SHOULD BE REPLACED--></div>',str);
 }
-        console.log(response);
+//        console.log(response);
     });
 }, 1000)
 
@@ -95,3 +113,44 @@ function closeModal()
        });
 }
 
+//$('#btn_Add_Comment').click(function ($) {
+//    console.log('clicked!');
+//
+//    $.ajax({
+//       type: "POST",
+//       url: "/flight_monitor/save_comment/",
+//       data: {
+//            'drone_id' : drone_id_for_comment,
+//           'csrfmiddlewaretoken' : getCookie('csrftoken')
+//       },
+//   })
+//   .done(function(response) {
+//        drone_id_for_comment = null;
+//        alert('saved');
+//    } );
+// });
+
+function saveFlightComent(comment)
+{
+    console.log('clicked!');
+
+    $.ajax({
+       type: "POST",
+       url: "/flight_monitor/save_comment/",
+       data: {
+            'drone_id' : drone_id_for_comment,
+            'comment': comment,
+           'csrfmiddlewaretoken' : getCookie('csrftoken')
+       },
+   })
+   .done(function(response) {
+        drone_id_for_comment = null;
+        alert('saved');
+    } );
+}
+
+function showCommentPopUp(id)
+{
+    $("#addCommentPopUp").modal('show');
+    drone_id_for_comment = id;
+}

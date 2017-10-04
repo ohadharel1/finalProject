@@ -84,6 +84,7 @@ class _DB_handler:
                 # result[flight_num]['drone_ip'] = row['drone_ip']
                 result[flight_num]['cmd'] = flight.flight_status[int(row['state'])]
                 result[flight_num]['start_time'] = str(row['start_flight_time'])
+                result[flight_num]['comment'] = str(row['comment'])
                 i += 1
             return result
         except Exception, e:
@@ -158,6 +159,7 @@ class _DB_handler:
             single_res_line['state'] = flight.flight_status[int(row['state'])]
             single_res_line['log_file_path'] = row['log_file_path']
             single_res_line['drone_num'] = row['drone_num']
+            single_res_line['comment'] = row['comment']
             res[i] = single_res_line
         return res
 
@@ -297,6 +299,23 @@ class _DB_handler:
             except Exception, e:
                 result.append((False, str(e)))
         return result
+
+    def save_flight_comment(self, comment, drone_id, start_time):
+        args = (comment, drone_id, start_time)
+        cursor = self.db.cursor()
+        cursor.execute("UPDATE " + config.flight_tbl_name + " SET comment = %s WHERE drone_num = %s AND start_flight_time = %s;", args)
+        self.db.commit()
+
+    def get_flight_comment(self, drone_id, start_time):
+        args = (drone_id, start_time)
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT comment FROM " + config.flight_tbl_name + " WHERE drone_num = %s AND start_flight_time = %s;", args)
+        query_result = cursor.fetchall()
+        cursor.close()
+        res = ''
+        for i, row in enumerate(query_result):
+            res = row['comment']
+        return res
 
 
 def get_instance():

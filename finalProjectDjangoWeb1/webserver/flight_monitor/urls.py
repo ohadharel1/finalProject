@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^pop_up_modal_body', views.pop_up_modal_body, name='pop_up_modal_body'),
     url(r'^pop_up_modal$', views.pop_up_modal, name='pop_up_modal'),
     url(r'^pop_up_modal_close', views.pop_up_modal_close, name='pop_up_modal_close'),
+    url(r'^save_comment', views.save_comment, name='save_comment'),
 ]

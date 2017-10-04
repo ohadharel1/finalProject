@@ -86,8 +86,6 @@ def review(request):
     msg['cmd'] = 'query'
     msg['query_num'] = config.QUERY_GET_ALL_FLIGHTS
     flight_dict = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
-    success = flight_dict['success']
-    del flight_dict['success']
     drone_ids = OrderedSet()
     drone_ids.add('All')
     drone_states = OrderedSet()
