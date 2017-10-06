@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+from django.utils.safestring import mark_safe
 import datetime
 import collections
 import json_utils
@@ -297,6 +298,14 @@ def get_flights_per_drone(request):
     msg = {}
     msg['cmd'] = 'query'
     msg['query_num'] = config.QUERY_FLIGHTS_PER_DRONE
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
+def get_errors_per_drone(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_ERRORS_PER_DRONE
     context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
     return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
 

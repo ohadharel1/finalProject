@@ -1,5 +1,7 @@
 
-
+$(document).ready(function(){
+    jQuery.noConflict();
+});
 
 
 function getCookie(name) {
@@ -172,6 +174,7 @@ function showReportPopUpForReview(drone_num) {
 
 function get_flights_per_drone()
 {
+    $('#loader').show();
     $.ajax({
            async: false,
            type: "POST",
@@ -184,7 +187,7 @@ function get_flights_per_drone()
             console.log(response)
             var ids = response.ids;
             var counters = response.counters;
-            var ctx = document.getElementById("myChart").getContext('2d');
+            var ctx = document.getElementById("FlightsPerDroneChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -207,6 +210,52 @@ function get_flights_per_drone()
                     }
                 }
             });
+            $('#loader').hide();
+            $("#modalFlightsPerDronePopUp").modal('show');
+       });
+}
+
+
+function get_errors_per_drone()
+{
+    $('#loader').show();
+    $.ajax({
+           async: false,
+           type: "POST",
+           url: "/reviews/get_errors_per_drone/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            console.log(response)
+            var ids = response.ids;
+            var counters = response.counters;
+            var ctx = document.getElementById("ErrorsPerDroneChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: response.ids,
+                    datasets: [{
+                        label: '# of errors per drone',
+                        data: response.counters,
+                        backgroundColor: response.background_colors,
+                        borderColor: response.border_colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            $('#loader').hide();
+            $("#modalErrorsPerDronePopUp").modal('show');
        });
 }
 /*   function myFunction(){

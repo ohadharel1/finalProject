@@ -27,6 +27,8 @@ class Flight:
         thread.start_new_thread(self.do_time_check, ())
 
     def change_flight_status(self, new):
+        if self.state == flight_status.index('landed with error'):
+            return
         if self.state == flight_status.index('error'):
             if new == flight_status.index('landed'):
                 new = flight_status.index('landed with error')

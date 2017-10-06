@@ -43,8 +43,48 @@
       </ul>
   </nav>
 
+ <div id="loader"></div>
+
+ <div class="modal fade" id="modalFlightsPerDronePopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Flights Per Drone Report</h4>
+        </div>
+        <div class="modal-body">
+         <canvas id="FlightsPerDroneChart" width="400" height="400"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
  <button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>
- <canvas id="myChart" width="400" height="400"></canvas>
+
+ <div class="modal fade" id="modalErrorsPerDronePopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Errors Per Drone Report</h4>
+        </div>
+        <div class="modal-body">
+         <canvas id="ErrorsPerDroneChart" width="400" height="400"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <button type="button" onclick="get_errors_per_drone()">Get Errors Per Drone</button>
+
 
 `<h1 id= "title_review_page">All Flights</h1>
   <div id="tblReviews">
@@ -133,6 +173,7 @@
       var sec = a.getSeconds();
       var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
       return time;
+      <!--console.log('{{ result }}');-->
     }
         var mydata =
         [
@@ -144,6 +185,7 @@
                 },
             {% endfor %}
         ]
+        console.log(mydata);
         var table = $('#drone_review').DataTable( {
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 data : mydata,

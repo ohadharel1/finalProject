@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^pop_up_modal/', views.pop_up_modal, name='pop_up_modal'),
     url(r'^pop_up_report_modal/', views.pop_up_report_modal, name='pop_up_modal'),
     url(r'^get_flights_per_drone/', views.get_flights_per_drone, name='get_flights_per_drone'),
+    url(r'^get_errors_per_drone/', views.get_errors_per_drone, name='get_flights_per_drone'),
 ]
