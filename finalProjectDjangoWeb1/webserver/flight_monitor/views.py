@@ -153,7 +153,7 @@ def save_comment(request):
             msg['drone_id'] = drone_id
             msg['comment'] = comment
             msg['start_time'] = start_time
-            result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
-            return HttpResponse(json_utils.json_to_str(result), content_type='application/json')
+            result = controller.get_instance().get_system_server().send_msg(msg, blocking=False)
+            return HttpResponse(json_utils.json_to_str(response), content_type='application/json')
     except Exception, e:
         print e

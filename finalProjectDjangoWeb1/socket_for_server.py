@@ -39,6 +39,7 @@ class SystemServer:
             if msg is not None:
                 self.handle_msg(json_utils.str_to_json(msg))
             time.sleep(0.1)
+        raise Exception('stoped listening!!!')
 
     def send_msg(self, msg, blocking = False):
         if type(msg) is dict :
@@ -63,6 +64,8 @@ class SystemServer:
                     controller.get_instance().set_options(msg['result'])
                     print 'options saved!'
                     self.__respond = msg['result']
+                elif query_num == config.QUERY_SAVE_FLIGHT_COMMENT:
+                    pass
                 else:
                     if 'success' in msg:
                         msg['result']['success'] = msg['success']
