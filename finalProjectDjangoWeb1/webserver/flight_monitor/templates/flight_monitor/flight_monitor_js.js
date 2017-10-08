@@ -106,9 +106,9 @@ function closeModal()
     $.ajax({
            type: "GET",
            url: "{% url 'flight_monitor:pop_up_modal_close' %}",
-           success: function ajaxSuccess(data, textStatus, jqXHR) {
-               $(e.target).parent().html(data);
-           },
+//           success: function ajaxSuccess(data, textStatus, jqXHR) {
+//               $(e.target).parent().html(data);
+//           },
            dataType: 'html'
        });
 }

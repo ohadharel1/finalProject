@@ -310,6 +310,30 @@ def get_errors_per_drone(request):
     return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
 
 
+def get_all_errors(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_ALL_ERRORS
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
+def get_flights_per_month(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_GET_FLIGHTS_PER_MONTH
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
+def get_errors_per_month(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_GET_ERRORS_PER_MONTH
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
 def str_to_timedelta(time_str):
     try:
         t = datetime.datetime.strptime(time_str, "%M")

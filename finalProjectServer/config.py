@@ -27,6 +27,9 @@ flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, lo
 flight_status_active = ['takeoff', 'in_mission', 'rtl', 'land']
 flight_status_before_takeoff = ['ready to takeoff']
 
+# error types
+error_types = ['CRASH', 'RC_OVERRIDE', 'FENCE_BREACH', 'LOW_BATTERY', 'RESET_IN_AIR']
+
 
 #query numbers:
 QUERY_DB_ACTIVE = 0
@@ -45,6 +48,9 @@ QUERY_DELETE_FROM_TABLE = 12
 QUERY_SAVE_FLIGHT_COMMENT = 13
 QUERY_GET_FLIGHTS_PER_DRONE = 14
 QUERY_GET_ERRORS_PER_DRONE = 15
+QUERY_ALL_ERRORS = 16
+QUERY_GET_FLIGHTS_PER_MONTH = 17
+QUERY_GET_ERRORS_PER_MONTH = 18
 
 
 

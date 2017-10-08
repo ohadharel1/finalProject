@@ -133,6 +133,21 @@ class WebAppClientHandler:
                         result = controller.get_instance().get_db().get_errors_per_drone()
                         res['result'] = result
                         res['query_num'] = config.QUERY_GET_ERRORS_PER_DRONE
+                    if query_num == config.QUERY_ALL_ERRORS:
+                        self.logger.info('got QUERY_ALL_ERRORS')
+                        result = controller.get_instance().get_db().get_all_errors()
+                        res['result'] = result
+                        res['query_num'] = config.QUERY_ALL_ERRORS
+                    if query_num == config.QUERY_GET_FLIGHTS_PER_MONTH:
+                        self.logger.info('got QUERY_GET_FLIGHTS_PER_MONTH')
+                        result = controller.get_instance().get_db().get_flights_per_month()
+                        res['result'] = result
+                        res['query_num'] = config.QUERY_GET_FLIGHTS_PER_MONTH
+                    if query_num == config.QUERY_GET_ERRORS_PER_MONTH:
+                        self.logger.info('got QUERY_GET_ERRORS_PER_MONTH')
+                        result = controller.get_instance().get_db().get_errors_per_month()
+                        res['result'] = result
+                        res['query_num'] = config.QUERY_GET_ERRORS_PER_MONTH
                     return res
 
     def recv_msg_thread(self):

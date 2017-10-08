@@ -19,6 +19,7 @@ class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
         self.logger = logger.Logger()
+        # self.get_flights_per_month()
 
     def get_table(self, table_name):
         cursor = self.db.cursor()
@@ -56,6 +57,15 @@ class _DB_handler:
         cursor = self.db.cursor()
         cursor.execute("UPDATE " + config.flight_tbl_name + " SET end_flight_time = %s WHERE drone_num = %s AND start_flight_time = %s;", args)
         self.db.commit()
+        cursor.close()
+
+    def save_error_id(self, drone_num, start_time, error):
+        args = (int(error), int(drone_num), start_time)
+        cursor = self.db.cursor()
+        cursor.execute(
+            "UPDATE " + config.flight_tbl_name + " SET error_type = %s WHERE drone_num = %s AND start_flight_time = %s;", args)
+        self.db.commit()
+        cursor.close()
 
     def get_total_flight_time_for_drone(self, drone_num):
         args = (int(drone_num))
@@ -393,6 +403,88 @@ class _DB_handler:
             return res
         except Exception, e:
             print e
+
+    def get_all_errors(self):
+        try:
+            default_background_colors = ['rgba(255, 99, 132, 0.2)',
+                                         'rgba(54, 162, 235, 0.2)',
+                                         'rgba(255, 206, 86, 0.2)',
+                                         'rgba(75, 192, 192, 0.2)',
+                                         'rgba(153, 102, 255, 0.2)',
+                                         'rgba(255, 159, 64, 0.2)']
+            default_border_colors = ['rgba(255, 99, 132, 1)',
+                                     'rgba(54, 162, 235, 1)',
+                                     'rgba(255, 206, 86, 1)',
+                                     'rgba(75, 192, 192, 1)',
+                                     'rgba(153, 102, 255, 1)',
+                                     'rgba(255, 159, 64, 1)']
+            errors = []
+            counters = []
+            background_colors = []
+            border_colors = []
+            cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT error_type FROM " + config.flight_tbl_name, )
+            query_result = cursor.fetchall()
+            cursor.close()
+            for i, row in enumerate(query_result):
+                try:
+                    current_error_id = int(row['error_type'])
+                    current_error = config.error_types[current_error_id]
+                    if current_error not in errors:
+                        errors.append(current_error)
+                        counters.append(1)
+                        background_colors.append(default_background_colors[len(errors) % len(default_background_colors)])
+                        border_colors.append(default_border_colors[len(errors) % len(default_border_colors)])
+                    else:
+                        counters[errors.index(current_error)] += 1
+                except:
+                    pass
+            res = {'errors': errors,
+                   'counters': counters,
+                   'background_colors': background_colors,
+                   'border_colors': border_colors}
+            return res
+        except Exception, e:
+            print e
+
+    def get_flights_per_month(self):
+        try:
+            counters = [0] * 12
+            cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT start_flight_time FROM " + config.flight_tbl_name, )
+            query_result = cursor.fetchall()
+            cursor.close()
+            for i, row in enumerate(query_result):
+                try:
+                    # time = datetime.datetime.strptime(row['start_flight_time'], "%Y-%m-%d %H:%M:%S")
+                    month = row['start_flight_time'].month - 1
+                    counters[month] += 1
+                except Exception, e:
+                    pass
+            res = {'counters': counters}
+            return res
+        except Exception, e:
+            print e
+
+    def get_errors_per_month(self):
+        try:
+            counters = [0] * 12
+            cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT start_flight_time FROM " + config.flight_tbl_name + " WHERE STATE > 2", )
+            query_result = cursor.fetchall()
+            cursor.close()
+            for i, row in enumerate(query_result):
+                try:
+                    # time = datetime.datetime.strptime(row['start_flight_time'], "%Y-%m-%d %H:%M:%S")
+                    month = row['start_flight_time'].month - 1
+                    counters[month] += 1
+                except Exception, e:
+                    pass
+            res = {'counters': counters}
+            return res
+        except Exception, e:
+            print e
+
 
 def get_instance():
     global instance

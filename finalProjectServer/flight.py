@@ -53,6 +53,11 @@ class Flight:
         controller.get_instance().get_server_logger().info('msg is: ' + str(msg))
         if bool(msg['is_error']):
             self.change_flight_status(flight_status.index('error'))
+            try:
+                error_id = config.error_types.index(str(msg['cmd']))
+                controller.get_instance().get_db().save_error_id(self.drone_num, self.timestamp, error_id)
+            except:
+                pass
             self.logger.get_drone_logger().critical('drone number ' + self.drone_num + ' error: ' + str(msg['cmd']))
         else:
             self.logger.get_drone_logger().info('drone number ' + self.drone_num + ' got new msg: ' + str(msg))

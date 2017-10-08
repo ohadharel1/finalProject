@@ -86,6 +86,68 @@
  <button type="button" onclick="get_errors_per_drone()">Get Errors Per Drone</button>
 
 
+ <div class="modal fade" id="modalAllErrorsPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">All Errors</h4>
+        </div>
+        <div class="modal-body">
+         <canvas id="AllErrorsChart" width="100" height="100"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <button type="button" onclick="get_all_errors()">Get All Errors</button>
+
+
+ <div class="modal fade" id="flightsPerMonthPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Flights Per Month</h4>
+        </div>
+        <div class="modal-body">
+         <canvas id="FlightsPerMonthChart" width="100" height="100"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <button type="button" onclick="get_flights_per_month()">Get Flights Per Month</button>
+
+ <div class="modal fade" id="errorsPerMonthPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Errors Per Month</h4>
+        </div>
+        <div class="modal-body">
+         <canvas id="ErrorsPerMonthChart" width="100" height="100"></canvas>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <button type="button" onclick="get_errors_per_month()">Get Errors Per Month</button>
+
+
 `<h1 id= "title_review_page">All Flights</h1>
   <div id="tblReviews">
     <table id = "drone_review" class="table table-striped table-condensed table-bordered table-hover" width="95%">
