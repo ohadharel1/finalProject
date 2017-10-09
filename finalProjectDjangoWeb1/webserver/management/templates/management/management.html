@@ -118,7 +118,7 @@
             <button class="close" data-dismiss="modal">×</button>
               <fieldset class ="fieldsetForm_editMotor">
                 <legend class ="legendForm1">Edit motor</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:update_motor_table(motor_id.value, motor_name.value, motor_kv.value, motor_weight.value, motor_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="motor_id" class="titleForm">Motor ID</label>
@@ -141,7 +141,7 @@
                         <input type="number" step="0.1" class="input-field" id="motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="saveBtn" onclick="update_motor_table(motor_id.value, motor_name.value, motor_kv.value, motor_weight.value, motor_price.value)">Save</button>
+                      <button type="submit" class="saveBtn">Save</button>
                     </div>
                 </form>
                    </fieldset>
@@ -157,11 +157,11 @@
             <button class="close" data-dismiss="modal">×</button>
               <fieldset class ="fieldsetForm1">
                 <legend class ="legendForm1">Add new motor</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:add_single_to_motor_table(add_single_motor_name.value, add_single_motor_kv.value, add_single_motor_weight.value, add_single_motor_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="add_single_motor_name" class="titleForm" >Motor Name</label>
-                        <input type="text" class="input-field" id="add_single_motor_name" required pattern="[0-9]+"/>
+                        <input type="text" class="input-field" id="add_single_motor_name" required/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_motor_kv" class="titleForm" >KV</label>
@@ -176,7 +176,7 @@
                         <input type="number" step="0.1" class="input-field" id="add_single_motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn" onclick="add_single_to_motor_table(add_single_motor_name.value, add_single_motor_kv.value, add_single_motor_weight.value, add_single_motor_price.value)">Add</button>
+                      <button type="submit" class="addBtn">Add</button>
                     </div>
                 </form>
                    </fieldset>
@@ -192,13 +192,13 @@
             <button class="close" data-dismiss="modal">×</button>
                  <fieldset class ="fieldsetForm_add">
                      <legend class ="legendForm1">Add new motor</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);" id="motor_add_multi_form">
+              <form class="form-horizontal" role="form" action="javascript:add_multi_to_motor_table(motor_add_multi_file.files)" id="motor_add_multi_form">
                 {% csrf_token %}
                   <div class="load_file">
                   <label ><input type="file" id="motor_add_multi_file" hidden></label>
                       </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_motor_table(motor_add_multi_file.files)">Add</button>
+                      <button type="submit" class="addBtn_multi">Add</button>
                   </div>
                 </form>
                       </fieldset>
@@ -217,7 +217,7 @@
                  <button class="close" data-dismiss="modal">×</button>
               <fieldset class ="fieldsetForm_editBatt">
                 <legend class ="legendForm1">Edit Battery</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:update_bat_table(bat_id.value, bat_name.value, bat_volt.value, bat_type.value, bat_discharge_rate.value, bat_capacity.value, bat_weight.value, bat_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="bat_id"  class="titleForm">Battery ID</label>
@@ -259,7 +259,7 @@
                         <input type="number" step="0.1" class="input-field" id="bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="saveBtn" onclick="update_bat_table(bat_id.value, bat_name.value, bat_volt.value, bat_type.value, bat_discharge_rate.value, bat_capacity.value, bat_weight.value, bat_price.value)">Save</button>
+                      <button type="submit" class="saveBtn">Save</button>
                   </div>
                 </form>
                </fieldset>
@@ -277,7 +277,7 @@
             <fieldset class ="fieldsetForm_addBatt">
                 <legend class ="legendForm1">Add new battery</legend>
 
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:add_single_to_bat_table(add_single_bat_name.value, add_single_bat_type.value, add_single_bat_volt.value, add_single_bat_discharge_rate.value, add_single_bat_capacity.value, add_single_bat_weight.value, add_single_bat_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="add_single_bat_name" class="titleForm" >Battery Name</label>
@@ -316,7 +316,7 @@
                         <input type="number" step="0.1" class="input-field" id="add_single_bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn" onclick="add_single_to_bat_table(add_single_bat_name.value, add_single_bat_type.value, add_single_bat_volt.value, add_single_bat_discharge_rate.value, add_single_bat_capacity.value, add_single_bat_weight.value, add_single_bat_price.value)">Add</button>
+                      <button type="submit" class="addBtn">Add</button>
                   </div>
                 </form>
                  </fieldset>
@@ -334,13 +334,13 @@
             <button class="close" data-dismiss="modal">×</button>
                  <fieldset class ="fieldsetForm_add">
                      <legend class ="legendForm1">Add new Batteries</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);" id="bat_add_multi_form">
+              <form class="form-horizontal" role="form" action="javascript:add_multi_to_bat_table(bat_add_multi_file.files)" id="bat_add_multi_form">
                   {% csrf_token %}
                  <div class="load_file">
                   <label ><input type="file" id="bat_add_multi_file" hidden></label>
                  </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_bat_table(bat_add_multi_file.files)">Add</button>
+                      <button type="submit" class="addBtn_multi">Add</button>
                     </div>
                 </form>
                       </fieldset>
@@ -360,7 +360,7 @@
             <button class="close" data-dismiss="modal">×</button>
                  <fieldset class ="fieldsetForm_addBatt">
                 <legend class ="legendForm1">Edit Propeller</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:update_prop_table(prop_id.value, prop_name.value, prop_diameter.value, prop_speed.value, prop_weight.value, prop_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label  for="prop_id">Propeller ID</label>
@@ -387,7 +387,7 @@
                         <input type="number" step="0.1" class="input-field" id="prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="saveBtn" onclick="update_prop_table(prop_id.value, prop_name.value, prop_diameter.value, prop_speed.value, prop_weight.value, prop_price.value)">Save</button>
+                      <button type="submit" class="saveBtn">Save</button>
                   </div>
                 </form>
                      </fieldset>
@@ -405,7 +405,7 @@
               <fieldset class ="fieldsetForm_addProp">
                 <legend class ="legendForm1">Add New Propeller</legend>
 
-              <form class="form-horizontal" role="form" action="javascript:void(0);">
+              <form class="form-horizontal" role="form" action="javascript:add_single_to_prop_table(add_single_prop_name.value, add_single_prop_diameter.value, add_single_prop_speed.value, add_single_prop_weight.value, add_single_prop_price.value)">
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="add_single_prop_name" class="titleForm" >Propeller Name</label>
@@ -429,7 +429,7 @@
                         <input type="number" step="0.1" class="input-field" id="add_single_prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn" onclick="add_single_to_prop_table(add_single_prop_name.value, add_single_prop_diameter.value, add_single_prop_speed.value, add_single_prop_weight.value, add_single_prop_price.value)">Add</button>
+                      <button type="submit" class="addBtn">Add</button>
                   </div>
                 </form>
                    </fieldset>
@@ -446,13 +446,13 @@
             <button class="close" data-dismiss="modal">×</button>
                 <fieldset class ="fieldsetForm_add">
                      <legend class ="legendForm1">Add New Propellers</legend>
-              <form class="form-horizontal" role="form" action="javascript:void(0);" id="prop_add_multi_form">
+              <form class="form-horizontal" role="form" action="javascript:add_multi_to_prop_table(prop_add_multi_file.files)" id="prop_add_multi_form">
                 {% csrf_token %}
                   <div class="load_file">
                   <label ><input type="file" id="prop_add_multi_file" hidden></label>
                  </div>
                   <div class="form-group">
-                      <button type="submit" class="addBtn_multi" onclick="add_multi_to_prop_table(prop_add_multi_file.files)">Add</button>
+                      <button type="submit" class="addBtn_multi">Add</button>
 
                   </div>
                 </form>
@@ -466,7 +466,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
          <div class="modal-header">
-            <button class="close" data-dismiss="modal">×</button>
+            <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
             <h3 id="result_header"></h3>
           </div>
           <div class="modal-body">

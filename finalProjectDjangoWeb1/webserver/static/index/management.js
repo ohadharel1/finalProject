@@ -28,6 +28,14 @@ function delete_btn_pushed(table, id)
     $('#modal_delete_verifier').modal('show');
 }
 
+function close_result_pop_up()
+{
+    console.log('pop up closed')
+    $('#modal_pop_up_result').modal('hide');
+    $('#result_header').text('');
+    $('#result_body').text('');
+}
+
 function update_motor_table(id, name, kv, weight, price)
 {
     console.log('showing');
