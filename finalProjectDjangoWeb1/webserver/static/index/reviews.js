@@ -172,6 +172,15 @@ function showReportPopUpForReview(drone_num) {
        });
    }
 
+var backgroundColor = 'white';
+Chart.plugins.register({
+    beforeDraw: function(c) {
+        var ctx1 = c.chart.ctx;
+        ctx1.fillStyle = backgroundColor;
+        ctx1.fillRect(0, 0, c.chart.width, c.chart.height);
+    }
+});
+
 function get_flights_per_drone()
 {
     $('#loader').show();
@@ -215,6 +224,11 @@ function get_flights_per_drone()
        });
 }
 
+function saveFlightsPerDroneImage() {
+    $("#FlightsPerDroneChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "flightsPerDrone.png");
+    });
+}
 
 function get_errors_per_drone()
 {
@@ -257,6 +271,12 @@ function get_errors_per_drone()
             $('#loader').hide();
             $("#modalErrorsPerDronePopUp").modal('show');
        });
+}
+
+function saveErrorsPerDroneImage() {
+    $("#ErrorsPerDroneChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "errorsPerDrone.png");
+    });
 }
 
 
@@ -314,6 +334,11 @@ function get_all_errors()
        });
 }
 
+function saveAllErrorsImage() {
+    $("#AllErrorsChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "allErrors.png");
+    });
+}
 
 function get_flights_per_month()
 {
@@ -328,7 +353,7 @@ function get_flights_per_month()
        })
        .done(function(response) {
             var ctx = document.getElementById("FlightsPerMonthChart").getContext('2d');
-            var myChart = new Chart(ctx, {
+            myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -381,6 +406,11 @@ function get_flights_per_month()
        });
 }
 
+function saveFlightsPerMonthImage() {
+    $("#FlightsPerMonthChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "flightsPerMonth.png");
+    });
+}
 
 function get_errors_per_month()
 {
@@ -394,8 +424,8 @@ function get_errors_per_month()
            },
        })
        .done(function(response) {
-            var ctx = document.getElementById("ErrorsPerMonthChart").getContext('2d');
-            var myChart = new Chart(ctx, {
+            ctx = document.getElementById("ErrorsPerMonthChart").getContext('2d');
+            myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -446,6 +476,12 @@ function get_errors_per_month()
             $('#loader').hide();
             $("#errorsPerMonthPopUp").modal('show');
        });
+}
+
+function saveErrorsPerMonthtImage() {
+    $("#ErrorsPerMonthChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "errorsPerMonth.png");
+    });
 }
 /*   function myFunction(){
   var x = document.getElementById('myDIV');
