@@ -483,12 +483,7 @@ function saveErrorsPerMonthtImage() {
         saveAs(blob, "errorsPerMonth.png");
     });
 }
-/*   function myFunction(){
-  var x = document.getElementById('myDIV');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
 
-}*/
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
