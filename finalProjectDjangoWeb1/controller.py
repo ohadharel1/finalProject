@@ -17,6 +17,9 @@ class __Controller:
         self.__system_server = socket_for_server.SystemServer()
         self.__option_holder = None
         self.__active_flights = None
+        self.__new_flight_msg = {'do_message': False,
+                                 'is_takeoff': None,
+                                 'drone_id': None}
         self.__current_page = config.CURRENT_PAGE_INDEX
 
     def get_system_server(self):
@@ -39,6 +42,28 @@ class __Controller:
 
     def set_current_page(self, current_page):
         self.__current_page = current_page
+
+    def set_flight_msg(self, msg):
+        status = msg['status']
+        for key in status:
+            value = status[key]
+            if value['cmd'] == 'takeoff':
+                self.__new_flight_msg['is_takeoff'] = True
+                self.__new_flight_msg['do_message'] = True
+                self.__new_flight_msg['drone_id'] = value['drone_num']
+            elif value['cmd'] == 'landed':
+                self.__new_flight_msg['is_takeoff'] = False
+                self.__new_flight_msg['do_message'] = True
+                self.__new_flight_msg['drone_id'] = value['drone_num']
+            else:
+                # do nothing
+                pass
+        print self.__new_flight_msg
+
+    def get_flight_msg(self):
+        flight_msg = self.__new_flight_msg.copy()
+        self.__new_flight_msg['do_message'] = False
+        return flight_msg
 
     def get_connection_status(self):
         connection_status = {}

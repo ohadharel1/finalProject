@@ -46,7 +46,7 @@ def update_flight_table(request):
     template = loader.get_template('flight_monitor/flight_monitor_table_update.html')
     update_flights_dict()
     context = active_flights
-    print 'active_flights refresh: ' + str(context)
+    controller.get_instance().get_flight_msg()
     return render(request, 'flight_monitor/flight_monitor_table_update.html', context)
 
 

@@ -5,4 +5,5 @@ app_name = 'index'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^get_flight_status/', views.get_flight_status, name='get_flight_status'),
 ]

@@ -6,11 +6,14 @@
 <title>Drone Page</title>
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'index/drone.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{% static 'index/jquery.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'index/jquery-ui.min.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
-    <script src="{% static 'index/jquery.min.js' %}"></script>
+
     <script src="{% static 'index/bootstrap.min.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 	<!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
 </head>
@@ -117,7 +120,7 @@
 
     <!--</div>-->
 
-
+    <script src="{% static 'index/droneSite.js' %}"></script>
 
 </body>
 

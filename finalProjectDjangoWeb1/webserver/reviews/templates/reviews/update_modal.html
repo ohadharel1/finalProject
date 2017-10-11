@@ -9,9 +9,15 @@
         </div>
         <div class="modal-body" id="modalBody">
             {% for line in body.splitlines %}
-              <p>
-                  {{ line }}
-              </p>
+              {% if 'CRITICAL' in line %}
+                    <p style="color:red;">{{ line }}</p>
+                {% elif 'takeoff' in line %}
+                    <p style="color:blue;">{{ line }}</p>
+                {% elif 'landed' in line %}
+                    <p style="color:green;">{{ line }}</p>
+                {% else %}
+                    <p>{{ line }}</p>
+              {% endif %}
             {% endfor %}
         </div>
         <div class="modal-footer">

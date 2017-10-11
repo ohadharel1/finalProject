@@ -76,4 +76,5 @@ class SystemServer:
                     self.__respond = msg['result']
 
             elif cmd == 'flight':
+                controller.get_instance().set_flight_msg(msg)
                 controller.get_instance().refresh_active_flight(msg)
