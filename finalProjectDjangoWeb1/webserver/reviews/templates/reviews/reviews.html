@@ -43,18 +43,22 @@
         <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
         <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
 
-                             <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </div>
+
 
         </ul>
 
   </nav>
+
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Reports<span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_drone()">Flights Per Drone</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_drone()">Errors Per Drone</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_all_errors()">All Errors</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_month()">Flights Per Month</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_month()">Errors Per Month</a></li>
+    </ul>
+  </div>
 
  <div id="loader"></div>
 
@@ -77,7 +81,7 @@
       </div>
     </div>
   </div>
- <button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>
+ <!--<button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>-->
 
  <div class="modal fade" id="modalErrorsPerDronePopUp" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -98,7 +102,7 @@
       </div>
     </div>
   </div>
- <button type="button" onclick="get_errors_per_drone()">Get Errors Per Drone</button>
+ <!--<button type="button" onclick="get_errors_per_drone()">Get Errors Per Drone</button>-->
 
 
  <div class="modal fade" id="modalAllErrorsPopUp" role="dialog">
@@ -120,7 +124,7 @@
       </div>
     </div>
   </div>
- <button type="button" onclick="get_all_errors()">Get All Errors</button>
+ <!--<button type="button" onclick="get_all_errors()">Get All Errors</button>-->
 
 
  <div class="modal fade" id="flightsPerMonthPopUp" role="dialog">
@@ -142,7 +146,7 @@
       </div>
     </div>
   </div>
- <button type="button" onclick="get_flights_per_month()">Get Flights Per Month</button>
+ <!--<button type="button" onclick="get_flights_per_month()">Get Flights Per Month</button>-->
 
  <div class="modal fade" id="errorsPerMonthPopUp" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -163,7 +167,7 @@
       </div>
     </div>
   </div>
- <button type="button" onclick="get_errors_per_month()">Get Errors Per Month</button>
+ <!--<button type="button" onclick="get_errors_per_month()">Get Errors Per Month</button>-->
 
 
 `<h1 id= "title_review_page">All Flights</h1>
