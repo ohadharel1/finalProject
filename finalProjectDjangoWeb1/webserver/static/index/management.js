@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     jQuery.noConflict();
 });
@@ -70,19 +71,18 @@ function update_motor_table(id, name, kv, weight, price)
             console.log($('#result_header'));
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
-            console.log(response.result);
-            console.log('hiding');
     });
 }
 
@@ -266,17 +266,18 @@ function add_single_to_motor_table(name, kv, weight, price)
 
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -311,9 +312,9 @@ function add_multi_to_motor_table(file)
 
             $('#loader').hide();
 
-            $('#result_header').text('Summery');
-            $('#result_body').text(response.summery);
-            $('#modal_pop_up_result').modal('show');
+            $('#summery_title').text('Summery');
+            $('#summery_body').text(response.summery);
+            $('#modal_pop_up_result2').modal('show');
     });
     }
 
@@ -377,17 +378,18 @@ function delete_motor(id)
 
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -437,17 +439,18 @@ function add_single_to_bat_table(name, type, volt, capacity, discharge_rate, wei
 
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -482,9 +485,9 @@ function add_multi_to_bat_table(file)
 
             $('#loader').hide();
 
-            $('#result_header').text('Summery');
-            $('#result_body').text(response.summery);
-            $('#modal_pop_up_result').modal('show');
+            $('#summery_title').text('Summery');
+            $('#summery_body').text(response.summery);
+            $('#modal_pop_up_result2').modal('show');
     });
     }
 }
@@ -579,17 +582,18 @@ function update_bat_table(id, name, volt, type, discharge_rate, capacity, weight
             console.log($('#result_header'));
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -621,17 +625,18 @@ function delete_bat(id)
 
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -679,17 +684,18 @@ function add_single_to_prop_table(name, diameter, speed, weight, price)
 
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -724,9 +730,9 @@ function add_multi_to_prop_table(file)
 
             $('#loader').hide();
 
-            $('#result_header').text('Summery');
-            $('#result_body').text(response.summery);
-            $('#modal_pop_up_result').modal('show');
+            $('#summery_title').text('Summery');
+            $('#summery_body').text(response.summery);
+            $('#modal_pop_up_result2').modal('show');
     });
     }
 }
@@ -815,17 +821,18 @@ function update_prop_table(id, name, diameter, speed, weight, price)
             console.log($('#result_header'));
             if(response.result == true)
             {
-                $('#result_header').text('Success');
+                $('#success_title').text('Success');
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
-                }, 5000);
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
-                $('#result_header').text('Failure!');
-                $('#result_body').text(response.message);
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -863,13 +870,14 @@ function delete_prop(id)
                 setTimeout(function(){
                     $("#modal_pop_up_result").modal('hide');
                 }, 5000);
+                $('#modal_pop_up_result').modal('show');
             }
             else
             {
                 $('#result_header').text('Failure!');
                 $('#result_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
             }
-            $('#modal_pop_up_result').modal('show');
     });
 }
 
@@ -902,18 +910,19 @@ function delete_record(table, id)
                 $('#loader').hide();
 
                 if(response.result == true)
-                {
-                    $('#result_header').text('Success');
-                    setTimeout(function(){
-                        $("#modal_pop_up_result").modal('hide');
-                    }, 5000);
-                }
-                else
-                {
-                    $('#result_header').text('Failure!');
-                    $('#result_body').text(response.message);
-                }
+            {
+                $('#success_title').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 2000);
                 $('#modal_pop_up_result').modal('show');
+            }
+            else
+            {
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
+            }
         });
     }
     else if(table == 'tblbattery')
@@ -943,18 +952,19 @@ function delete_record(table, id)
                 $('#loader').hide();
 
                 if(response.result == true)
-                {
-                    $('#result_header').text('Success');
-                    setTimeout(function(){
-                        $("#modal_pop_up_result").modal('hide');
-                    }, 5000);
-                }
-                else
-                {
-                    $('#result_header').text('Failure!');
-                    $('#result_body').text(response.message);
-                }
+            {
+                $('#success_title').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 2000);
                 $('#modal_pop_up_result').modal('show');
+            }
+            else
+            {
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
+            }
         });
     }
     else if(table == 'tblmotor')
@@ -984,18 +994,19 @@ function delete_record(table, id)
                 $('#loader').hide();
 
                 if(response.result == true)
-                {
-                    $('#result_header').text('Success');
-                    setTimeout(function(){
-                        $("#modal_pop_up_result").modal('hide');
-                    }, 5000);
-                }
-                else
-                {
-                    $('#result_header').text('Failure!');
-                    $('#result_body').text(response.message);
-                }
+            {
+                $('#success_title').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 2000);
                 $('#modal_pop_up_result').modal('show');
+            }
+            else
+            {
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
+            }
         });
     }
 }

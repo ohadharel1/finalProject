@@ -41,6 +41,7 @@
     <th>Status</th>
     <th>Time In Air</th>
     <th>Details</th>
+
   </tr>
   {% for key, value in status.items %}
   <tr>
@@ -105,33 +106,24 @@
 
 <div class="modal-dialog modal-lg">
 
-      <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
-          <h4 class="modal-title" id="modalTitle1">Add comment to flight</h4>
-        </div>
+           <div class="modal-body">
+          <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_addComment">
+                <legend class ="legendForm1">Add comment to flight</legend>
         <div class="modal-body" id="modalBody1">
           <textarea id="text_area" > </textarea>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-close" id="btn_Add_Comment" data-dismiss="modal" onclick="saveFlightComent(text_area.value)">Add</button>
-            <button type="button" class="btn btn-close"  data-dismiss="modal" onclick="closeModal()">Close</button>
+            <button class="addComment_Btn" id="btn_Add_Comment" data-dismiss="modal" onclick="saveFlightComent(text_area.value)">Add</button>
+            <button class="cancel_btn"  data-dismiss="modal" onclick="closeModal()">Close</button>
 
-        </div>
+  </fieldset>
       </div>
     </div>
 
   </div>
 
   </div>
-<!--<script>-->
-<!--jQuery(document).ready(function($) {-->
-    <!--$(".btn btn-close").click(function() {-->
-        <!--window.location = $(this).data("href");-->
-    <!--});-->
-<!--});-->
-<!--</script>-->
 
 </body>
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->

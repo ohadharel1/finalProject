@@ -12,9 +12,11 @@
       <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
       <script src="{% static 'index/bootstrap.min.js' %}"></script>
       <link rel="stylesheet" type="text/css" href="{% static 'index/DataTables/datatables.min.css' %}"/>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
 
       <script type="text/javascript" src="{% static 'index/DataTables/datatables.min.js' %}"></script>
-      <!--<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>-->
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
       <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
       <script type="text/javascript" src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
@@ -47,9 +49,9 @@
     <div class="container">
 
       <ul id="tableTabs" class="nav nav-tabs">
-        <li id="motorTab"><a data-toggle="tab" href="#motor">Motor</a></li>
+        <li class="active" id="motorTab" ><a data-toggle="tab" href="#motor">Motor</a></li>
         <li id="batTab"><a data-toggle="tab" href="#battery">Battery</a></li>
-        <li id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
+        <li  id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
       </ul>
 
     <div id="updateContainer">
@@ -467,14 +469,53 @@
     <div class="modal fade" id="modal_pop_up_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-         <div class="modal-header">
+         <div class="modal-header" id="modal-header">
+              <span id="result_header"></span>
+             <span id="success_title" ></span>
             <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
-            <h3 id="result_header"></h3>
+
+
           </div>
           <div class="modal-body">
-              <pre id="result_body">
+              <div id="result_body">
+                    <span id="success_body" ></span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-              </pre>
+
+
+        <div class="modal fade" id="modal_pop_up_result1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header" id="modal-header1">
+             <span id="failure_title" ></span>
+            <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
+
+          </div>
+          <div class="modal-body">
+              <div class="result_body">
+                    <span id="failure_body" ></span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal_pop_up_result2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header" id="modal-header2">
+             <span id="summery_title" ></span>
+            <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
+
+          </div>
+          <div class="modal-body">
+              <div class="result_body">
+                    <span id="summery_body" ></span>
+              </div>
           </div>
         </div>
       </div>
@@ -506,6 +547,8 @@
             buttons: [
                 {
                 extend: 'pdfHtml5',
+                text: '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF',
                 title: 'Motor Table ' + get_timestamp(),
                 customize: function ( doc ) {
                     doc.content.splice( 1, 0, {
@@ -515,7 +558,11 @@
                     } );
                   }
                 },
-                'csvHtml5',
+                {
+                        extend:    'csvHtml5',
+                        text:      '<i class="fa fa-file-text-o"></i>',
+                        titleAttr: 'CSV'
+                }
             ],
             columns: [
                         { data: 'id' },
@@ -535,6 +582,8 @@
             buttons: [
                 {
                 extend: 'pdfHtml5',
+                text: '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF',
                 title: 'Battery Table ' + get_timestamp(),
                 customize: function ( doc ) {
                     doc.content.splice( 1, 0, {
@@ -544,7 +593,11 @@
                     } );
                   }
                 },
-                'csvHtml5',
+                {
+                        extend:    'csvHtml5',
+                        text:      '<i class="fa fa-file-text-o"></i>',
+                        titleAttr: 'CSV'
+                }
             ],
             columns: [
                         { data: 'id' },
@@ -566,6 +619,8 @@
             buttons: [
                 {
                 extend: 'pdfHtml5',
+                text: '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF',
                 title: 'Propeller Table ' + get_timestamp(),
                 customize: function ( doc ) {
                     doc.content.splice( 1, 0, {
@@ -575,7 +630,11 @@
                     } );
                   }
                 },
-                'csvHtml5',
+                {
+                        extend:    'csvHtml5',
+                        text:      '<i class="fa fa-file-text-o"></i>',
+                        titleAttr: 'CSV'
+                }
             ],
             columns: [
                         { data: 'id' },

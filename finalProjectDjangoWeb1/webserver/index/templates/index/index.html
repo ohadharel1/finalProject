@@ -12,10 +12,16 @@
     <link rel="stylesheet" href="{% static 'index/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'index/bootstrap-theme.css' %}">
 
+
     <script src="{% static 'index/bootstrap.min.js' %}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-	<!--<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cuprum|Days+One|Montserrat|Numans|Philosopher|Roboto+Mono|Roboto+Slab|Yeseva+One" rel="stylesheet">-->
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/master/canvas-toBlob.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.min.js"></script>
+
+
 </head>
 <body class="mainBodyMenu">
 
@@ -27,6 +33,17 @@
         <li><a class="menuReviews" href="{% url 'reviews:reviews' %}"><span class= "titleNav">Reviews</span></a></li>
         <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
         <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
+
+  <!--<div class="dropdown1">-->
+    <!--<button class="dropbtn" onclick="myFunction()">Report  &nbsp &nbsp<i class="fa fa-caret-down"></i></button>-->
+    <!--<div class="dropdown-content" id="myDropdown">-->
+      <!--<li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_drone()">Flights Per Drone</a></li>-->
+      <!--<li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_drone()">Errors Per Drone</a></li>-->
+      <!--<li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_all_errors()">All Errors</a></li>-->
+      <!--<li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_month()">Flights Per Month</a></li>-->
+      <!--<li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_month()">Errors Per Month</a></li>-->
+    <!--</div>-->
+  <!--</div>-->
       </ul>
   </nav>
 
@@ -96,29 +113,117 @@
 
           </div>
 
-          <!--<div>-->
+ <div class="modal fade" id="modalFlightsPerDronePopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
 
-        <!--<div class= "menuRow1">-->
-        <!--<a href="{% url 'flight_monitor:flight_monitor' %}">-->
-        <!--<button class="flightButtons" type="button">Current flights</button>-->
-        <!--</a>-->
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Flights Per Drone Report</legend>
+        <div class="modal-body">
+         <canvas id="FlightsPerDroneChart" width="650" height="350"></canvas>
 
-        <!--&lt;!&ndash; <a href="formDrone.html"> &ndash;&gt;-->
-        <!--<button class="reviewButtons" type="button">Log review</button>-->
-        <!--&lt;!&ndash; </a> &ndash;&gt;-->
-      <!--</div>-->
+        </div>
 
-        <!--<div class= "menuRow2">-->
-         <!--<a href="{% url 'drone_setup:drone_setup' %}">-->
-        <!--<button class="setupButtons" type="button">Drone setup</button>-->
-        <!--</a>-->
+          <button class="save_image" onclick="saveFlightsPerDroneImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
 
-        <!--&lt;!&ndash; <a href="formDrone.html"> &ndash;&gt;-->
-      <!--<button class="dbButtons" type="button">Managment</button>-->
-        <!--&lt;!&ndash; </a> &ndash;&gt;-->
-       <!--</div>-->
+                   </fieldset>
+      </div>
+    </div>
+         </div>
+  </div>
+ <!--<button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>-->
 
-    <!--</div>-->
+ <div class="modal fade" id="modalErrorsPerDronePopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+                    <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Errors Per Drone Report</legend>
+        <div class="modal-body">
+         <canvas id="ErrorsPerDroneChart" width="650" height="350"></canvas>
+
+        </div>
+          <button class="save_image" onclick="saveErrorsPerDroneImage()">Save As Image</button>
+          <button  class="cancel_btn" data-dismiss="modal">Close</button>
+              </fieldset>
+                         </div>
+      </div>
+    </div>
+  </div>
+ <!--<button type="button" onclick="get_errors_per_drone()">Get Errors Per Drone</button>-->
+
+
+ <div class="modal fade" id="modalAllErrorsPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+           <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">All Errors</legend>
+        <div class="modal-body">
+         <canvas id="AllErrorsChart" width="650" height="350"></canvas>
+
+        </div>
+          <button class="save_image" onclick="saveAllErrorsImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+        </fieldset>
+               </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="modal fade" id="flightsPerMonthPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+           <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Flights Per Month</legend>
+        <div class="modal-body">
+         <canvas id="FlightsPerMonthChart" width="650" height="350"></canvas>
+
+        </div>
+
+            <button class="save_image" onclick="saveFlightsPerMonthImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+           </fieldset>
+       </div>
+      </div>
+    </div>
+  </div>
+ <!--<button type="button" onclick="get_flights_per_month()">Get Flights Per Month</button>-->
+
+ <div class="modal fade" id="errorsPerMonthPopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Errors Per Month</legend>
+        <div class="modal-body">
+         <canvas id="ErrorsPerMonthChart" width="650" height="350"></canvas>
+        </div>
+            <button class="save_image" onclick="saveErrorsPerMonthtImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+           </fieldset>
+       </div>
+      </div>
+    </div>
+  </div>
+
 
     <script src="{% static 'index/droneSite.js' %}"></script>
 

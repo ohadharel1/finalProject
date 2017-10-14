@@ -43,22 +43,21 @@
         <li><a class="menuSetup" href="{% url 'drone_setup:drone_setup' %}"><span class= "titleNav">Setup</span></a></li>
         <li><a class="menuMange" href="{% url 'management:management' %}"><span class= "titleNav">Management</span></a></li>
 
-
-
-        </ul>
-
-  </nav>
-
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Reports<span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+   <div class="dropdown1">
+    <button class="dropbtn" onclick="myFunction()">Report  &nbsp &nbsp<i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content" id="myDropdown">
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_drone()">Flights Per Drone</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_drone()">Errors Per Drone</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_all_errors()">All Errors</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_month()">Flights Per Month</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_month()">Errors Per Month</a></li>
-    </ul>
+    </div>
   </div>
+
+
+        </ul>
+
+  </nav>
 
  <div id="loader"></div>
 
@@ -67,19 +66,22 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Flights Per Drone Report</h4>
-        </div>
+          <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Flights Per Drone Report</legend>
         <div class="modal-body">
-         <canvas id="FlightsPerDroneChart" width="400" height="400"></canvas>
-         <button onclick="saveFlightsPerDroneImage()">Save As Image</button>
+         <canvas id="FlightsPerDroneChart" width="650" height="350"></canvas>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-        </div>
+
+          <button class="save_image" onclick="saveFlightsPerDroneImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+
+                   </fieldset>
       </div>
     </div>
+         </div>
   </div>
  <!--<button type="button" onclick="get_flights_per_drone()">Get Flights Per Drone</button>-->
 
@@ -88,17 +90,18 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Errors Per Drone Report</h4>
-        </div>
+                    <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Errors Per Drone Report</legend>
         <div class="modal-body">
-         <canvas id="ErrorsPerDroneChart" width="400" height="400"></canvas>
-         <button onclick="saveErrorsPerDroneImage()">Save As Image</button>
+         <canvas id="ErrorsPerDroneChart" width="650" height="350"></canvas>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-        </div>
+          <button class="save_image" onclick="saveErrorsPerDroneImage()">Save As Image</button>
+          <button  class="cancel_btn" data-dismiss="modal">Close</button>
+              </fieldset>
+                         </div>
       </div>
     </div>
   </div>
@@ -110,39 +113,40 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">All Errors</h4>
-        </div>
+           <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">All Errors</legend>
         <div class="modal-body">
-         <canvas id="AllErrorsChart" width="100" height="100"></canvas>
-         <button onclick="saveAllErrorsImage()">Save As Image</button>
+         <canvas id="AllErrorsChart" width="650" height="350"></canvas>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-        </div>
+          <button class="save_image" onclick="saveAllErrorsImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+        </fieldset>
+               </div>
       </div>
     </div>
   </div>
- <!--<button type="button" onclick="get_all_errors()">Get All Errors</button>-->
-
 
  <div class="modal fade" id="flightsPerMonthPopUp" role="dialog">
     <div class="modal-dialog modal-lg">
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Flights Per Month</h4>
-        </div>
+           <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Flights Per Month</legend>
         <div class="modal-body">
-         <canvas id="FlightsPerMonthChart" width="100" height="100"></canvas>
-         <button onclick="saveFlightsPerMonthImage()">Save As Image</button>
+         <canvas id="FlightsPerMonthChart" width="650" height="350"></canvas>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-        </div>
+
+            <button class="save_image" onclick="saveFlightsPerMonthImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+           </fieldset>
+       </div>
       </div>
     </div>
   </div>
@@ -153,17 +157,17 @@
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Errors Per Month</h4>
-        </div>
+          <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Errors Per Month</legend>
         <div class="modal-body">
-         <canvas id="ErrorsPerMonthChart" width="100" height="100"></canvas>
-         <button onclick="saveErrorsPerMonthtImage()">Save As Image</button>
+         <canvas id="ErrorsPerMonthChart" width="650" height="350"></canvas>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-close" data-dismiss="modal">Close</button>
-        </div>
+            <button class="save_image" onclick="saveErrorsPerMonthtImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+           </fieldset>
+       </div>
       </div>
     </div>
   </div>
@@ -277,8 +281,7 @@
                 buttons: [
                 {
                     extend: 'pdfHtml5',
-                    className: 'orange',
-                    text: '',
+                    text: '<i class="fa fa-file-pdf-o"></i>',
                     titleAttr: 'PDF',
                     title: 'Flight Logs ' + get_timestamp(),
                     customize: function ( doc ) {
@@ -289,7 +292,11 @@
                         } );
                       }
                     },
-                    'csvHtml5',
+                    {
+                        extend:    'csvHtml5',
+                        text:      '<i class="fa fa-file-text-o"></i>',
+                        titleAttr: 'CSV'
+                    }
 
                 ],
                 columns: [

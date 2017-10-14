@@ -1,28 +1,11 @@
-// function move() {
-//   var elem = document.getElementById("myBar");
-//   var width = 10;
-//   var id = setInterval(frame, 100);
-//   function frame() {
-//     if (width >= 100) {
-//       clearInterval(id);
-//       location.href='../../drone_setup/setup_result';
-//
-//     } else {
-//       width++;
-//       elem.style.width = width + '%';
-//       elem.innerHTML = width * 1  + '%';
-//     }
-//
-//
-//   }
-//
-// }
 
 jQuery(document).ready(function($){
     jQuery.noConflict();
 //    $('#loader_modal').modal('hide');
     $('#wait_dialog').hide();
 });
+
+
 
 function getCookie(name) {
     var cookieValue = null;
@@ -76,3 +59,9 @@ function submit_setup_form(num_of_drones, body, size, payload, time, range, pric
 }
 
     //-----------------------------------------------Setup Details Page-----------------------------------------------------------------------
+
+
+
+
+
+
