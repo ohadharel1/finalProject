@@ -19,6 +19,7 @@ class __Controller:
         self.__active_flights = None
         self.__new_flight_msg = {'do_message': False,
                                  'is_takeoff': None,
+                                 'is_error': False,
                                  'drone_id': None}
         self.__current_page = config.CURRENT_PAGE_INDEX
 
@@ -47,12 +48,19 @@ class __Controller:
         status = msg['status']
         for key in status:
             value = status[key]
-            if value['cmd'] == 'takeoff':
+            if value['is_error']:
+                self.__new_flight_msg['is_takeoff'] = False
+                self.__new_flight_msg['is_error'] = True
+                self.__new_flight_msg['do_message'] = True
+                self.__new_flight_msg['drone_id'] = value['drone_num']
+            elif value['cmd'] == 'takeoff':
                 self.__new_flight_msg['is_takeoff'] = True
+                self.__new_flight_msg['is_error'] = False
                 self.__new_flight_msg['do_message'] = True
                 self.__new_flight_msg['drone_id'] = value['drone_num']
             elif value['cmd'] == 'landed':
                 self.__new_flight_msg['is_takeoff'] = False
+                self.__new_flight_msg['is_error'] = False
                 self.__new_flight_msg['do_message'] = True
                 self.__new_flight_msg['drone_id'] = value['drone_num']
             else:
@@ -63,6 +71,7 @@ class __Controller:
     def get_flight_msg(self):
         flight_msg = self.__new_flight_msg.copy()
         self.__new_flight_msg['do_message'] = False
+        self.__new_flight_msg['is_error'] = False
         return flight_msg
 
     def get_connection_status(self):
