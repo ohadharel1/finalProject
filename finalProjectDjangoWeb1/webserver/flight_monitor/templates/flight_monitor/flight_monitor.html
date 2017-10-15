@@ -125,6 +125,24 @@
 
   </div>
 
+ <div class="modal fade" id="modal_pop_up_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+         <div class="modal-header" id="modal-header">
+             <span id="success_title" ></span>
+            <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
+
+
+          </div>
+          <div class="modal-body">
+              <div id="result_body">
+                    <span id="success_body" ></span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
 <script type="text/javascript" src="{% url 'flight_monitor:flight_monitor_js' %}">

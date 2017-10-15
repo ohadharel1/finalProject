@@ -145,7 +145,12 @@ function saveFlightComent(comment)
    })
    .done(function(response) {
         drone_id_for_comment = null;
-        alert('saved');
+        /*alert('saved');*/
+         $('#success_title').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
     } );
 }
 

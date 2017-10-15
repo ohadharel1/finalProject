@@ -1141,16 +1141,15 @@ background: #e6e6e6;
     background-image:url("../image/check-circle-green-512.png");
     background-repeat:no-repeat;
     background-size: 35px 35px;
-    background-position:2% 40%;
+    background-position:3% 63%;
 }
 
-#success_title,
-#result_header
+#success_title
 {
     font-family: 'YanoneKaffeesatz', sans-serif;
     font-size:30px;
     font-color:#003366;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 #success_body{
@@ -1161,19 +1160,19 @@ background: #e6e6e6;
 }
 
 #modal-header1{
-    background-color:#ff3333;
+    background-color:#ff4d4d;
     height: 50px;
     background-image:url("../image/delete-98512_960_720.png");
     background-repeat:no-repeat;
     background-size: 35px 35px;
-    background-position:2% 40%;
+    background-position:3% 63%;
 }
 
 #failure_title{
     font-family: 'YanoneKaffeesatz', sans-serif;
     font-size:30px;
     font-color:#003366;
-    margin-left: 50px;
+    margin-left: 40px;
 
 
 }
@@ -1182,7 +1181,32 @@ background: #e6e6e6;
     font-family: 'YanoneKaffeesatz', sans-serif;
     font-size:20px;
     font-color:#003366;
-    margin-left: 200px;
+    margin-left: 150px;
+}
+
+#summery_title{
+    font-family: 'YanoneKaffeesatz', sans-serif;
+    font-size:30px;
+    font-color:#003366;
+    margin-left: 40px;
+}
+
+#modal-header2{
+    background-color:#b3e0ff;
+    height: 50px;
+    background-image:url("../image/info.png");
+    background-repeat:no-repeat;
+    background-size: 35px 35px;
+    background-position:3% 63%;
+}
+
+#summery_body{
+margin-left:5px;
+    font-family: 'YanoneKaffeesatz', sans-serif;
+    font-size:20px;
+    font-color:#003366;
+    weight:150px;
+    border: none;
 }
 
 

@@ -134,15 +134,15 @@
                   </div>
                   <div class="form-group">
                     <label for="motor_kv" class="titleForm" >KV</label>
-                        <input type="number" step="0.1" class="input-field" id="motor_kv" required pattern="[0-9]+" />
+                        <input type="number" min="1" step="0.1" class="input-field" id="motor_kv" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
                     <label for="motor_weight" class="titleForm" >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="motor_weight" required pattern="[0-9]+" />
+                        <input type="number" min="1" step="0.1" class="input-field" id="motor_weight" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
                     <label for="motor_price" class="titleForm" >Price</label>
-                        <input type="number" step="0.1" class="input-field" id="motor_price" required pattern="[0-9]+" />
+                        <input type="number" min="1" step="0.1" class="input-field" id="motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
                       <button type="submit" class="saveBtn">Save</button>
@@ -165,19 +165,19 @@
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="add_single_motor_name" class="titleForm" >Motor Name</label>
-                        <input type="text" class="input-field" id="add_single_motor_name" required/>
+                        <input type="text" min="1" class="input-field" id="add_single_motor_name" required/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_motor_kv" class="titleForm" >KV</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_kv" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_motor_kv" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_motor_weight" class="titleForm" >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_weight" required pattern="[0-9]+" />
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_motor_weight" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
                     <label for="add_single_motor_price" class="titleForm" >Motor Price</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_motor_price" required pattern="[0-9]+" />
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_motor_price" required pattern="[0-9]+" />
                   </div>
                   <div class="form-group">
                       <button type="submit" class="addBtn">Add</button>
@@ -225,15 +225,15 @@
                 {% csrf_token %}
                   <div class="form-group">
                     <label for="bat_id"  class="titleForm">Battery ID</label>
-                        <input type="number" class="input-field" id="bat_id" readonly="readonly" value="" disabled/>
+                        <input type="number" min="1" class="input-field" id="bat_id" readonly="readonly" value="" disabled/>
                   </div>
                   <div class="form-group">
                     <label for="bat_name"  class="titleForm" >Battery Name</label>
-                        <input type="text" class="input-field" id="bat_name" required />
+                        <input type="text" min="1" class="input-field" id="bat_name" required />
                   </div>
                   <div class="form-group">
                     <label for="bat_volt"  class="titleForm" >Volt</label>
-                        <input type="number" step="0.1" class="input-field" id="bat_volt" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="bat_volt" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="bat_type"  class="titleForm" >Type</label>
@@ -248,19 +248,19 @@
                   </div>
                   <div class="form-group">
                     <label for="bat_discharge_rate"  class="titleForm" >Discharge Rate</label>
-                        <input type="number" step="0.1" class="input-field" id="bat_discharge_rate" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="bat_discharge_rate" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="bat_capacity"  class="titleForm" >Capacity</label>
-                        <input type="number" step="0.1" class="input-field" id="bat_capacity"required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="bat_capacity"required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="bat_weight"  class="titleForm" >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="bat_weight" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="bat_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="bat_price"  class="titleForm" >Price</label>
-                        <input type="number" step="0.1" class="input-field" id="bat_price" required pattern="[0-9]+"/>
+                        <input type="number" min="1"  step="0.1" class="input-field" id="bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                       <button type="submit" class="saveBtn">Save</button>
@@ -301,23 +301,23 @@
                   </div>
                   <div class="form-group">
                     <label for="add_single_bat_volt" class="titleForm" >Volt</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_volt" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_bat_volt" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_bat_discharge_rate" class="titleForm" >Discharge Rate</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_discharge_rate" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_bat_discharge_rate" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_bat_capacity" class="titleForm" >Capacity</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_capacity" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_bat_capacity" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_bat_weight" class="titleForm" >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_weight" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_bat_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_bat_price" class="titleForm" >Motor Price</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_bat_price" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_bat_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                       <button type="submit" class="addBtn">Add</button>
@@ -376,19 +376,19 @@
                   </div>
                   <div class="form-group">
                     <label for="prop_diameter" class="titleForm" >Propeller Diameter</label>
-                        <input type="number" step="0.1" class="input-field" id="prop_diameter" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="prop_diameter" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="prop_speed" class="titleForm" >Speed</label>
-                        <input type="text" class="input-field" id="prop_speed" required pattern="[0-9]+"/>
+                        <input type="text" min="1" class="input-field" id="prop_speed" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="prop_weight" class="titleForm" >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="prop_weight" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="prop_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="prop_price" class="titleForm" >Price</label>
-                        <input type="number" step="0.1" class="input-field" id="prop_price" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                       <button type="submit" class="saveBtn">Save</button>
@@ -418,19 +418,19 @@
 
                   <div class="form-group">
                     <label for="add_single_prop_diameter" class="titleForm" >Diameter</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_diameter" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_prop_diameter" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_prop_speed" class="titleForm" >Speed</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_speed" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_prop_speed" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_prop_weight" class="titleForm"  >Weight</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_weight" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_prop_weight" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                     <label for="add_single_prop_price" class="titleForm" >Prop Price</label>
-                        <input type="number" step="0.1" class="input-field" id="add_single_prop_price" required pattern="[0-9]+"/>
+                        <input type="number" min="1" step="0.1" class="input-field" id="add_single_prop_price" required pattern="[0-9]+"/>
                   </div>
                   <div class="form-group">
                       <button type="submit" class="addBtn">Add</button>
@@ -470,7 +470,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
          <div class="modal-header" id="modal-header">
-              <span id="result_header"></span>
              <span id="success_title" ></span>
             <button class="close" data-dismiss="modal" onclick="close_result_pop_up()">×</button>
 
@@ -514,7 +513,7 @@
           </div>
           <div class="modal-body">
               <div class="result_body">
-                    <pre id="summery_body"></pre>
+                    <pre id="summery_body" ></pre>
               </div>
           </div>
         </div>
