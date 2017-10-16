@@ -751,10 +751,11 @@ margin-left:370px;
 
 
 .addItemSingle_btn,
-.addItemMulti_btn
+.addItemMulti_btn,
+.addItemSingle_prop
 {
     text-align: right;
-    margin-left: 5x;
+    margin-left: 7x;
     margin-top: 5px;
     border-radius: 4px;
     border: 2px solid #2e2e1f;
@@ -764,19 +765,27 @@ margin-left:370px;
     background: none;
     background-image:url("../image/add_item.png");
     background-repeat:no-repeat;
-    background-position:5% 50%;
+    background-position:2% 50%;
     border: none;
 
 }
 
 .addItemSingle_btn{
     height: 40px;
-    width: 160px;
+    width: 170px;
 }
 
 .addItemMulti_btn{
     height: 40px;
-    width: 255px;
+    width: 260px;
+}
+
+.addItemSingle_prop{
+ width: 175px;
+}
+
+#addItemMulti_prop{
+ width: 270px;
 }
 
 #update_Btn{

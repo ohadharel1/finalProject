@@ -51,15 +51,15 @@
       <ul id="tableTabs" class="nav nav-tabs">
         <li class="active" id="motorTab" ><a data-toggle="tab" href="#motor">Motor</a></li>
         <li id="batTab"><a data-toggle="tab" href="#battery">Battery</a></li>
-        <li  id="propTab"><a data-toggle="tab" href="#prop">Prop</a></li>
+        <li  id="propTab"><a data-toggle="tab" href="#prop">Propeller</a></li>
       </ul>
 
     <div id="updateContainer">
       <div id="tableContainer" class="tab-content">
         <div id="motor" class="tab-pane fade in active">
-          <button class="addItemSingle_btn"  onclick="motor_add_single_pop_up()"> Add Single Item</button>
+          <button class="addItemSingle_btn"  onclick="motor_add_single_pop_up()"> Add Single Motor</button>
 
-          <button class="addItemMulti_btn"  onclick="motor_add_multi_pop_up()"> Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn"  onclick="motor_add_multi_pop_up()"> Add Multiple Motors (CSV File)</button>
 
           <table id="tblmotor" class="table table-striped table-condensed table-bordered table-hover" cellspacing="0">
             <thead>
@@ -75,9 +75,9 @@
           </table>
         </div>
         <div id="battery" class="tab-pane fade">
-          <button class="addItemSingle_btn" onclick="bat_add_single_pop_up()">Add Single Item</button>
+          <button class="addItemSingle_btn" onclick="bat_add_single_pop_up()">Add Single Battery</button>
 
-          <button class="addItemMulti_btn" onclick="bat_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn" onclick="bat_add_multi_pop_up()">Add Multiple Batteries (CSV File)</button>
           <table id="tblbattery" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
             <thead>
             <tr style="text-align-last:center;" >
@@ -95,9 +95,9 @@
           </table>
         </div>
         <div id="prop" class="tab-pane fade">
-          <button class="addItemSingle_btn" onclick="prop_add_single_pop_up()">Add Single Item</button>
+          <button class="addItemSingle_prop" onclick="prop_add_single_pop_up()">Add Single Propeller</button>
 
-          <button class="addItemMulti_btn" onclick="prop_add_multi_pop_up()">Add Multiple Items (CSV File)</button>
+          <button class="addItemMulti_btn" id="addItemMulti_prop" onclick="prop_add_multi_pop_up()">Add Multiple Propellers (CSV File)</button>
           <table id="tblprop" class="table table-striped table-condensed table-bordered table-hover" style="width:100%">
           <thead>
             <tr style="text-align-last:center;" >
