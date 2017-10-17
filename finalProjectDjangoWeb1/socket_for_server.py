@@ -15,7 +15,7 @@ port = 10002
 class SystemServer:
     def __init__(self):
         print 'starting system server'
-        self.msg_size = 405600
+        self.msg_size = 4056000
         self.__is_connected = False
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_address = (address, port)
@@ -34,10 +34,18 @@ class SystemServer:
         return self.__db_connected
 
     def recv_msg_thread(self):
+        old_msg = ''
         while self.server_socket:
             msg = self.server_socket.recv(self.msg_size)
             if msg is not None:
-                self.handle_msg(json_utils.str_to_json(msg))
+                print 'msg before is: ' + str(msg)
+                msg = old_msg + msg
+                json_dict = json_utils.str_to_json(msg)
+                if json_dict is None:
+                    old_msg = msg
+                else:
+                    self.handle_msg(json_dict)
+                    old_msg = ''
             time.sleep(0.1)
         raise Exception('stoped listening!!!')
 
