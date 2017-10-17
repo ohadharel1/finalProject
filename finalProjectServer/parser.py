@@ -64,9 +64,24 @@ def parse_prop_table():
     print 'done parsing bat table'
 
 
+def parse_drone_table(motor_id, batt_id, prop_id):
+    print 'parsing drone table'
+    drone_ids = controller.get_instance().get_db().get_all_drone_ids()
+    for drone in drone_ids:
+        try:
+            args = (drone, motor_id, batt_id, prop_id)
+            controller.get_instance().get_db().insert_to_table(config.drone_tbl_insert, args)
+            print 'inserted'
+        except Exception, e:
+            print str(e)
+            print 'failed to insert'
+        time.sleep(0.1)
+    print 'done parsing drone table'
+
 if __name__ == '__main__':
     print 'starting to parse'
     #parse_motor_table()
     #parse_bat_table()
-    parse_prop_table()
+    # parse_prop_table()
+    parse_drone_table(1557, 149, 10)
     print 'done parsing!'

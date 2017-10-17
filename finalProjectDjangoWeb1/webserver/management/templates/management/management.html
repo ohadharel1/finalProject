@@ -481,6 +481,42 @@
       </div>
     </div>
 
+        <!--drone update modal-->
+    <div class="modal fade" id="drone_edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+             <div class="modal-body">
+            <button class="close" data-dismiss="modal">×</button>
+                 <fieldset class ="fieldsetForm_adddrone">
+                <legend class ="legendForm1">Edit Propeller</legend>
+              <form class="form-horizontal" role="form" action="javascript:update_drone_table(drone_id.value, drone_motor_name.value, drone_bat_name.value, drone_prop_name.value)">
+                {% csrf_token %}
+                  <div class="form-group">
+                    <label  for="prop_id">Propeller ID</label>
+                        <input type="number" class="input-field" id="drone_id" readonly="readonly" value="" disabled/>
+                  </div>
+                  <div class="form-group">
+                    <label for="prop_name" class="titleForm" >Motor Name</label>
+                        <input type="text" class="input-field" id="drone_motor_name" required/>
+                  </div>
+                  <div class="form-group">
+                    <label for="prop_diameter" class="titleForm" >Battery Name</label>
+                        <input type="text" class="input-field" id="drone_bat_name" required/>
+                  </div>
+                  <div class="form-group">
+                    <label for="prop_speed" class="titleForm" >Propelor Name</label>
+                        <input type="text" class="input-field" id="drone_prop_name" required/>
+                  </div>
+                  <div class="form-group">
+                      <button type="submit" class="saveBtn">Save</button>
+                  </div>
+                </form>
+                     </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modal fade" id="modal_pop_up_result" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -687,9 +723,9 @@
             ],
             columns: [
                         { data: 'id' },
-                        { data: 'motor' },
-                        { data: 'battery' },
-                        { data: 'propeller' },
+                        { data: 'motor_name' },
+                        { data: 'bat_name' },
+                        { data: 'prop_name' },
                         { "defaultContent": "<button id='edit' class='update_btn' role='button'>" }
                     ]
         } );

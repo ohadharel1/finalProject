@@ -150,6 +150,10 @@ $('#tableTabs').on('click', '#propTab', function() {
     get_prop_table();
     console.log('battery pressed!')
 });
+$('#tableTabs').on('click', '#droneTab', function() {
+    get_drone_table();
+    console.log('drone pressed!')
+});
 
 $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
     $("#success-alert").slideUp(500);
@@ -880,6 +884,104 @@ function delete_prop(id)
             }
     });
 }
+
+
+function get_drone_table()
+{
+    console.log('get drone table');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/get_drone_table/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+            console.log(mydata);
+            drone_table.clear();
+            drone_table.rows.add(mydata);
+            drone_table.draw();
+
+            $('#loader').hide();
+    });
+    $('#tbldrone tbody').on( 'click', 'button', function (evt) {
+//        evt.stopPropagation();
+//        evt.preventDefault();
+        evt.stopImmediatePropagation();
+        if (this.id == "edit")
+        {
+            var data = drone_table.row( $(this).parents('tr') ).data();
+            $(".modal-body #drone_id").val(data.id);
+            $(".modal-body #drone_motor_name").val(data.motor_name);
+            $(".modal-body #drone_bat_name").val(data.bat_name);
+            $(".modal-body #drone_prop_name").val(data.prop_name);
+            $("#drone_edit_modal").modal('show');
+        }
+        else
+        {
+            console.log('delete drone');
+            var data = bat_table.row( $(this).parents('tr') ).data();
+            delete_btn_pushed('tbldrone', data.drone_id);
+        }
+    } );
+}
+
+
+function update_drone_table(drone_id, motor_name, bat_name, prop_name)
+{
+    $("#drone_edit_modal").modal('hide');
+    $('#loader').show();
+    $.ajax({
+//           async: false,
+           type: "POST",
+           url: "/management/drone_table_update/",
+           data: {
+               'drone_id' : drone_id,
+               'motor_name' : motor_name,
+               'bat_name' : bat_name,
+               'prop_name' : prop_name,
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+//            console.log(response);
+            mydata = [];
+            for (var key in response.values)
+            {
+                mydata.push(response.values[key]);
+            }
+//            console.log(mydata);
+            drone_table.clear();
+            drone_table.rows.add(mydata);
+            drone_table.draw();
+
+            $('#loader').hide();
+            console.log($('#result_header'));
+            if(response.result == true)
+            {
+                $('#success_title').text('Success');
+                setTimeout(function(){
+                    $("#modal_pop_up_result").modal('hide');
+                }, 2000);
+                $('#modal_pop_up_result').modal('show');
+            }
+            else
+            {
+                $('#failure_title').text('Failure!');
+                $('#failure_body').text(response.message);
+                $('#modal_pop_up_result1').modal('show');
+            }
+    });
+}
+
 
 function delete_record(table, id)
 {

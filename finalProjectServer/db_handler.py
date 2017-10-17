@@ -215,9 +215,33 @@ class _DB_handler:
             for key in keys_list:
                 current_row_values[key] = row[key]
             complete_values_list.append(current_row_values)
+        if table_name == config.drone_tbl_name:
+            complete_values_list = self.get_drone_table(complete_values_list)
         res = {'keys': keys_list,
                'values': complete_values_list}
         return res
+
+    def get_drone_table(self, value_list):
+        result_list = []
+        for row in value_list:
+            row_dict = {}
+            row_dict['id'] = row['id']
+            row_dict['motor_name'] = self.get_name_by_id(config.motor_tbl_name, row['motor_id'])
+            row_dict['bat_name'] = self.get_name_by_id(config.battery_tbl_name, row['battery_id'])
+            row_dict['prop_name'] = self.get_name_by_id(config.prop_tbl_name, row['prop_id'])
+            result_list.append(row_dict)
+        return result_list
+
+    def get_name_by_id(self, table_name, id):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT name FROM " + table_name + ' WHERE id=' + str(id) + ';')
+        query_result = cursor.fetchall()
+        cursor.close()
+        res = 'N/A'
+        for i, row in enumerate(query_result):
+            res = row['name']
+        return res
+
 
     def update_motor_table(self, id, name, kv, weight, price):
         res = False, ''
@@ -246,6 +270,11 @@ class _DB_handler:
                 cursor.execute("UPDATE %s SET `name`='%s', `type`='%s', `volt`=%s, `discharge_rate`=%s, `capacity`=%s, `weight`=%s, `price`=%s WHERE `id`=%s;"%(config.battery_tbl_name, args['name'], args['type'], args['volt'], args['discharge_rate'], args['capacity'], args['weight'], args['price'], args['id']))
             elif args['table_name'] == config.prop_tbl_name:
                 cursor.execute("UPDATE %s SET `name`='%s', `diameter`=%s, `speed`=%s, `weight`=%s, `price`=%s WHERE `id`=%s;"%(config.prop_tbl_name, args['name'], args['diameter'], args['speed'], args['weight'], args['price'], args['id']))
+            elif args['table_name'] == config.drone_tbl_name:
+                motor_id = self.get_id_by_name(config.motor_tbl_name, args['motor_name'])
+                bat_id = self.get_id_by_name(config.battery_tbl_name, args['bat_name'])
+                prop_id = self.get_id_by_name(config.prop_tbl_name, args['prop_name'])
+                cursor.execute("UPDATE %s SET motor_id = '%s', battery_id = '%s', prop_id = '%s' WHERE id='%s';"%(config.drone_tbl_name, motor_id, bat_id, prop_id, args['drone_id']))
             if cursor.rowcount <= 0:
                 res = False, 'No Row Was Affected By The Statement!'
             else:
@@ -257,6 +286,16 @@ class _DB_handler:
         finally:
             cursor.close()
             return res
+
+    def get_id_by_name(self, table_name, name):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT id FROM " + table_name + " WHERE name='" + str(name) + "';")
+        query_result = cursor.fetchall()
+        cursor.close()
+        res = 'N/A'
+        for i, row in enumerate(query_result):
+            res = row['id']
+        return res
 
     def add_single_to_table(self, data):
         if data['table_name'] == config.motor_tbl_name:
@@ -484,6 +523,18 @@ class _DB_handler:
             return res
         except Exception, e:
             print e
+
+    def get_all_drone_ids(self):
+        ids = []
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT drone_num FROM " + config.flight_tbl_name, )
+        query_result = cursor.fetchall()
+        cursor.close()
+        for i, row in enumerate(query_result):
+            current_id = row['drone_num']
+            if current_id not in ids:
+                ids.append(current_id)
+        return ids
 
 
 def get_instance():

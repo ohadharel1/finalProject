@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^add_single_prop_table/', views.add_single_prop_table, name='add_single_prop_table'),
     url(r'^add_multi_prop_table/', views.add_multi_prop_table, name='add_multi_prop_table'),
     url(r'^delete_prop_table/', views.delete_prop_table, name='delete_prop_table'),
+    url(r'^drone_table_update/', views.drone_table_update, name='prop_table_update'),
+    url(r'^get_drone_table/', views.get_drone_table, name='get_prop_table'),
 ]

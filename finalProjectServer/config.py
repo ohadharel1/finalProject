@@ -17,11 +17,13 @@ prop_tbl_name = 'tblprops'
 battery_tbl_name = 'tblbattery'
 thrust_tbl_name = 'tblthrust'
 flight_tbl_name = 'tblflight'
+drone_tbl_name = 'tbldrone'
 #for table insert:
 motor_tbl_insert = motor_tbl_name + ' (name, kv, weight, price) VALUES (%s, %s, %s, %s)'
 prop_tbl_insert = prop_tbl_name + ' (name, diameter, speed, weight, price) VALUES (%s, %s, %s, %s, %s)'
 bat_tbl_insert = battery_tbl_name + ' (name, type, volt, discharge_rate, capacity, weight, price) VALUES ("%s", "%s", %s, %s, %s, %s, %s)'
 flight_tbl_insert = flight_tbl_name + ' (drone_num, start_flight_time, state, log_file_path) VALUES (%s, %s, %s, %s)'
+drone_tbl_insert = drone_tbl_name + ' (id, motor_id, battery_id, prop_id) VALUES (%s, %s, %s, %s)'
 
 #flight_status
 flight_status_active = ['takeoff', 'in_mission', 'rtl', 'land']

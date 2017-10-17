@@ -106,7 +106,7 @@ class WebAppClientHandler:
                         res['summery'] = summery
                         res['query_num'] = config.QUERY_ADD_MULTI_TO_TABLE
                     if query_num == config.QUERY_DELETE_FROM_TABLE:
-                        self.logger.info('got QUERY_ADD_MULTI_TO_TABLE')
+                        self.logger.info('got QUERY_DELETE_FROM_TABLE')
                         table_name = msg['table_name']
                         commit_is_good, message = controller.get_instance().get_db().delete_from_table(msg)
                         result = controller.get_instance().get_db().get_table_for_managing(table_name)

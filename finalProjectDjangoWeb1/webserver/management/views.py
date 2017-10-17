@@ -375,3 +375,39 @@ def delete_prop_table(request):
                'keys': table_result['keys'],
                'values': table_result['values']}
     return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
+def get_drone_table(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_GET_TABLE
+    msg['table_name'] = 'tbldrone'
+    table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    context = {'table': 'tbldrone',
+               'result': table_result['success'],
+               'keys': table_result['keys'],
+               'values': table_result['values']}
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
+def drone_table_update(request):
+    id = request.POST['drone_id']
+    motor_name = request.POST['motor_name']
+    bat_name = request.POST['bat_name']
+    prop_name = request.POST['prop_name']
+
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_UPDATE_TABLE
+    msg['table_name'] = 'tbldrone'
+    msg['drone_id'] = id
+    msg['motor_name'] = motor_name
+    msg['bat_name'] = bat_name
+    msg['prop_name'] = prop_name
+    table_result = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    context = {'table': 'tbldrone',
+               'result': table_result['success'],
+               'message': table_result['message'],
+               'keys': table_result['keys'],
+               'values': table_result['values']}
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
