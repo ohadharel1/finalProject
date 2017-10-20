@@ -19,7 +19,7 @@ class _DB_handler:
     def __init__(self):
         self.db = MySQLdb.connect(host = config.db_host, user = config.db_user, passwd = config.db_pass, db = config.db_name)
         self.logger = logger.Logger()
-        # self.get_flights_per_month()
+        # self.get_total_flight_time_per_drone()
 
     def get_table(self, table_name):
         cursor = self.db.cursor()
@@ -169,6 +169,10 @@ class _DB_handler:
             single_res_line['log_file_path'] = row['log_file_path'].replace('\\', '/')
             single_res_line['drone_num'] = row['drone_num']
             single_res_line['comment'] = row['comment']
+            if row['error_type'] is not None:
+                single_res_line['error_type'] = config.error_types[int(row['error_type'])]
+            else:
+                single_res_line['error_type'] = 'None'
             res[i] = single_res_line
         return res
 
@@ -549,6 +553,54 @@ class _DB_handler:
             if current_id not in ids:
                 ids.append(current_id)
         return ids
+
+    def get_total_flight_time_per_drone(self):
+        default_background_colors = ['rgba(0, 0, 0, 0.2)',
+                                     'rgba(54, 162, 235, 0.2)',
+                                     'rgba(255, 206, 86, 0.2)',
+                                     'rgba(75, 192, 192, 0.2)',
+                                     'rgba(153, 102, 255, 0.2)',
+                                     'rgba(255, 159, 64, 0.2)']
+        default_border_colors = ['rgba(0, 0, 0, 1)',
+                                 'rgba(54, 162, 235, 1)',
+                                 'rgba(255, 206, 86, 1)',
+                                 'rgba(75, 192, 192, 1)',
+                                 'rgba(153, 102, 255, 1)',
+                                 'rgba(255, 159, 64, 1)']
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT drone_num, start_flight_time, end_flight_time FROM " + config.flight_tbl_name)
+        query_result = cursor.fetchall()
+        cursor.close()
+        ids = []
+        counters = []
+        background_colors = []
+        border_colors = []
+        for i, row in enumerate(query_result):
+            current_id = row['drone_num']
+            if current_id not in ids:
+                ids.append(current_id)
+                counters.append(datetime.timedelta(hours=0))
+                background_colors.append(default_background_colors[len(ids) % len(default_background_colors)])
+                border_colors.append(default_border_colors[len(ids) % len(default_border_colors)])
+            else:
+                pass
+            if row['end_flight_time'] is not None:
+                duration = row['end_flight_time'] - row['start_flight_time']
+                counters[ids.index(current_id)] += duration
+                if counters[ids.index(current_id)] > datetime.timedelta(hours=5):
+                    background_colors[ids.index(current_id)] = 'rgba(255, 0, 0, 0.2)'
+                    border_colors[ids.index(current_id)] = 'rgba(255, 0, 0, 1)'
+        for index, counter in enumerate(counters):
+            total_seconds = counter.total_seconds()
+            hours = total_seconds / (60 * 60)
+            minuts = total_seconds / (60)
+            total_time = hours + (minuts / 100)
+            counters[index] = total_time
+        res = {'ids': ids,
+               'counters': counters,
+               'background_colors': background_colors,
+               'border_colors': border_colors}
+        return res
 
 
 def get_instance():

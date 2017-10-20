@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^get_all_errors/', views.get_all_errors, name='get_all_errors'),
     url(r'^get_flights_per_month/', views.get_flights_per_month, name='get_flights_per_month'),
     url(r'^get_errors_per_month/', views.get_errors_per_month, name='get_errors_per_month'),
+    url(r'^get_total_flight_time_per_drone/', views.get_total_flight_time_per_drone, name='get_total_flight_time_per_drone'),
 ]

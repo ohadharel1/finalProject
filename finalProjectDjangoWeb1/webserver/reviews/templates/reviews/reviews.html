@@ -51,6 +51,7 @@
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_all_errors()">All Errors</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_flights_per_month()">Flights Per Month</a></li>
       <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_errors_per_month()">Errors Per Month</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" onclick="get_total_flight_time_per_drone()">Flight Time Per Drone</a></li>
     </div>
   </div>
 
@@ -171,6 +172,31 @@
       </div>
     </div>
   </div>
+
+
+<div class="modal fade" id="modalFlightTimePerDronePopUp" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-body">
+                 <button class="close" data-dismiss="modal">×</button>
+              <fieldset class ="fieldsetForm_report">
+                <legend class ="legendForm_report">Flight Time Per Drone Report</legend>
+        <div class="modal-body">
+         <canvas id="FlightTimePerDroneChart" width="650" height="350"></canvas>
+
+        </div>
+
+          <button class="save_image" onclick="saveFlightTimePerDroneImage()">Save As Image</button>
+          <button class="cancel_btn" data-dismiss="modal">Close</button>
+
+                   </fieldset>
+      </div>
+    </div>
+   </div>
+  </div>
+
  <!--<button type="button" onclick="get_errors_per_month()">Get Errors Per Month</button>-->
 
 
@@ -222,6 +248,7 @@
         </th>
 
         <th id="thReview_comment" >Flight Comment</th>
+        <th id="thReview_error" >Error Type</th>
         <th id="thReview_report" >Drone Report</th>
       </tr>
       </thead>
@@ -307,6 +334,7 @@
                             { "defaultContent": "<button id='log'  class='log_btn'  role='button'></button>" },
                             { data: 'state' },
                             { data: 'comment' },
+                            { data: 'error_type' },
                             { "defaultContent": "<button id='report' class='report_btn' role='button'></button>" },
                             {
                                 data: 'log_file_path',

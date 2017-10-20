@@ -369,7 +369,7 @@ function get_flights_per_month()
        .done(function(response) {
             var ctx = document.getElementById("FlightsPerMonthChart").getContext('2d');
             myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     datasets: [{
@@ -441,7 +441,7 @@ function get_errors_per_month()
        .done(function(response) {
             ctx = document.getElementById("ErrorsPerMonthChart").getContext('2d');
             myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     datasets: [{
@@ -499,4 +499,53 @@ function saveErrorsPerMonthtImage() {
     });
 }
 
+
+function get_total_flight_time_per_drone()
+{
+    $('#loader').show();
+    $.ajax({
+           async: false,
+           type: "POST",
+           url: "/reviews/get_total_flight_time_per_drone/",
+           data: {
+               'csrfmiddlewaretoken' : getCookie('csrftoken')
+           },
+       })
+       .done(function(response) {
+            console.log(response)
+            var ids = response.ids;
+            var counters = response.counters;
+            var ctx = document.getElementById("FlightTimePerDroneChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: response.ids,
+                    datasets: [{
+                        label: 'Total flight time per drone',
+                        data: response.counters,
+                        backgroundColor: response.background_colors,
+                        borderColor: response.border_colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            $('#loader').hide();
+            $("#modalFlightTimePerDronePopUp").modal('show');
+       });
+}
+
+function saveFlightTimePerDroneImage() {
+    $("#FlightTimePerDroneChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "flightTimePerDrone.png");
+    });
+}
 

@@ -334,6 +334,14 @@ def get_errors_per_month(request):
     return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
 
 
+def get_total_flight_time_per_drone(request):
+    msg = {}
+    msg['cmd'] = 'query'
+    msg['query_num'] = config.QUERY_GET_TOTAL_FLIGHT_TIME_PER_DRONE
+    context = controller.get_instance().get_system_server().send_msg(msg, blocking=True)
+    return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
+
+
 def str_to_timedelta(time_str):
     try:
         t = datetime.datetime.strptime(time_str, "%M")
