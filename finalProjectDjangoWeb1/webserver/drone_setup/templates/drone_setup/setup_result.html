@@ -80,21 +80,23 @@
 </div>
     {% for key, value in context.items%}
       <div class="mySlides">
+
         <div class="title_header">
         <h2 class="droneName">{{ key }}</h2>
          <div class="btn_option"> <button type="button" class="allOption_btn" data-toggle="modal" data-target="#myModal">View All Options</button></div>
-         </div>
+</div>
+
         {% if value.body == "Quad" %}
-          <img src="{% static 'image/quad.png' %}" class ="droneImage"><br><br><br>
+          <img src="{% static 'image/quad-with-items.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
         {% if value.body == "Heli" %}
-          <img src="{% static 'image/Rahfan-3.png' %}" class ="droneImage"><br><br><br>
+          <img src="{% static 'image/heli-with-items.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
         {% if value.body == "Octa" %}
-          <img src="{% static 'image/Rahfan-1.png' %}" class ="droneImage"><br><br><br>
+          <img src="{% static 'image/octocopters-with-items.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
         {% if value.body == "Hexa" %}
-          <img src="{% static 'image/Rahfan-2.png' %}" class ="droneImage"><br><br><br>
+          <img src="{% static 'image/hexa-with-items.png' %}" class ="droneImage"><br><br><br>
         {% endif %}
 
         <h3 class= "titleMotor" >Motor: <span class = "droneCompo1" id = "engineTitle"> {{ value.motor }}  </span> </h3>

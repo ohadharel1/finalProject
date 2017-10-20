@@ -519,11 +519,9 @@ float: left;
 
 .droneImage{
 position: absolute;
-  width:400px;
-  height:150px;
-  margin-left: 450px;
-  margin-top:15px;
-
+  width:500px;
+  height:270px;
+  margin-left: 350px;
 }
 
 .droneCompo{
@@ -556,7 +554,7 @@ margin-left:370px;
 }
 
 .allOption_btn{
-    background: #ccccff;
+    background: #c3d5d5;
     text-align: center;
     font-family: "Roboto-Slab", Verdana, Tahoma;
     font-size: 16px;
@@ -578,7 +576,7 @@ margin-left:370px;
 .titleMotor{
   font-family: 'YanoneKaffeesatz', sans-serif;
   position:relative;
-  margin-top: 1px;
+  margin-top: 15px;
   margin-left: 880px;
   font-size: 40px;
 
@@ -662,7 +660,7 @@ margin-left:370px;
 }
 
 .nextPreview{
-  background: #ccccff;
+  background: #c3d5d5;
   width: 80px;
   height: 45px;
   border-radius: 4px;
@@ -808,6 +806,18 @@ margin-left:370px;
     background-image:url("../image/delete.png");
     background-repeat:no-repeat;
    /* background-size: 20px 20px;*/
+    border: none;
+}
+
+.save_btn{
+    height: 25px;
+    width: 25px;
+    margin-left: 5x;
+    margin-top: 5px;
+    background: none;
+    background-image:url("../image/save.png");
+    background-repeat:no-repeat;
+    /*background-size: 20px 20px;*/
     border: none;
 }
 
