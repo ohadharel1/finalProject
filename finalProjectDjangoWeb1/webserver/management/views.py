@@ -386,7 +386,11 @@ def get_drone_table(request):
     context = {'table': 'tbldrone',
                'result': table_result['success'],
                'keys': table_result['keys'],
-               'values': table_result['values']}
+               'values': table_result['values'],
+               'motors': table_result['motors'],
+               'bats': table_result['bats'],
+               'props': table_result['props'],
+               }
     return HttpResponse(json_utils.json_to_str(context), content_type='application/json')
 
 

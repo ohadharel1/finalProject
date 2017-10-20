@@ -148,7 +148,7 @@ $('#tableTabs').on('click', '#batTab', function() {
 });
 $('#tableTabs').on('click', '#propTab', function() {
     get_prop_table();
-    console.log('battery pressed!')
+    console.log('prop pressed!')
 });
 $('#tableTabs').on('click', '#droneTab', function() {
     get_drone_table();
@@ -886,6 +886,21 @@ function delete_prop(id)
 }
 
 
+function fill_dropdowns(fragment_name, list)
+{
+    var select_frag = document.getElementById(fragment_name);
+    var fragment = document.createDocumentFragment();
+
+    list.forEach(function(item, index) {
+        var opt = document.createElement('option');
+        opt.innerHTML = item;
+        opt.value = item;
+        fragment.appendChild(opt);
+    });
+
+    select_frag.appendChild(fragment);
+}
+
 function get_drone_table()
 {
     console.log('get drone table');
@@ -899,16 +914,18 @@ function get_drone_table()
            },
        })
        .done(function(response) {
-            console.log(response);
             mydata = [];
             for (var key in response.values)
             {
                 mydata.push(response.values[key]);
             }
-            console.log(mydata);
             drone_table.clear();
             drone_table.rows.add(mydata);
             drone_table.draw();
+
+            fill_dropdowns('motor_name_form', response.motors);
+            fill_dropdowns('bat_name_form', response.bats);
+            fill_dropdowns('prop_name_form', response.props);
 
             $('#loader').hide();
     });
@@ -920,9 +937,10 @@ function get_drone_table()
         {
             var data = drone_table.row( $(this).parents('tr') ).data();
             $(".modal-body #drone_id").val(data.id);
-            $(".modal-body #drone_motor_name").val(data.motor_name);
-            $(".modal-body #drone_bat_name").val(data.bat_name);
-            $(".modal-body #drone_prop_name").val(data.prop_name);
+            $(".modal-body #motor_name_form").val(data.motor_name);
+            $(".modal-body #bat_name_form").val(data.bat_name);
+            $(".modal-body #prop_name_form").val(data.prop_name);
+
             $("#drone_edit_modal").modal('show');
         }
         else

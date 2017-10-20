@@ -210,6 +210,7 @@ class _DB_handler:
         keys_list = [i[0] for i in cursor.description]
         cursor.close()
         complete_values_list = []
+        res = {}
         for i, row in enumerate(query_result):
             current_row_values = {}
             for key in keys_list:
@@ -217,8 +218,11 @@ class _DB_handler:
             complete_values_list.append(current_row_values)
         if table_name == config.drone_tbl_name:
             complete_values_list = self.get_drone_table(complete_values_list)
-        res = {'keys': keys_list,
-               'values': complete_values_list}
+            res['motors'] = self.get_all_table_names(config.motor_tbl_name)
+            res['bats'] = self.get_all_table_names(config.battery_tbl_name)
+            res['props'] = self.get_all_table_names(config.prop_tbl_name)
+        res['keys'] = keys_list
+        res['values'] = complete_values_list
         return res
 
     def get_drone_table(self, value_list):
@@ -231,6 +235,16 @@ class _DB_handler:
             row_dict['prop_name'] = self.get_name_by_id(config.prop_tbl_name, row['prop_id'])
             result_list.append(row_dict)
         return result_list
+
+    def get_all_table_names(self, table_name):
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT name FROM " + table_name + ';')
+        query_result = cursor.fetchall()
+        cursor.close()
+        res = []
+        for i, row in enumerate(query_result):
+            res.append(row['name'])
+        return res
 
     def get_name_by_id(self, table_name, id):
         cursor = self.db.cursor(MySQLdb.cursors.DictCursor)

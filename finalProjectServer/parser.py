@@ -70,8 +70,11 @@ def parse_drone_table(motor_id, batt_id, prop_id):
     for drone in drone_ids:
         try:
             args = (drone, motor_id, batt_id, prop_id)
-            controller.get_instance().get_db().insert_to_table(config.drone_tbl_insert, args)
-            print 'inserted'
+            res, error = controller.get_instance().get_db().insert_to_table(config.drone_tbl_insert, args)
+            if res:
+                print 'inserted'
+            else:
+                print error
         except Exception, e:
             print str(e)
             print 'failed to insert'
@@ -83,5 +86,5 @@ if __name__ == '__main__':
     #parse_motor_table()
     #parse_bat_table()
     # parse_prop_table()
-    parse_drone_table(1557, 149, 10)
+    parse_drone_table(1557, 140, 165)
     print 'done parsing!'

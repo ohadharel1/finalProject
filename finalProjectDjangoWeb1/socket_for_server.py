@@ -38,11 +38,11 @@ class SystemServer:
         while self.server_socket:
             msg = self.server_socket.recv(self.msg_size)
             if msg is not None:
-                print 'msg before is: ' + str(msg)
-                msg = old_msg + msg
+                # print 'msg before is: ' + str(msg)
+                # msg = old_msg + msg
                 json_dict = json_utils.str_to_json(msg)
                 if json_dict is None:
-                    old_msg = msg
+                    print 'json is none!!!'
                 else:
                     self.handle_msg(json_dict)
                     old_msg = ''
