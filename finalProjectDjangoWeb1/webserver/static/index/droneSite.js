@@ -28,12 +28,12 @@ $(document).ready(function(){
                },
            })
            .done(function(response) {
-                console.log(response.is_error)
                 var do_message = response.do_message;
                 if (do_message)
                 {
                     if (response.is_error)
                     {
+                        console.log('error');
                         swal('drone ' + response.drone_id + ' has an error', {
                           icon: "error",
                           buttons: {
@@ -58,6 +58,7 @@ $(document).ready(function(){
                     }
                     else if (response.is_takeoff)
                     {
+                    console.log('takeoff');
                         swal('drone ' + response.drone_id + ' is taking off', {
                           buttons: {
                             cancel: "Close",
@@ -81,6 +82,7 @@ $(document).ready(function(){
                     }
                     else
                     {
+                    console.log('land');
                         swal('drone ' + response.drone_id + ' has landed', {
                           buttons: {
                             cancel: "Close",

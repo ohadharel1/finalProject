@@ -23,6 +23,7 @@ class Flight:
         self.state = flight_status.index('ready to takeoff')
         args = (int(self.drone_num), self.timestamp, self.state, self.logger.get_log_path())
         controller.get_instance().get_db().insert_to_table(config.flight_tbl_insert, args)
+        controller.get_instance().get_db().check_and_add_drone(self.drone_num)
         self.timeout_thread = threading.Event()
         thread.start_new_thread(self.do_time_check, ())
 

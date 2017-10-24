@@ -22,6 +22,7 @@ class __Controller:
                                  'is_error': False,
                                  'drone_id': None}
         self.__current_page = config.CURRENT_PAGE_INDEX
+        self._drone_error_ids = []
 
     def get_system_server(self):
         return self.__system_server
@@ -48,17 +49,21 @@ class __Controller:
         status = msg['status']
         for key in status:
             value = status[key]
-            if value['is_error']:
+            if value['is_error'] and value['drone_num'] not in self._drone_error_ids:
+                self._drone_error_ids.append(value['drone_num'])
                 self.__new_flight_msg['is_takeoff'] = False
                 self.__new_flight_msg['is_error'] = True
                 self.__new_flight_msg['do_message'] = True
                 self.__new_flight_msg['drone_id'] = value['drone_num']
             elif value['cmd'] == 'takeoff':
+                if value['drone_num'] in self._drone_error_ids:
+                    self._drone_error_ids.remove(value['drone_num'])
                 self.__new_flight_msg['is_takeoff'] = True
                 self.__new_flight_msg['is_error'] = False
                 self.__new_flight_msg['do_message'] = True
                 self.__new_flight_msg['drone_id'] = value['drone_num']
-            elif value['cmd'] == 'landed':
+            elif value['cmd'] == 'landed' and value['drone_num'] not in self._drone_error_ids:
+                self._drone_error_ids.append(value['drone_num'])
                 self.__new_flight_msg['is_takeoff'] = False
                 self.__new_flight_msg['is_error'] = False
                 self.__new_flight_msg['do_message'] = True

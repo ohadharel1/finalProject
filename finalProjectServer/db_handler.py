@@ -44,6 +44,13 @@ class _DB_handler:
             cursor.close()
             return res
 
+    def check_and_add_drone(self, drone_num):
+        ids = self.get_all_drone_ids_from_drone_tbl()
+        if drone_num in ids:
+            return
+        args = (drone_num, 1557, 140, 165)
+        self.insert_to_table(config.drone_tbl_insert, args)
+
     def change_flight_status(self, drone_num, timestamp, status):
         args = (status, int(drone_num), timestamp)
         cursor = self.db.cursor()
@@ -550,6 +557,18 @@ class _DB_handler:
         cursor.close()
         for i, row in enumerate(query_result):
             current_id = row['drone_num']
+            if current_id not in ids:
+                ids.append(current_id)
+        return ids
+
+    def get_all_drone_ids_from_drone_tbl(self):
+        ids = []
+        cursor = self.db.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT id FROM " + config.drone_tbl_name, )
+        query_result = cursor.fetchall()
+        cursor.close()
+        for i, row in enumerate(query_result):
+            current_id = row['id']
             if current_id not in ids:
                 ids.append(current_id)
         return ids
